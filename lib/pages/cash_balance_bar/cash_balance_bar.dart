@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
+
+import '../../design_system/colors.dart';
 
 class CashBalanceBar extends StatefulWidget {
   const CashBalanceBar({super.key});
@@ -24,9 +23,17 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
         children: [
           Column(
             children: [
-              const Text('Saldo atual'),
+              const Text(
+                'Saldo atual',
+                style: TextStyle(
+                  color: AppColors.primarytextColor,
+                ),
+              ),
               Text(
                 'R\$ $balanceText',
+                style: const TextStyle(
+                  color: AppColors.primarytextColor,
+                ),
               ),
             ],
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/appbar/appbar.dart';
+import '../../widgets/profile_bar/profilebar.dart';
 import '../cash_balance_bar/cash_balance_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,11 +14,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            CashBalanceBar(),
+          children: [
+            const ProfileBar(),
+            Container(
+              color: const Color(0xff2f595b),
+              height: 1.5,
+              width: MediaQuery.of(context).size.width * 0.92,
+            ),
+            const CashBalanceBar(),
           ],
         ),
       ),
