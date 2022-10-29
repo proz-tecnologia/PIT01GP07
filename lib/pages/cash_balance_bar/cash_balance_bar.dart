@@ -17,25 +17,28 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              const Text(
-                'Saldo atual',
-                style: TextStyle(
-                  color: AppColors.primarytextColor,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const Text(
+                  'Saldo atual',
+                  style: TextStyle(
+                    color: AppColors.primarytextColor,
+                  ),
                 ),
-              ),
-              Text(
-                'R\$ $balanceText',
-                style: const TextStyle(
-                  color: AppColors.primarytextColor,
+                Text(
+                  'R\$ $balanceText',
+                  style: const TextStyle(
+                    color: AppColors.primarytextColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           IconButton(
               onPressed: () {

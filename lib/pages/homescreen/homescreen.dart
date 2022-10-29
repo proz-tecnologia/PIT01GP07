@@ -17,6 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 16.0,
+            ),
             const ProfileBar(),
             Container(
               color: const Color(0xff2f595b),
