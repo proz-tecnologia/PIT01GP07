@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
+import '../../widgets/fab/fab.dart';
 import '../../widgets/option_cards/optionsCards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
 import '../../widgets/cash_balance_bar/cash_balance_bar.dart';
@@ -30,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      floatingActionButton: fab(icon: const Icon(Icons.add)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
