@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
-
+import '../../widgets/option_cards/optionsCards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
 import '../../widgets/cash_balance_bar/cash_balance_bar.dart';
 
@@ -17,13 +17,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children:  const [
+            SizedBox(
+              height: 16.0,),
+            ProfileBar(),
+            CashBalanceBar(),
+            RevenueExpenseBar(),
             SizedBox(
               height: 16.0,
             ),
-            ProfileBar(),
-            CashBalanceBar(),
-            RevenueExpenseBar()
+            OptionsCards(),
           ],
         ),
       ),
