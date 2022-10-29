@@ -1,6 +1,42 @@
 import 'package:flutter/material.dart';
 
-Widget optionsCards () {
+class OptionsCards extends StatefulWidget {
+  const OptionsCards({super.key});
+
+  @override
+  State<OptionsCards> createState() => _OptionsCardsState();
+
+}
+class _OptionsCardsState extends State<OptionsCards> {
+  @override
+  Widget build (BuildContext context) {
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        card(
+            icon: const Icon(Icons.home),
+            text:'CHAVES PIX'
+        ),
+        const SizedBox(width: 4),
+        card(
+            icon: const Icon(Icons.receipt_long),
+            text:'COMPROVANTES'
+        ),
+        const SizedBox(width: 4),
+        card(
+            icon: const Icon(Icons.home),
+            text:'METAS'
+        ),
+        const SizedBox(width: 4),
+        card(
+            icon: const Icon(Icons.calendar_month),
+            text:'CALENDÁRIO'
+        ),
+      ],
+    );
+  }
+}
+/*Widget optionsCards () {
   return  Row(
     mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,7 +62,7 @@ Widget optionsCards () {
         ],
       );
 
-}
+}*/
 
 Widget card ({
   required String text,
