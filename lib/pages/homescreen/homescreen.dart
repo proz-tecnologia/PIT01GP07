@@ -1,7 +1,7 @@
-import 'package:controle_gastos_prototipo/pages/cash_balance_bar/cash_balance_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/appbar/appbar.dart';
+import '../cash_balance_bar/cash_balance_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
