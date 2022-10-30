@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pit01gp07/widgets/cards_container/cards_container.dart';
 import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
 import '../../widgets/bottom_bar/tabBar.dart';
 import '../../widgets/fab/fab.dart';
@@ -14,15 +15,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int index =0;
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children:  const [
+          children: const [
             SizedBox(
-              height: 16.0,),
+              height: 16.0,
+            ),
             ProfileBar(),
             CashBalanceBar(),
             RevenueExpenseBar(),
@@ -30,18 +32,23 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 16.0,
             ),
             OptionsCards(),
+            SizedBox(
+              height: 16.0,
+            ),
+            CardsContainer()
           ],
         ),
       ),
       floatingActionButton: fab(icon: const Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: TabBarWidget(
-        index:index,
-        onChangedTab:onChangedTab,
+        index: index,
+        onChangedTab: onChangedTab,
       ),
     );
   }
-  void onChangedTab(int index){
+
+  void onChangedTab(int index) {
     setState(() {
       this.index = index;
     });
