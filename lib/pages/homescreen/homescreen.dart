@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pit01gp07/widgets/cards_container/cards_container.dart';
 import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
 import '../../widgets/bottom_bar/tabBar.dart';
+import '../../widgets/elevatedbuttom_customizehome/elevatedbuttom_customizehome.dart';
 import '../../widgets/fab/fab.dart';
 import '../../widgets/option_cards/optionsCards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
@@ -35,7 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 16.0,
             ),
-            CardsContainer()
+            CardsContainer(),
+            customizehomebutton(),
           ],
         ),
       ),
