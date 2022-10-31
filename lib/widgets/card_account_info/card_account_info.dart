@@ -19,12 +19,7 @@ class CardAccountInfoState extends State<CardAccountInfo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Minhas Contas",
-              style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.secondtextColor,
-                  fontSize: 18)),
+          const Text("Minhas Contas", style: StyleApp.titleCardStyle),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,

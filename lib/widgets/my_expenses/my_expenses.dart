@@ -17,6 +17,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
   bool expenseTime = false;
   Color patternColor = AppColors.primarytextColor;
   Color behindColor = AppColors.backgroudColor;
+  Color primaryTextColor = AppColors.primarytextColor;
+  Color secondTextColor = AppColors.secondtextColor;
   TextDecoration underline = TextDecoration.none;
   TextDecoration secunderline = TextDecoration.underline;
 
@@ -27,7 +29,10 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Minhas Despesas"),
+          const Text(
+            "Minhas Despesas",
+            style: StyleApp.titleCardStyle,
+          ),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
@@ -57,13 +62,19 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                           height: 50,
                           child: Text(
                             "Atrasadas",
-                            style: TextStyle(decoration: underline),
+                            style: TextStyle(
+                                decoration: underline,
+                                fontWeight: FontWeight.w700,
+                                color: primaryTextColor,
+                                fontSize: 18),
                           ),
                         ),
                         onTap: () {
                           setState(() {
                             patternColor = AppColors.backgroudColor;
                             behindColor = AppColors.primarytextColor;
+                            primaryTextColor = AppColors.secondtextColor;
+                            secondTextColor = AppColors.primarytextColor;
                             secunderline = TextDecoration.none;
                             underline = TextDecoration.underline;
                             expenseTime = true;
@@ -84,13 +95,19 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                           height: 50,
                           child: Text(
                             "Em dia",
-                            style: TextStyle(decoration: secunderline),
+                            style: TextStyle(
+                                decoration: secunderline,
+                                fontWeight: FontWeight.w700,
+                                color: secondTextColor,
+                                fontSize: 18),
                           ),
                         ),
                         onTap: () {
                           setState(() {
                             patternColor = AppColors.primarytextColor;
                             behindColor = AppColors.backgroudColor;
+                            primaryTextColor = AppColors.primarytextColor;
+                            secondTextColor = AppColors.secondtextColor;
                             underline = TextDecoration.none;
                             secunderline = TextDecoration.underline;
                             expenseTime = false;

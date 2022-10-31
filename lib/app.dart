@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'design_system/colors.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
@@ -12,10 +10,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Inter',
         iconTheme: const IconThemeData(
           color: AppColors.primarytextColor,
         ),
-        textTheme: GoogleFonts.inderTextTheme(),
         scaffoldBackgroundColor: AppColors.backgroudColor,
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(

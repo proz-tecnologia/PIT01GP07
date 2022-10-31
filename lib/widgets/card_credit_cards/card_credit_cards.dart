@@ -20,12 +20,7 @@ class CardCreditCardsState extends State<CardCreditCards> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Meus Cartões",
-              style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFF2F595B),
-                  fontSize: 18)),
+          const Text("Meus Cartões", style: StyleApp.titleCardStyle),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,

@@ -19,50 +19,71 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
         borderRadius: BorderRadius.all(StyleApp.borderRadius),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
-      height: 40,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Row(
           children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.arrow_circle_up,
-                  color: AppColors.revenueColor,
-                  size: 35,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Receita'),
-                    Text('R\$ 250,00'),
-                  ],
-                )
-              ],
+            const Icon(
+              Icons.arrow_circle_up,
+              color: AppColors.revenueColor,
+              size: 35,
             ),
-            Container(
-              color: AppColors.secondtextColor,
-              width: 1.5,
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.arrow_circle_down,
-                  color: AppColors.expenseColor,
-                  size: 35,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Receita',
+                  style: TextStyle(
+                    color: AppColors.revenueColor,
+                    fontSize: 18,
+                  ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Despesa'),
-                    Text('R\$ 120,00'),
-                  ],
-                )
+                Text(
+                  'R\$ 250,00',
+                  style: TextStyle(
+                      color: AppColors.revenueColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
               ],
             )
-          ]),
+          ],
+        ),
+        Container(
+          color: AppColors.secondtextColor,
+          width: 1.5,
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.arrow_circle_down,
+              color: AppColors.expenseColor,
+              size: 35,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Despesa',
+                  style: TextStyle(
+                    color: AppColors.expenseColor,
+                    fontSize: 18,
+                  ),
+                ),
+                Text(
+                  'R\$ 120,00',
+                  style: TextStyle(
+                    color: AppColors.expenseColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            )
+          ],
+        )
+      ]),
     );
   }
 }
