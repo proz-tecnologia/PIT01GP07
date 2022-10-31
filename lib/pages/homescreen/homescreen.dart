@@ -41,7 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
              const CardsContainer(),
              const CardCreditCards(),
+            const SizedBox(
+              height: 16.0,
+            ),
              const CardAccountInfo(),
+            const SizedBox(
+              height: 16.0,
+            ),
              customizehomebutton()
           ],
         ),
