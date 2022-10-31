@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pit01gp07/widgets/cards_container/cards_container.dart';
 import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
 import '../../widgets/bottom_bar/tabBar.dart';
+import '../../widgets/card_credit_cards/card_credit_cards.dart';
+import '../../widgets/elevatedbuttom_customizehome/elevatedbuttom_customizehome.dart';
 import '../../widgets/fab/fab.dart';
 import '../../widgets/option_cards/optionsCards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
@@ -21,21 +23,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 16.0,
             ),
-            ProfileBar(),
-            CashBalanceBar(),
-            RevenueExpenseBar(),
-            SizedBox(
+            const ProfileBar(),
+            const CashBalanceBar(),
+            const RevenueExpenseBar(),
+            const SizedBox(
               height: 16.0,
             ),
-            OptionsCards(),
-            SizedBox(
+            const OptionsCards(),
+            const SizedBox(
               height: 16.0,
             ),
-            CardsContainer()
+             const CardsContainer(),
+             const CardCreditCards(),
+            customizehomebutton(),
           ],
         ),
       ),
