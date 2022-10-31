@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:teste/design_system/styleapp.dart';
+import 'package:teste/widgets/financial/financial.dart';
 
 import '../../design_system/colors.dart';
 import '../card_account_info/card_account_info.dart';
@@ -34,6 +35,7 @@ class _CardsContainerState extends State<CardsContainer> {
           const MyExpensesCard(),
           const CardCreditCards(),
           const CardAccountInfo(),
+          const Financial(),
           customizehomebutton(),
           const SizedBox(
             height: 32.0,

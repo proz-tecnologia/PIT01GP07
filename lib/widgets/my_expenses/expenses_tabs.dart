@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/design_system/styleapp.dart';
+import 'package:teste/widgets/raisedButton_see_more/raisedbutton_see_more.dart';
 
 import '../../design_system/colors.dart';
 
@@ -62,16 +63,7 @@ class _ExpensesState extends State<Expenses> {
                 Text("Paga")
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Text("Ver tudo"),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: AppColors.secondtextColor,
-                ),
-              ],
-            )
+            seemorebutton(text: "Ver tudo")
           ],
         ),
       );

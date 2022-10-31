@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:teste/design_system/styleapp.dart';
 
 import '../../design_system/colors.dart';
-import 'expenses_tabs.dart';
+import 'financial_tabs.dart';
 
-class MyExpensesCard extends StatefulWidget {
-  const MyExpensesCard({super.key});
+class Financial extends StatefulWidget {
+  const Financial({super.key});
 
   @override
-  State<MyExpensesCard> createState() => _MyExpensesCardState();
+  State<Financial> createState() => _FinancialState();
 }
 
-class _MyExpensesCardState extends State<MyExpensesCard> {
-  bool expenseTime = false;
+class _FinancialState extends State<Financial> {
+  bool financialTime = false;
   Color patternColor = AppColors.primarytextColor;
   Color behindColor = AppColors.backgroudColor;
   Color primaryTextColor = AppColors.primarytextColor;
@@ -30,7 +30,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Minhas Despesas",
+            "Financeiro",
             style: StyleApp.titleCardStyle,
           ),
           const SizedBox(height: 8),
@@ -41,7 +41,12 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
               color: AppColors.secondBackgroudColor,
               borderRadius: const BorderRadius.all(StyleApp.borderRadius),
               boxShadow: [
-                StyleApp.boxShadow,
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 2,
+                  // changes position of shadow
+                ),
               ],
             ),
             child: Column(
@@ -61,7 +66,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                           ),
                           height: 50,
                           child: Text(
-                            "Atrasadas",
+                            "Renda",
                             style: TextStyle(
                                 decoration: underline,
                                 fontWeight: FontWeight.w700,
@@ -77,7 +82,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                             secondTextColor = AppColors.primarytextColor;
                             secunderline = TextDecoration.none;
                             underline = TextDecoration.underline;
-                            expenseTime = true;
+                            financialTime = true;
                           });
                         },
                       ),
@@ -94,7 +99,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                               )),
                           height: 50,
                           child: Text(
-                            "Em dia",
+                            "Despesas",
                             style: TextStyle(
                                 decoration: secunderline,
                                 fontWeight: FontWeight.w700,
@@ -110,7 +115,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                             secondTextColor = AppColors.secondtextColor;
                             underline = TextDecoration.none;
                             secunderline = TextDecoration.underline;
-                            expenseTime = false;
+                            financialTime = false;
                           });
                         },
                       ),
@@ -118,8 +123,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                   ],
                 ),
                 Expanded(
-                    child: Expenses(
-                  check: expenseTime,
+                    child: FinancialTabs(
+                  check: financialTime,
                 ))
               ],
             ),
