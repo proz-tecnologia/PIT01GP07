@@ -39,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
              const CardsContainer(),
              const CardCreditCards(),
-            const CardsContainer(),
             customizehomebutton(),
           ],
         ),
