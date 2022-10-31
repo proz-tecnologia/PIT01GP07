@@ -8,7 +8,6 @@ class AppColors {
   static const Color revertBackgroundColor = Color(0xffffffff);
   static const Color primarytextColor = Color(0xffffffff);
   static const Color secondtextColor = Color(0xff2F595B);
-  static const Color primaryIconColor = Color(0xffffffff);
   static const Color revenueColor = Color(0xff32847a);
   static const Color expenseColor = Color(0xffbf3131);
 }

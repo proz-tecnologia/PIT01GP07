@@ -39,7 +39,7 @@ class ProfileBar extends StatelessWidget {
             ],
           ),
           Container(
-            color: const Color(0xff2f595b),
+            color: AppColors.secondtextColor,
             height: 1.5,
             width: MediaQuery.of(context).size.width * 0.92,
           ),

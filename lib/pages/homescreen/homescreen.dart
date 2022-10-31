@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pit01gp07/widgets/cards_container/cards_container.dart';
-import 'package:pit01gp07/widgets/revenue_expense_bar/revenue_expense_bar.dart';
-import '../../widgets/bottom_bar/tabBar.dart';
-import '../../widgets/card_credit_cards/card_credit_cards.dart';
+import '../../widgets/bottom_bar/tab_bar.dart';
+
+import '../../widgets/cards_container/cards_container.dart';
 import '../../widgets/fab/fab.dart';
-import '../../widgets/option_cards/optionsCards.dart';
+import '../../widgets/option_cards/options_cards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
 import '../../widgets/cash_balance_bar/cash_balance_bar.dart';
-import '../../widgets/card_account_info/card_account_info.dart';
-import '../../widgets/elevatedbutton_customizehome/elevatedbutton_customizehome.dart';
 
+import '../../widgets/revenue_expense_bar/revenue_expense_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,30 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            const SizedBox(
+          children: const [
+            SizedBox(
               height: 16.0,
             ),
-            const ProfileBar(),
-            const CashBalanceBar(),
-            const RevenueExpenseBar(),
-            const SizedBox(
+            ProfileBar(),
+            CashBalanceBar(),
+            RevenueExpenseBar(),
+            SizedBox(
               height: 16.0,
             ),
-            const OptionsCards(),
-            const SizedBox(
+            OptionsCards(),
+            SizedBox(
               height: 16.0,
             ),
-             const CardsContainer(),
-             const CardCreditCards(),
-            const SizedBox(
-              height: 16.0,
-            ),
-             const CardAccountInfo(),
-            const SizedBox(
-              height: 16.0,
-            ),
-             customizehomebutton()
+            CardsContainer(),
           ],
         ),
       ),

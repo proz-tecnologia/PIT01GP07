@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pit01gp07/design_system/colors.dart';
+import 'package:teste/design_system/styleapp.dart';
+
+import '../../design_system/colors.dart';
 
 class RevenueExpenseBar extends StatefulWidget {
   const RevenueExpenseBar({super.key});
@@ -14,7 +16,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
     return Container(
       decoration: const BoxDecoration(
         color: AppColors.primarytextColor,
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(StyleApp.borderRadius),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
       height: 40,
@@ -39,7 +41,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
               ],
             ),
             Container(
-              color: const Color(0xff2f595b),
+              color: AppColors.secondtextColor,
               width: 1.5,
               height: 30,
             ),

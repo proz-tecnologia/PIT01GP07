@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         iconTheme: const IconThemeData(
-          color: AppColors.primaryIconColor,
+          color: AppColors.primarytextColor,
         ),
         textTheme: GoogleFonts.inderTextTheme(),
         scaffoldBackgroundColor: AppColors.backgroudColor,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:teste/design_system/styleapp.dart';
 
 import '../../design_system/colors.dart';
 
+// ignore: must_be_immutable
 class Expenses extends StatefulWidget {
   bool check;
 
@@ -23,7 +25,7 @@ class _ExpensesState extends State<Expenses> {
         height: 240,
         decoration: const BoxDecoration(
             color: AppColors.primarytextColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            borderRadius: BorderRadius.all(StyleApp.borderRadius)),
         child: const Text("Atrasadas"),
       );
     } else {
@@ -32,7 +34,7 @@ class _ExpensesState extends State<Expenses> {
         height: 240,
         decoration: const BoxDecoration(
             color: AppColors.primarytextColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            borderRadius: BorderRadius.all(StyleApp.borderRadius)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
-import 'package:pit01gp07/design_system/colors.dart';
+import 'package:teste/design_system/styleapp.dart';
 
+import '../../design_system/colors.dart';
 import 'expenses_tabs.dart';
 
 class MyExpensesCard extends StatefulWidget {
@@ -22,14 +23,12 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 8.0),
-            child: Text("Minhas Despesas"),
-          ),
+          const Text("Minhas Despesas"),
+          const SizedBox(height: 8),
           Container(
             width: double.infinity,
             height: 290,
@@ -37,12 +36,7 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
               color: AppColors.secondBackgroudColor,
               borderRadius: const BorderRadius.all(Radius.circular(20)),
               boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 2,
-                  // changes position of shadow
-                ),
+                StyleApp.boxShadow,
               ],
             ),
             child: Column(
