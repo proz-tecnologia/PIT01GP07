@@ -1,8 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+<<<<<<< HEAD
 
 import '../credit_cardsinfo/credit_cardsinfo.dart';
+=======
+import 'credit_cardsinfo.dart';
+>>>>>>> a8c6ce5ad9d5327346a3bb0ae5080e974c9a524d
 
 class CarrouselSlider extends StatefulWidget{
   const CarrouselSlider({super.key});
