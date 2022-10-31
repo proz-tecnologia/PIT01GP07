@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
 Widget seemorebutton ({
-=======
-Widget seeMoreButton ({
->>>>>>> a8c6ce5ad9d5327346a3bb0ae5080e974c9a524d
   required String text,
 }) {
   return  Container(
