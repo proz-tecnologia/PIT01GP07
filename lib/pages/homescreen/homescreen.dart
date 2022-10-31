@@ -22,21 +22,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 16.0,
             ),
-            ProfileBar(),
-            CashBalanceBar(),
-            RevenueExpenseBar(),
-            SizedBox(
+            const ProfileBar(),
+            const CashBalanceBar(),
+            const RevenueExpenseBar(),
+            const SizedBox(
               height: 16.0,
             ),
-            OptionsCards(),
-            SizedBox(
+            const OptionsCards(),
+            const SizedBox(
               height: 16.0,
             ),
-            CardsContainer(),
+            const CardsContainer(),
             customizehomebutton(),
           ],
         ),
