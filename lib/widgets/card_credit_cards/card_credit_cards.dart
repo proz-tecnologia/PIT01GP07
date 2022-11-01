@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
-import 'package:teste/design_system/styleapp.dart';
-
+import '../../design_system/colors.dart';
+import '../../design_system/styleapp.dart';
 import '../carousel/carousel.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
+import '../../design_system/colors.dart';
 
 Widget seemorebutton({
   required String text,

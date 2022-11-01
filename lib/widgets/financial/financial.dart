@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/styleapp.dart';
 
 import '../../design_system/colors.dart';
+import '../../design_system/styleapp.dart';
 import 'financial_tabs.dart';
 
 class Financial extends StatefulWidget {
