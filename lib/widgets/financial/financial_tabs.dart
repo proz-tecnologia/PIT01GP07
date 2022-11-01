@@ -80,7 +80,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                         const Text(
                           "Alugel",
                           style: TextStyle(
-                              fontSize: 22, color: AppColors.secondtextColor),
+                              fontSize: 18, color: AppColors.secondtextColor),
                         )
                       ],
                     ),
@@ -100,7 +100,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                         const Text(
                           "Alimentação",
                           style: TextStyle(
-                              fontSize: 22, color: AppColors.secondtextColor),
+                              fontSize: 18, color: AppColors.secondtextColor),
                         )
                       ],
                     ),
@@ -120,7 +120,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                         const Text(
                           "Carro",
                           style: TextStyle(
-                              fontSize: 22, color: AppColors.secondtextColor),
+                              fontSize: 18, color: AppColors.secondtextColor),
                         )
                       ],
                     ),

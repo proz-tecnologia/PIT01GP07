@@ -59,7 +59,7 @@ Widget card({
   required Icon icon,
 }) {
   return SizedBox(
-    width: 96,
+    width: 84,
     child: Column(
       children: [
         ElevatedButton(
