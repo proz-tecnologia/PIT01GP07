@@ -7,6 +7,7 @@ Widget accountInfo({
   required double saldo,
   required String assetImage,
 }) {
+  String meuSaldo= saldo.toStringAsFixed(2).replaceAll(".", ",");
   return Row(
     children: [
       const SizedBox(width: 16),
@@ -43,8 +44,9 @@ Widget accountInfo({
         ],
       ),
       const SizedBox(width: 29),
+      const Spacer(),
       Text(
-        "R\$ $saldo",
+        "R\$ $meuSaldo",
         style: const TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w700,
@@ -52,6 +54,7 @@ Widget accountInfo({
           color: AppColors.secondtextColor,
         ),
       ),
+      const SizedBox(width: 16),
     ],
   );
 }

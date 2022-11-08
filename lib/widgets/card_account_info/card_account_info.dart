@@ -42,13 +42,13 @@ class CardAccountInfoState extends State<CardAccountInfo> {
                 accountInfo(
                     nome: "Caixa Econômica",
                     tipo: "Conta Poupança",
-                    saldo: 1300,
+                    saldo: 123.43,
                     assetImage: 'assets/images/bank_accounts/caixa.png'),
                 const SizedBox(height: 8),
                 accountInfo(
                     nome: "Banco Inter",
                     tipo: "Conta Corrente",
-                    saldo: 1300,
+                    saldo: 98.4,
                     assetImage: 'assets/images/bank_accounts/inter.png'),
                 const SizedBox(height: 8),
                 seemorebutton(text: "Ver tudo"),
