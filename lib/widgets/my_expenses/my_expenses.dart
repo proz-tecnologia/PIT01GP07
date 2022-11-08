@@ -7,7 +7,9 @@ import '../../design_system/styleapp.dart';
 import 'expenses_tabs.dart';
 
 class MyExpensesCard extends StatefulWidget {
-  const MyExpensesCard({super.key});
+  const MyExpensesCard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyExpensesCard> createState() => _MyExpensesCardState();
@@ -21,6 +23,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
   Color secondTextColor = AppColors.secondtextColor;
   TextDecoration underline = TextDecoration.none;
   TextDecoration secunderline = TextDecoration.underline;
+  Radius leftRadius = const Radius.circular(0.0);
+  Radius rightRadius = const Radius.circular(20.0);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +42,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
             width: double.infinity,
             height: 290,
             decoration: BoxDecoration(
-              color: AppColors.secondBackgroudColor,
-              borderRadius: const BorderRadius.all(StyleApp.borderRadius),
+              color: AppColors.backgroudColor,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               boxShadow: [
                 StyleApp.boxShadow,
               ],
@@ -54,10 +58,11 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: behindColor,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: StyleApp.borderRadius,
-                              topRight: StyleApp.borderRadius,
-                            ),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: rightRadius,
+                                bottomRight: rightRadius,
+                                topRight: StyleApp.borderRadius,
+                                topLeft: StyleApp.borderRadius),
                           ),
                           height: 50,
                           child: Text(
@@ -77,6 +82,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                             secondTextColor = AppColors.primarytextColor;
                             secunderline = TextDecoration.none;
                             underline = TextDecoration.underline;
+                            leftRadius = const Radius.circular(20.0);
+                            rightRadius = const Radius.circular(0.0);
                             expenseTime = true;
                           });
                         },
@@ -88,10 +95,11 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               color: patternColor,
-                              borderRadius: const BorderRadius.only(
-                                topRight: StyleApp.borderRadius,
-                                topLeft: StyleApp.borderRadius,
-                              )),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: leftRadius,
+                                  bottomLeft: leftRadius,
+                                  topLeft: StyleApp.borderRadius,
+                                  topRight: StyleApp.borderRadius)),
                           height: 50,
                           child: Text(
                             "Em dia",
@@ -110,6 +118,8 @@ class _MyExpensesCardState extends State<MyExpensesCard> {
                             secondTextColor = AppColors.secondtextColor;
                             underline = TextDecoration.none;
                             secunderline = TextDecoration.underline;
+                            leftRadius = const Radius.circular(0.0);
+                            rightRadius = const Radius.circular(20.0);
                             expenseTime = false;
                           });
                         },

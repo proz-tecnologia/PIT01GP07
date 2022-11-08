@@ -4,6 +4,7 @@ import '../../design_system/colors.dart';
 import '../../design_system/styleapp.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
 
+// ignore: must_be_immutable
 class FinancialTabs extends StatefulWidget {
   bool check;
 
@@ -24,8 +25,12 @@ class _FinancialTabsState extends State<FinancialTabs> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-            color: AppColors.primarytextColor,
-            borderRadius: BorderRadius.all(StyleApp.borderRadius)),
+          color: AppColors.primarytextColor,
+          borderRadius: BorderRadius.only(
+              bottomLeft: StyleApp.borderRadius,
+              bottomRight: StyleApp.borderRadius,
+              topRight: StyleApp.borderRadius),
+        ),
         child: const Text("Renda"),
       );
     } else {
@@ -33,8 +38,11 @@ class _FinancialTabsState extends State<FinancialTabs> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-          color: AppColors.primarytextColor,
-        ),
+            color: AppColors.primarytextColor,
+            borderRadius: BorderRadius.only(
+                bottomLeft: StyleApp.borderRadius,
+                bottomRight: StyleApp.borderRadius,
+                topLeft: StyleApp.borderRadius)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

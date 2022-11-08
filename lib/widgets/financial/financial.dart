@@ -21,6 +21,8 @@ class _FinancialState extends State<Financial> {
   Color secondTextColor = AppColors.secondtextColor;
   TextDecoration underline = TextDecoration.none;
   TextDecoration secunderline = TextDecoration.underline;
+  Radius leftRadius = const Radius.circular(0.0);
+  Radius rightRadius = const Radius.circular(20.0);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _FinancialState extends State<Financial> {
             width: double.infinity,
             height: 290,
             decoration: BoxDecoration(
-              color: AppColors.secondBackgroudColor,
+              color: AppColors.backgroudColor,
               borderRadius: const BorderRadius.all(StyleApp.borderRadius),
               boxShadow: [
                 BoxShadow(
@@ -59,10 +61,11 @@ class _FinancialState extends State<Financial> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: behindColor,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: StyleApp.borderRadius,
-                              topRight: StyleApp.borderRadius,
-                            ),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: rightRadius,
+                                bottomRight: rightRadius,
+                                topRight: StyleApp.borderRadius,
+                                topLeft: StyleApp.borderRadius),
                           ),
                           height: 50,
                           child: Text(
@@ -82,6 +85,8 @@ class _FinancialState extends State<Financial> {
                             secondTextColor = AppColors.primarytextColor;
                             secunderline = TextDecoration.none;
                             underline = TextDecoration.underline;
+                            leftRadius = const Radius.circular(20.0);
+                            rightRadius = const Radius.circular(0.0);
                             financialTime = true;
                           });
                         },
@@ -93,10 +98,11 @@ class _FinancialState extends State<Financial> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               color: patternColor,
-                              borderRadius: const BorderRadius.only(
-                                topRight: StyleApp.borderRadius,
-                                topLeft: StyleApp.borderRadius,
-                              )),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: leftRadius,
+                                  bottomLeft: leftRadius,
+                                  topLeft: StyleApp.borderRadius,
+                                  topRight: StyleApp.borderRadius)),
                           height: 50,
                           child: Text(
                             "Despesas",
@@ -115,6 +121,8 @@ class _FinancialState extends State<Financial> {
                             secondTextColor = AppColors.secondtextColor;
                             underline = TextDecoration.none;
                             secunderline = TextDecoration.underline;
+                            leftRadius = const Radius.circular(0.0);
+                            rightRadius = const Radius.circular(20.0);
                             financialTime = false;
                           });
                         },

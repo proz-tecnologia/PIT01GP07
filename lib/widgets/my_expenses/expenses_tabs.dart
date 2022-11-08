@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:teste/widgets/raisedButton_see_more/raisedbutton_see_more.dart';
 
 import '../../design_system/colors.dart';
 import '../../design_system/styleapp.dart';
-import '../raisedButton_see_more/raisedbutton_see_more.dart';
 
 // ignore: must_be_immutable
 class Expenses extends StatefulWidget {
@@ -25,8 +25,12 @@ class _ExpensesState extends State<Expenses> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-            color: AppColors.primarytextColor,
-            borderRadius: BorderRadius.all(StyleApp.borderRadius)),
+          color: AppColors.primarytextColor,
+          borderRadius: BorderRadius.only(
+              bottomLeft: StyleApp.borderRadius,
+              bottomRight: StyleApp.borderRadius,
+              topRight: StyleApp.borderRadius),
+        ),
         child: const Text("Atrasadas"),
       );
     } else {
@@ -35,7 +39,10 @@ class _ExpensesState extends State<Expenses> {
         height: 240,
         decoration: const BoxDecoration(
             color: AppColors.primarytextColor,
-            borderRadius: BorderRadius.all(StyleApp.borderRadius)),
+            borderRadius: BorderRadius.only(
+                bottomLeft: StyleApp.borderRadius,
+                bottomRight: StyleApp.borderRadius,
+                topLeft: StyleApp.borderRadius)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
