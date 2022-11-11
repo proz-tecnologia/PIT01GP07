@@ -36,6 +36,8 @@ flutter:
     - assets/images/logotipo.png
     - assets/images/credit_cards/
     - assets/images/bank_accounts/
+    - assets/images/login_icons/facebook.png
+    - assets/images/login_icons/google.png
   
   fonts:
     - family: Inter
