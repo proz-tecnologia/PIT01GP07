@@ -1,5 +1,3 @@
-import 'dart:async';
-
 abstract class SignUpState {}
 
 class SignUpInitialState implements SignUpState {}

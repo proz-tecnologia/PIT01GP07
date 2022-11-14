@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
-import 'package:teste/pages/sign_up/sign_up_controller.dart';
-import 'package:teste/pages/sign_up/sign_up_model.dart';
-import 'package:teste/pages/sign_up/sign_up_states.dart';
-import 'package:teste/widgets/default_button/default_button.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
+import '../../design_system/colors.dart';
 import '../../design_system/styleapp.dart';
+import '../../widgets/default_button/default_button.dart';
+import 'sign_up_controller.dart';
+import 'sign_up_model.dart';
+import 'sign_up_states.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -199,9 +199,9 @@ class _SignUpState extends State<SignUp> {
   void register() {
     if (_formKey.currentState!.validate()) {
       SignUpModel newUser = SignUpModel(
-        userName: nameController.text,
-        userEmail: emailController.text,
-        userPassword: passwordController.text,
+        name: nameController.text,
+        email: emailController.text,
+        password: passwordController.text,
       );
       controller.addUser(newUser);
     }

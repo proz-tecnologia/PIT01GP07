@@ -12,23 +12,15 @@ class SignUpRepository {
 
   bool saveUser(SignUpModel user) {
     String userJson = json.encode(user.toMap());
-    if (preferences.getString(user.userEmail) == null) {
-      preferences.setString(user.userEmail, userJson);
+    if (preferences.getString(user.email) == null) {
+      preferences.setString(user.email, userJson);
       return true;
     } else {
       return false;
     }
   }
 
-  List<dynamic> getUsers() {
-    String jsonUsers = preferences.getString("userList")!;
-    List<dynamic> jsonUserList = json.decode(jsonUsers);
-    print(jsonUserList);
-    return jsonUserList;
-  }
-
   void deleteAll() {
     preferences.clear();
-    print("Deletou tudo");
   }
 }

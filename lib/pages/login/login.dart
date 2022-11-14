@@ -1,10 +1,14 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
-import 'package:teste/design_system/styleapp.dart';
-import 'package:teste/pages/homescreen/homescreen.dart';
-import 'package:teste/widgets/default_button/default_button.dart';
 
+import '../../design_system/colors.dart';
+import '../../design_system/styleapp.dart';
+import '../../widgets/default_button/default_button.dart';
 import '../../widgets/login_with/login_with.dart';
+import '../homescreen/homescreen.dart';
+import 'login_controller.dart';
+import 'login_model.dart';
+import 'login_states.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,15 +18,41 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  LoginController controller = LoginController.instance;
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   bool obscure = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      if (controller.state is LoginErrorState) {
+        final errorState = controller.state as LoginErrorState;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            behavior: SnackBarBehavior.floating,
+            content: Text(errorState.message),
+          ),
+        );
+      } else if (controller.state is LoginSuccessState) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => const HomeScreen(),
+        ));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondBackgroudColor,
       body: SingleChildScrollView(
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               SizedBox(
@@ -43,9 +73,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
+                  controller: emailController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'E-mail obrigatório';
+                    } else if (EmailValidator.validate(value) == false) {
+                      return 'Insira um e-mail válido';
                     }
                     return null;
                   },
@@ -59,9 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
+                  controller: passwordController,
                   validator: (value) {
-                    if (value != '123456') {
-                      return 'Senha incorreta, utilize a senha 123456';
+                    if (value!.isEmpty) {
+                      return 'Por favor, digite a senha!';
                     }
                     return null;
                   },
@@ -119,8 +153,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void entrar() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => const HomeScreen(),
-    ));
+    if (_formKey.currentState!.validate()) {
+      LoginModel newUser = LoginModel(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      controller.addUser(newUser);
+    }
   }
 }
