@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:teste/design_system/colors.dart';
+import 'package:teste/pages/sign_up/sign_up_controller.dart';
+import 'package:teste/pages/sign_up/sign_up_model.dart';
+import 'package:teste/pages/sign_up/sign_up_states.dart';
 import 'package:teste/widgets/default_button/default_button.dart';
-
+import 'package:email_validator/email_validator.dart';
 import '../../design_system/styleapp.dart';
-import '../../widgets/login_with/login_with.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -13,11 +15,47 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  SignUpController controller = SignUpController.instance;
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   Icon icon2 = const Icon(Icons.visibility);
   bool obscure = true;
   bool obscure2 = true;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPassowrdController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      if (controller.state is SignUpErrorState) {
+        final errorState = controller.state as SignUpErrorState;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            behavior: SnackBarBehavior.floating,
+            content: Text(errorState.message),
+          ),
+        );
+      } else if (controller.state is SignUpSuccessState) {
+        nameController.text = '';
+        emailController.text = '';
+        passwordController.text = '';
+        confirmPassowrdController.text = '';
+        final errorState = controller.state as SignUpSuccessState;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            behavior: SnackBarBehavior.floating,
+            content: Text(errorState.message),
+          ),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +67,7 @@ class _SignUpState extends State<SignUp> {
         ),
         body: SingleChildScrollView(
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 Row(
@@ -57,6 +96,7 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    controller: nameController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Nome obrigatório';
@@ -72,9 +112,12 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    controller: emailController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'E-mail obrigatório';
+                      } else if (EmailValidator.validate(value) == false) {
+                        return 'Insira um e-mail válido';
                       }
                       return null;
                     },
@@ -88,12 +131,7 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    validator: (value) {
-                      if (value != '123456') {
-                        return 'Senha incorreta, utilize a senha 123456';
-                      }
-                      return null;
-                    },
+                    controller: passwordController,
                     obscureText: obscure,
                     decoration: InputDecoration(
                       enabledBorder: StyleApp.outlinedBorder,
@@ -118,9 +156,10 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    controller: confirmPassowrdController,
                     validator: (value) {
-                      if (value != '123456') {
-                        return 'Senha incorreta, utilize a senha 123456';
+                      if (value != passwordController.text) {
+                        return 'Você deve repetir a senha para confirmação';
                       }
                       return null;
                     },
@@ -148,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                 DefaultButton(
                   title: "Cadastrar",
                   func: () {
-                    cadastrar();
+                    register();
                   },
                 ),
               ],
@@ -157,7 +196,14 @@ class _SignUpState extends State<SignUp> {
         ));
   }
 
-  void cadastrar() {
-    Navigator.pop(context);
+  void register() {
+    if (_formKey.currentState!.validate()) {
+      SignUpModel newUser = SignUpModel(
+        userName: nameController.text,
+        userEmail: emailController.text,
+        userPassword: passwordController.text,
+      );
+      controller.addUser(newUser);
+    }
   }
 }
