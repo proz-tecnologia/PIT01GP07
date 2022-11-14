@@ -16,13 +16,18 @@ class LoginWith extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                color: AppColors.secondtextColor,
+                color: AppColors.backgroudColor,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
-              const Text("Ou entrar com"),
+              const Text(
+                "Ou entrar com",
+                style: TextStyle(
+                  color: AppColors.secondtextColor,
+                ),
+              ),
               Container(
-                color: AppColors.secondtextColor,
+                color: AppColors.backgroudColor,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
@@ -56,7 +61,7 @@ class LoginWith extends StatelessWidget {
             children: [
               const Text(
                 "Ainda não é cadastrado?",
-                style: TextStyle(color: AppColors.secondtextColor),
+                style: TextStyle(color: AppColors.backgroudColor),
               ),
               InkWell(
                 onTap: () {
@@ -67,7 +72,7 @@ class LoginWith extends StatelessWidget {
                 child: const Text(
                   " Crie sua conta",
                   style: TextStyle(
-                      color: AppColors.secondtextColor,
+                      color: AppColors.backgroudColor,
                       fontWeight: FontWeight.bold),
                 ),
               )

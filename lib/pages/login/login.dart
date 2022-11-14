@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ' Olá!',
                     style: TextStyle(
                       fontSize: 36,
-                      color: AppColors.secondtextColor,
+                      color: AppColors.backgroudColor,
                     ),
                   ),
                 ],
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Recuperar senha?',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.secondtextColor,
+                            color: AppColors.backgroudColor,
                             fontSize: 16),
                       ),
                     )

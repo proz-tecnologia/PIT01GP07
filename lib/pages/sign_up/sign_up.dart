@@ -62,7 +62,7 @@ class _SignUpState extends State<SignUp> {
         backgroundColor: AppColors.secondBackgroudColor,
         appBar: AppBar(
           backgroundColor: AppColors.secondBackgroudColor,
-          iconTheme: const IconThemeData(color: AppColors.secondtextColor),
+          iconTheme: const IconThemeData(color: AppColors.backgroudColor),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -77,7 +77,7 @@ class _SignUpState extends State<SignUp> {
                       ' Cadastre-se',
                       style: TextStyle(
                         fontSize: 24,
-                        color: AppColors.secondtextColor,
+                        color: AppColors.backgroudColor,
                       ),
                     ),
                   ],

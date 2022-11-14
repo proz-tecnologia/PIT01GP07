@@ -21,7 +21,7 @@ class DefaultButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(200, 50),
-          backgroundColor: AppColors.secondtextColor,
+          backgroundColor: AppColors.backgroudColor,
           shape:
               RoundedRectangleBorder(borderRadius: StyleApp.buttonBorderRadius),
         ),

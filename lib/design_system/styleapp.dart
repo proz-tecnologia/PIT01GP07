@@ -14,7 +14,7 @@ class StyleApp {
   static OutlineInputBorder outlinedBorder = OutlineInputBorder(
     borderRadius: StyleApp.buttonBorderRadius,
     borderSide: const BorderSide(
-      color: AppColors.secondtextColor,
+      color: AppColors.backgroudColor,
       width: 2.0,
     ),
   );
