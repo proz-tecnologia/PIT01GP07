@@ -87,10 +87,12 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/logotipo.png',
-                    ),
+                  children: const [
+                    Icon(
+                      Icons.account_circle,
+                      size: 100,
+                      color: AppColors.backgroudColor,
+                    )
                   ],
                 ),
                 Padding(
