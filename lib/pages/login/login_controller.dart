@@ -10,11 +10,11 @@ class LoginController extends ChangeNotifier {
 
   LoginRepository repository = LoginRepository();
 
-  Future<void> addUser(LoginModel userModel) async {
+  Future<void> validateUser(LoginModel userModel) async {
     updateState(LoginLoadingState());
     String loginMessage = repository.checkingUser(userModel);
     if (loginMessage == 'Success') {
-      updateState(LoginSuccessState(message: "Login com sucesso!"));
+      updateState(LoginSuccessState(message: repository.getUser()));
     } else {
       updateState(LoginErrorState(message: loginMessage));
     }

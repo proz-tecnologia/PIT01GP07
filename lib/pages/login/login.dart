@@ -39,8 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         );
       } else if (controller.state is LoginSuccessState) {
+        final successState = controller.state as LoginSuccessState;
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => const HomeScreen(),
+          builder: (BuildContext context) => HomeScreen(
+            name: successState.message,
+          ),
         ));
       }
     });
@@ -141,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
               DefaultButton(
                 title: "Entrar",
                 func: () {
-                  entrar();
+                  login();
                 },
               ),
               const LoginWith(),
@@ -152,13 +155,13 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void entrar() {
+  void login() {
     if (_formKey.currentState!.validate()) {
       LoginModel newUser = LoginModel(
         email: emailController.text,
         password: passwordController.text,
       );
-      controller.addUser(newUser);
+      controller.validateUser(newUser);
     }
   }
 }

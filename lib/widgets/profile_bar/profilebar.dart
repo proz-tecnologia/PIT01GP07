@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:teste/widgets/profile_bar/profilebar_controller.dart';
 
 import '../../design_system/colors.dart';
 import '../user_photo/userphoto.dart';
 
+// ignore: must_be_immutable
 class ProfileBar extends StatelessWidget {
-  const ProfileBar({super.key});
+  String name;
+  ProfileBar({
+    Key? key,
+    this.name = '',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProfileBarController controller = ProfileBarController();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -17,14 +24,14 @@ class ProfileBar extends StatelessWidget {
             children: [
               const UserPhoto(),
               Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Bom dia, ',
                     style: TextStyle(color: AppColors.primarytextColor),
                   ),
                   Text(
-                    'Usuário',
-                    style: TextStyle(color: AppColors.primarytextColor),
+                    name,
+                    style: const TextStyle(color: AppColors.primarytextColor),
                   ),
                 ],
               ),
