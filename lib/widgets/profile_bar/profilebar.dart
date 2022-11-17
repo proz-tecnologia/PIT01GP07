@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/widgets/profile_bar/profilebar_controller.dart';
-
 import '../../design_system/colors.dart';
 import '../user_photo/userphoto.dart';
 
@@ -14,7 +12,6 @@ class ProfileBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProfileBarController controller = ProfileBarController();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -25,9 +22,9 @@ class ProfileBar extends StatelessWidget {
               const UserPhoto(),
               Column(
                 children: [
-                  const Text(
-                    'Bom dia, ',
-                    style: TextStyle(color: AppColors.primarytextColor),
+                  Text(
+                    getTime(),
+                    style: const TextStyle(color: AppColors.primarytextColor),
                   ),
                   Text(
                     name,
@@ -39,7 +36,7 @@ class ProfileBar extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.notifications,
-                  color: Color(0xfff6f6f6),
+                  color: AppColors.primarytextColor,
                 ),
                 onPressed: (() {}),
               ),
@@ -54,4 +51,15 @@ class ProfileBar extends StatelessWidget {
       ),
     );
   }
+}
+
+String getTime() {
+  final now = DateTime.now().hour;
+  if (now < 12) {
+    return 'Bom dia';
+  }
+  if (now < 17) {
+    return 'Boa tarde';
+  }
+  return 'Boa noite';
 }
