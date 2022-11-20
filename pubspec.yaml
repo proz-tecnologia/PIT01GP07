@@ -21,6 +21,8 @@ dependencies:
 
   # dots indicator
   smooth_page_indicator: ^1.0.0+2
+  shared_preferences: ^2.0.15
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +38,8 @@ flutter:
     - assets/images/logotipo.png
     - assets/images/credit_cards/
     - assets/images/bank_accounts/
+    - assets/images/login_icons/facebook.png
+    - assets/images/login_icons/google.png
   
   fonts:
     - family: Inter

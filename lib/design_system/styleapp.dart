@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
+
+import 'colors.dart';
 
 class StyleApp {
   StyleApp._();
@@ -8,7 +9,15 @@ class StyleApp {
     spreadRadius: 2,
     blurRadius: 2,
   );
-  static const borderRadius = Radius.circular(10.0);
+  static const borderRadius = Radius.circular(20.0);
+  static BorderRadius buttonBorderRadius = BorderRadius.circular(10.0);
+  static OutlineInputBorder outlinedBorder = OutlineInputBorder(
+    borderRadius: StyleApp.buttonBorderRadius,
+    borderSide: const BorderSide(
+      color: AppColors.backgroudColor,
+      width: 2.0,
+    ),
+  );
 
   static const titleCardStyle = TextStyle(
       fontFamily: 'Inter',
