@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../email_confirmation/email_confirmation .dart';
 class RecoverScreen extends StatelessWidget {
   const RecoverScreen({super.key});
-
 
    @override
   Widget build(BuildContext context) {
@@ -74,7 +73,7 @@ class RecoverScreen extends StatelessWidget {
               ElevatedButton(
                  onPressed: () {
                    Navigator.push(context,MaterialPageRoute(builder:
-                   (context)=>const ),
+                   (context)=> const EmailConfirmation()),
                    );
                  },
                  style: ElevatedButton.styleFrom(
