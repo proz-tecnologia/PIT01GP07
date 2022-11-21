@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NewPassword extends StatelessWidget {
+class NewPassword extends StatefulWidget  {
   const NewPassword({super.key});
 
-  bool hidePassword = true;
+  @override
+  State<NewPassword> createState() => _NewPassword();
+}
+class _NewPassword extends State<NewPassword> {
+bool hidePassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
