@@ -18,14 +18,6 @@ bool hidePassword = true;
         child: Column(
              children: <Widget>[
               const SizedBox(height:32),
-              Align(
-               alignment: Alignment.topLeft,
-               child: IconButton(
-                alignment:Alignment.centerLeft,
-                icon: const Icon(Icons.arrow_back),
-                color:const Color (0xFF539CA1),
-                onPressed: () {}),
-              ),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text('Nova senha',
