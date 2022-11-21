@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EmailConfirmation extends StatelessWidget {
+class EmailConfirmation extends StatefulWidget  {
   const EmailConfirmation({super.key});
 
   @override
+  State<EmailConfirmation> createState() => _EmailConfirmation();
+}
+class _EmailConfirmation extends State<EmailConfirmation>{
+@override
   Widget build(BuildContext context) {
     return Scaffold(
      resizeToAvoidBottomInset: false,
