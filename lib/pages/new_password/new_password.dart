@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NewPassword extends StatelessWidget {
+  const NewPassword({super.key});
 
   bool hidePassword = true;
   @override

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import '../email_confirmation/email_confirmation .dart';
-class RecoverScreen extends StatelessWidget {
+
+class RecoverScreen extends StatefulWidget {
   const RecoverScreen({super.key});
 
+  @override
+  State<RecoverScreen> createState() => _RecoverScreen();
+}
+class _RecoverScreen extends State<RecoverScreen> {
    @override
   Widget build(BuildContext context) {
     return Scaffold(
