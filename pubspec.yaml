@@ -36,6 +36,7 @@ flutter:
 
   assets:
     - assets/images/logotipo.png
+    - assets/images/background/
     - assets/images/credit_cards/
     - assets/images/bank_accounts/
     - assets/images/login_icons/facebook.png
