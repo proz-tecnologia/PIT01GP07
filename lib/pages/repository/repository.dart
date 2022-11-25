@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login_model.dart';
+import '../login/login_model.dart';
+import '../sign_up/sign_up_model.dart';
 
-class LoginRepository {
+class AppRepository {
   late SharedPreferences preferences;
 
-  LoginRepository() {
+  AppRepository() {
     SharedPreferences.getInstance().then((value) => preferences = value);
   }
 
@@ -27,5 +28,19 @@ class LoginRepository {
 
   String getUser() {
     return userMap['name'];
+  }
+
+  bool saveUser(SignUpModel user) {
+    String userJson = json.encode(user.toMap());
+    if (preferences.getString(user.email) == null) {
+      preferences.setString(user.email, userJson);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void deleteAll() {
+    preferences.clear();
   }
 }

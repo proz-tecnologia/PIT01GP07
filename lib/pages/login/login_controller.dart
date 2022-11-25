@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
+import '../repository/repository.dart';
 import 'login_model.dart';
-import 'login_repository.dart';
 import 'login_states.dart';
 
 class LoginController extends ChangeNotifier {
@@ -8,7 +8,7 @@ class LoginController extends ChangeNotifier {
 
   LoginState state = LoginInitialState();
 
-  LoginRepository repository = LoginRepository();
+  AppRepository repository = AppRepository();
 
   Future<void> validateUser(LoginModel userModel) async {
     updateState(LoginLoadingState());

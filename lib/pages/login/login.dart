@@ -1,4 +1,4 @@
- import 'package:email_validator/email_validator.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../../design_system/colors.dart';
@@ -6,6 +6,7 @@ import '../../design_system/styleapp.dart';
 import '../../widgets/default_button/default_button.dart';
 import '../../widgets/login_with/login_with.dart';
 import '../homescreen/homescreen.dart';
+import '../recover/recover.dart';
 import 'login_controller.dart';
 import 'login_model.dart';
 import 'login_states.dart';
@@ -129,12 +130,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const RecoverScreen(),
+                        ));
+                      },
                       child: const Text(
                         'Recuperar senha?',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.backgroudColor,
+                            color: AppColors.secondtextColor,
                             fontSize: 16),
                       ),
                     )
