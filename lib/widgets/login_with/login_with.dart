@@ -61,7 +61,7 @@ class LoginWith extends StatelessWidget {
             children: [
               const Text(
                 "Ainda não é cadastrado?",
-                style: TextStyle(color: AppColors.backgroudColor),
+                style: TextStyle(color: AppColors.secondtextColor),
               ),
               InkWell(
                 onTap: () {
@@ -72,7 +72,7 @@ class LoginWith extends StatelessWidget {
                 child: const Text(
                   " Crie sua conta",
                   style: TextStyle(
-                      color: AppColors.backgroudColor,
+                      color: AppColors.secondtextColor,
                       fontWeight: FontWeight.bold),
                 ),
               )
