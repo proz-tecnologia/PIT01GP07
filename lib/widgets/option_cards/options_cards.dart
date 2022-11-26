@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../design_system/colors.dart';
 
 class OptionsCards extends StatefulWidget {
@@ -15,48 +14,25 @@ class _OptionsCardsState extends State<OptionsCards> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        card(icon: const Icon(Icons.home), text: 'CHAVES PIX'),
+        card(icon: const ImageIcon(AssetImage('assets/images/option_icons/pix.png'),),
+            text:'CHAVES PIX'),
         const SizedBox(width: 4),
-        card(icon: const Icon(Icons.receipt_long), text: 'COMPROVANTES'),
+        card(icon: const ImageIcon(AssetImage('assets/images/option_icons/receipt.png'),),
+            text:'COMPROVANTES'),
         const SizedBox(width: 4),
-        card(icon: const Icon(Icons.home), text: 'METAS'),
+        card(icon: const ImageIcon(AssetImage('assets/images/option_icons/target.png'),),
+            text:'METAS'),
         const SizedBox(width: 4),
-        card(icon: const Icon(Icons.calendar_month), text: 'CALENDÁRIO'),
+        card( icon: const ImageIcon(AssetImage('assets/images/option_icons/calendar.png'),),
+            text:'CALENDÁRIO'),
       ],
     );
   }
 }
-/*Widget optionsCards () {
-  return  Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          card(
-              icon: const Icon(Icons.home),
-              text:'CHAVES PIX'
-          ),
-          const SizedBox(width: 4),
-          card(
-              icon: const Icon(Icons.receipt_long),
-              text:'COMPROVANTES'
-          ),
-          const SizedBox(width: 4),
-          card(
-              icon: const Icon(Icons.home),
-              text:'METAS'
-          ),
-          const SizedBox(width: 4),
-          card(
-              icon: const Icon(Icons.calendar_month),
-              text:'CALENDÁRIO'
-          ),
-        ],
-      );
-
-}*/
 
 Widget card({
   required String text,
-  required Icon icon,
+  required ImageIcon icon,
 }) {
   return SizedBox(
     width: 84,
