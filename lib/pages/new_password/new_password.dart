@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:teste/design_system/colors.dart';
 
+import '../login/login.dart';
+
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
 
@@ -10,6 +12,9 @@ class NewPassword extends StatefulWidget {
 
 class _NewPassword extends State<NewPassword> {
   bool hidePassword = true;
+  final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,9 @@ class _NewPassword extends State<NewPassword> {
       backgroundColor: AppColors.secondBackgroudColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
-        child: Column(
+        child: Form(
+          key:_formKey,
+          child: Column(
           children: <Widget>[
             const SizedBox(height: 32),
             const Align(
@@ -44,8 +51,8 @@ class _NewPassword extends State<NewPassword> {
             ),
             const SizedBox(height: 36),
             SizedBox(
-              height: 52,
-              child: TextField(
+              child: TextFormField(
+                controller: _passwordController,
                 onChanged: (value) {
                   print(value);
                 },
@@ -58,8 +65,8 @@ class _NewPassword extends State<NewPassword> {
                 obscureText: hidePassword,
                 cursorColor: const Color(0xFF539CA1),
                 decoration: InputDecoration(
+                  counterText:" ",
                   suffixIcon: IconButton(
-                    //splashColor: const Color (0xFF539CA1),
                     disabledColor: const Color(0xFF2F595B),
                     icon: hidePassword
                         ? const Icon(Icons.visibility_off)
@@ -91,12 +98,21 @@ class _NewPassword extends State<NewPassword> {
                     color: const Color(0xFF539CA1).withOpacity(0.5),
                   ),
                 ),
+                validator:(senha) {
+                    if (senha == null || senha.isEmpty) {
+                      return 'Campo não pode ficar vazio';
+                    } else if (senha.length < 6) {
+                      return 'Senha deve ter ao menos 6 dígitos';
+                    } else {
+                      return null;
+                    }
+                  },
               ),
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 52,
-              child: TextField(
+              child: TextFormField(
+                controller:_confirmPasswordController,
                 onChanged: (value) {
                   print(value);
                 },
@@ -109,8 +125,8 @@ class _NewPassword extends State<NewPassword> {
                 obscureText: hidePassword,
                 cursorColor: const Color(0xFF539CA1),
                 decoration: InputDecoration(
+                  counterText:" ",
                   suffixIcon: IconButton(
-                    //splashColor: const Color (0xFF539CA1),
                     disabledColor: const Color(0xFF2F595B),
                     icon: hidePassword
                         ? const Icon(Icons.visibility_off)
@@ -142,11 +158,25 @@ class _NewPassword extends State<NewPassword> {
                     color: const Color(0xFF539CA1).withOpacity(0.5),
                   ),
                 ),
+                validator:(senha2) {
+                  if (senha2 == null || senha2.isEmpty) {
+                    return 'Campo não pode ficar vazio';
+                  } else if (_passwordController.text != _confirmPasswordController.text) {
+                    return 'Senhas não são iguais';
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (_formKey.currentState!.validate()){}
+                Navigator.push(context,MaterialPageRoute(builder:
+                    (context)=> const LoginScreen()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 48),
                   backgroundColor: const Color(0xFF539CA1)),
@@ -170,6 +200,7 @@ class _NewPassword extends State<NewPassword> {
               ),
             ),
           ],
+          ),
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
