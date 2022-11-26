@@ -16,6 +16,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
 
+  flutter_speed_dial: ^6.2.0
+
   # image carousel slider
   carousel_slider: ^4.1.1
 
@@ -37,6 +39,7 @@ flutter:
   assets:
     - assets/images/logotipo.png
     - assets/images/background/
+    - assets/images/option_icons/
     - assets/images/credit_cards/
     - assets/images/bank_accounts/
     - assets/images/login_icons/facebook.png
