@@ -7,7 +7,10 @@ class AppRepository {
   late SharedPreferences preferences;
 
   AppRepository() {
-    SharedPreferences.getInstance().then((value) => preferences = value);
+    SharedPreferences.getInstance().then((value) {
+      print("then $value");
+      return preferences = value;
+    }).catchError((_) => print('catch error'));
   }
 
   Map userMap = {};
@@ -38,6 +41,12 @@ class AppRepository {
     } else {
       return false;
     }
+  }
+
+  Future<bool> islogged() async {
+    //preferences = await SharedPreferences.getInstance();
+
+    return preferences.getBool('islogged') ?? false;
   }
 
   void deleteAll() {
