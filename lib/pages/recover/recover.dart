@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teste/design_system/styleapp.dart';
 import '../../design_system/colors.dart';
 import '../../widgets/dialog_box/custom_dialog_box.dart';
-import '../email_confirmation/email_confirmation .dart';
+import '../email_confirmation/email_confirmation.dart';
 
 class RecoverScreen extends StatefulWidget {
   const RecoverScreen({super.key});
@@ -84,7 +84,7 @@ class _RecoverScreen extends State<RecoverScreen> {
                       } else if (!email.contains("@")) {
                         return 'Email inválido';
                       }
-                      ;
+
                       return null;
                     }),
               ),
