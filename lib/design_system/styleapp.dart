@@ -19,6 +19,19 @@ class StyleApp {
     ),
   );
 
+  static OutlineInputBorder outlineTextField = OutlineInputBorder(
+    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+    borderSide: BorderSide(
+      color: AppColors.focusTextFormFieldColor.withOpacity(0.4),
+      width: 2,
+    ),
+  );
+
+  static OutlineInputBorder focusTextField = const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+    borderSide: BorderSide(color: AppColors.backgroudColor, width: 2),
+  );
+
   static const titleCardStyle = TextStyle(
       fontFamily: 'Inter',
       fontWeight: FontWeight.w700,

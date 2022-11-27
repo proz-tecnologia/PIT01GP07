@@ -87,7 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    enabledBorder: StyleApp.outlinedBorder,
+                    enabledBorder: StyleApp.outlineTextField,
+                    focusColor: AppColors.focusTextFormFieldColor,
+                    border: StyleApp.outlineTextField,
+                    focusedBorder: StyleApp.focusTextField,
                     hintText: 'Digite seu e-mail',
                     suffixIcon: const Icon(Icons.email),
                   ),
@@ -105,7 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   obscureText: obscure,
                   decoration: InputDecoration(
-                    enabledBorder: StyleApp.outlinedBorder,
+                    enabledBorder: StyleApp.outlineTextField,
+                    focusColor: AppColors.focusTextFormFieldColor,
+                    border: StyleApp.outlineTextField,
+                    focusedBorder: StyleApp.focusTextField,
                     hintText: 'Digite sua senha',
                     suffixIcon: IconButton(
                       onPressed: () {
