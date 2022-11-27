@@ -65,9 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
+                  SizedBox (width:16),
                   Text(
                     ' Olá!',
                     style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
                       fontSize: 36,
                       color: AppColors.backgroudColor,
                     ),
@@ -77,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
+                  cursorColor: AppColors.focusTextFormFieldColor,
                   controller: emailController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -94,11 +98,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Digite seu e-mail',
                     suffixIcon: const Icon(Icons.email),
                   ),
+                  style: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: AppColors.secondtextColor,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  cursorColor: AppColors.focusTextFormFieldColor,
                   controller: passwordController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -131,23 +142,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.only(top: 8, right: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const RecoverScreen(),
-                        ));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RecoverScreen()),
+                        );
                       },
                       child: const Text(
                         'Recuperar senha?',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColors.secondtextColor,
-                            fontSize: 16),
+                            fontSize: 14),
                       ),
                     )
                   ],
