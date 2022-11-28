@@ -8,13 +8,14 @@ class SplashScreenController extends ValueNotifier<SplashState> {
   SplashScreenController(this.repository) : super(SplashScreenInitialState());
 
   Future<void> checkingLogin() async {
+    await Future.delayed(const Duration(seconds: 3));
     value = SplashScreenLoadingState();
     await Future.delayed(const Duration(seconds: 3));
     bool? login = await repository.islogged();
     if (login == false) {
-      value = SplashScreenLoginFalseState();
+      value = SplashScreenNoUserLoggedState();
     } else if (login == true) {
-      value = SplashScreenLoginTrueState();
+      value = SplashScreenUserLoggedState();
     } else {
       value = SplashScreenErrorState(message: "Houve um erro no servidor!");
     }
