@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:teste/pages/sign_up/sign_up_model.dart';
-import 'package:teste/pages/sign_up/sign_up_states.dart';
-
 import '../repository/repository.dart';
+import 'sign_up_model.dart';
+import 'sign_up_states.dart';
 
 class SignUpController extends ChangeNotifier {
   static final SignUpController instance = SignUpController();
@@ -13,7 +12,7 @@ class SignUpController extends ChangeNotifier {
 
   Future<void> addUser(SignUpModel userModel) async {
     updateState(SignUpLoadingState());
-    if (repository.saveUser(userModel)) {
+    if (await repository.saveUser(userModel)) {
       updateState(
           SignUpSuccessState(message: "Usuário cadastrado com sucesso!"));
     } else {

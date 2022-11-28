@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen.dart';
-import 'package:teste/pages/login/login.dart';
-import 'package:teste/pages/repository/repository.dart';
-import 'package:teste/pages/splashscreen/splashscreeen_controller.dart';
-import 'package:teste/pages/splashscreen/splashscreen_states.dart';
-import 'package:teste/widgets/default_button/default_button.dart';
+
+import '../../widgets/default_button/default_button.dart';
+import '../homescreen/homescreen.dart';
+import '../login/login.dart';
+import 'splashscreeen_controller.dart';
+import 'splashscreen_repository.dart';
+import 'splashscreen_states.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +15,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  SplashScreenController controller = SplashScreenController(AppRepository());
+  SplashScreenController controller =
+      SplashScreenController(SplashScreenRepository());
 
   @override
   void initState() {
@@ -35,25 +37,23 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (value is SplashScreenLoadingState) {
           return const Center(child: CircularProgressIndicator());
         } else if (value is SplashScreenNoUserLoggedState) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Não há usuário logado. Por favor, faça login!"),
-                DefaultButton(
-                    title: "LOGIN",
-                    func: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginScreen(),
-                      ));
-                    }),
-              ],
-            ),
-          );
+          return nextPage(
+              text: "Não há usuário logado. Por favor faça login",
+              title: "LOGIN",
+              func: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginScreen(),
+                ));
+              });
         } else if (value is SplashScreenUserLoggedState) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => HomeScreen(),
-          ));
+          return nextPage(
+              text: 'Já há um usuário logado. Clique para continuar!',
+              title: "Continuar",
+              func: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) => HomeScreen(),
+                ));
+              });
         } else if (value is SplashScreenErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
@@ -66,5 +66,18 @@ class _SplashScreenState extends State<SplashScreen> {
         );
       }),
     ));
+  }
+
+  Widget nextPage(
+      {required String text, required String title, required Function func}) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(text),
+          DefaultButton(title: title, func: func),
+        ],
+      ),
+    );
   }
 }

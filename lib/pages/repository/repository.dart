@@ -7,15 +7,16 @@ class AppRepository {
   late SharedPreferences preferences;
 
   AppRepository() {
-    SharedPreferences.getInstance().then((value) {
+    /*SharedPreferences.getInstance().then((value) {
       print("then $value");
       return preferences = value;
-    }).catchError((_) => print('catch error'));
+    }).catchError((_) => print('catch error'));*/
   }
 
   Map userMap = {};
 
-  String checkingUser(LoginModel userModel) {
+  Future<String> checkingUser(LoginModel userModel) async {
+    preferences = await SharedPreferences.getInstance();
     String? check = preferences.getString(userModel.email);
     if (check == null) {
       return 'Usuário ou senha incorretos!';
@@ -29,11 +30,24 @@ class AppRepository {
     }
   }
 
+  Future<void> userLogin(LoginModel userModel) async {
+    preferences = await SharedPreferences.getInstance();
+    preferences.setBool('isLogged', true);
+    preferences.setString('lastLogged', userModel.email);
+    print(preferences.getBool('isLogged').toString());
+  }
+
+  Future<String> lastLogged() async {
+    preferences = await SharedPreferences.getInstance();
+    return preferences.getString("lastLogged")!;
+  }
+
   String getUser() {
     return userMap['name'];
   }
 
-  bool saveUser(SignUpModel user) {
+  Future<bool> saveUser(SignUpModel user) async {
+    preferences = await SharedPreferences.getInstance();
     String userJson = json.encode(user.toMap());
     if (preferences.getString(user.email) == null) {
       preferences.setString(user.email, userJson);
@@ -44,9 +58,9 @@ class AppRepository {
   }
 
   Future<bool> islogged() async {
-    //preferences = await SharedPreferences.getInstance();
+    preferences = await SharedPreferences.getInstance();
 
-    return preferences.getBool('islogged') ?? false;
+    return preferences.getBool('isLogged') ?? false;
   }
 
   void deleteAll() {

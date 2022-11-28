@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import '../repository/repository.dart';
+import 'splashscreen_repository.dart';
 import 'splashscreen_states.dart';
 
 class SplashScreenController extends ValueNotifier<SplashState> {
-  final AppRepository repository;
+  final SplashScreenRepository repository;
   SplashScreenController(this.repository) : super(SplashScreenInitialState());
 
   Future<void> checkingLogin() async {
