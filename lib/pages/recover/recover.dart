@@ -64,6 +64,7 @@ class _RecoverScreen extends State<RecoverScreen> {
                       border: StyleApp.outlineTextField,
                       focusedBorder: StyleApp.focusTextField,
                       hintText: 'Digite seu e-mail',
+                      suffixIcon: const Icon(Icons.email),
                       labelStyle: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
@@ -76,7 +77,7 @@ class _RecoverScreen extends State<RecoverScreen> {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
-                      color: AppColors.backgroudColor,
+                      color: AppColors.secondtextColor,
                     ),
                     validator: (email) {
                       if (email == null || email.isEmpty) {
@@ -84,7 +85,6 @@ class _RecoverScreen extends State<RecoverScreen> {
                       } else if (!email.contains("@")) {
                         return 'Email inválido';
                       }
-
                       return null;
                     }),
               ),
