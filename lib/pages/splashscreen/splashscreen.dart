@@ -37,23 +37,45 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (value is SplashScreenLoadingState) {
           return const Center(child: CircularProgressIndicator());
         } else if (value is SplashScreenNoUserLoggedState) {
-          return nextPage(
-              text: "Não há usuário logado. Por favor faça login",
-              title: "LOGIN",
-              func: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) => const LoginScreen(),
-                ));
-              });
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Não há usuário logado. Por favor faça login"),
+                DefaultButton(
+                    title: "LOGIN",
+                    func: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginScreen(),
+                      ));
+                    }),
+              ],
+            ),
+          );
         } else if (value is SplashScreenUserLoggedState) {
-          return nextPage(
-              text: 'Já há um usuário logado. Clique para continuar!',
-              title: "Continuar",
-              func: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) => HomeScreen(),
-                ));
-              });
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Já há um usuário logado.'),
+                const Text(' Deseja continuar ou fazer novo login?'),
+                DefaultButton(
+                    title: "CONTINUAR",
+                    func: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => HomeScreen(),
+                      ));
+                    }),
+                DefaultButton(
+                    title: "LOGIN",
+                    func: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginScreen(),
+                      ));
+                    }),
+              ],
+            ),
+          );
         } else if (value is SplashScreenErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),

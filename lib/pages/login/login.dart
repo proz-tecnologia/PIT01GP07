@@ -40,11 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         );
       } else if (controller.state is LoginSuccessState) {
-        final successState = controller.state as LoginSuccessState;
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => HomeScreen(
-            name: successState.message,
-          ),
+          builder: (BuildContext context) => HomeScreen(),
         ));
       }
     });
@@ -65,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  SizedBox (width:16),
+                  SizedBox(width: 16),
                   Text(
                     ' Olá!',
                     style: TextStyle(

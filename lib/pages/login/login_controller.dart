@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import '../repository/repository.dart';
+import 'login_repository.dart';
 import 'login_model.dart';
 import 'login_states.dart';
 
@@ -14,7 +14,7 @@ class LoginController extends ChangeNotifier {
     updateState(LoginLoadingState());
     String loginMessage = await repository.checkingUser(userModel);
     if (loginMessage == 'Success') {
-      updateState(LoginSuccessState(message: repository.getUser()));
+      updateState(LoginSuccessState());
       await repository.userLogin(userModel);
     } else {
       updateState(LoginErrorState(message: loginMessage));
