@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_model.dart';
-import '../sign_up/sign_up_model.dart';
 
-class AppRepository {
+class LoginRepository {
   late SharedPreferences preferences;
 
   Map userMap = {};
