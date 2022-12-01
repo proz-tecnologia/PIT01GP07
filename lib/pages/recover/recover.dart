@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/dialog_box/custom_dialog_box.dart';
-import '../email_confirmation/email_confirmation.dart';
 import '../../widgets/default_button/default_button.dart';
+import '../new_password/new_password.dart';
 
 class RecoverScreen extends StatefulWidget {
   const RecoverScreen({super.key});
@@ -102,7 +102,7 @@ class _RecoverScreen extends State<RecoverScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => const EmailConfirmation()),
+          builder: (context) => const NewPassword()),
     );
   }
 }
