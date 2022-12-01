@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/login/login.dart';
-import 'package:teste/pages/repository/repository.dart';
+import 'package:teste/pages/login/login_repository.dart';
 import 'design_system/colors.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
