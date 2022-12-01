@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/bottom_bar/tab_bar.dart';
 import '../../widgets/cards_container/cards_container.dart';
 import '../../widgets/cash_balance_bar/cash_balance_bar.dart';

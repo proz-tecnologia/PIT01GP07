@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/default_button/default_button.dart';
 import '../email_confirmation/email_confirmation.dart';
 
