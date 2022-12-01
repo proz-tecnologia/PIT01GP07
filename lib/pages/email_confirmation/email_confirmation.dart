@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../widgets/default_button/default_button.dart';
+
 class EmailConfirmation extends StatefulWidget {
   const EmailConfirmation({super.key});
 
@@ -11,33 +13,28 @@ class _EmailConfirmation extends State<EmailConfirmation> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color:Theme.of(context).colorScheme.primary,
+          ),
+          elevation: 0.0,
+        ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: <Widget>[
             const SizedBox(height: 56),
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'E-mail enviado',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 32,
-                  color: Colors.green,
+                'E-mail enviado',style:Theme.of(context).textTheme.headline4
                 ),
               ),
-            ),
-            const SizedBox(height: 32),
-            const Text(
+             const SizedBox(height: 32),
+             Text(
               'Verifique sua conta de e-mail para a finalizar a verificação. O link enviado irá lhe redirencionar para a criação de uma nova senha.',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-                color: Colors.green,
+              style:  Theme.of(context).textTheme.bodyText1,
               ),
-            ),
             const SizedBox(height: 36),
             const Expanded(
               child: Image(
@@ -47,23 +44,12 @@ class _EmailConfirmation extends State<EmailConfirmation> {
               ),
             ),
             const SizedBox(height: 36),
-            ElevatedButton(
-              onPressed: () {
+            DefaultButton(
+              title: 'Finalizar',
+              func: (){
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(200, 48),
-                  backgroundColor: Colors.green),
-              child: const Text(
-                'Finalizar',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                  color:Colors.green,
-                ),
-              ),
             ),
             const SizedBox(height: 96),
           ],

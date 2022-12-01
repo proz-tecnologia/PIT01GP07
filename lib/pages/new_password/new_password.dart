@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/default_button/default_button.dart';
-import '../login/login.dart';
+import '../email_confirmation/email_confirmation.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
@@ -19,6 +19,12 @@ class _NewPassword extends State<NewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color:Theme.of(context).colorScheme.primary,
+        ),
+        elevation: 0.0,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Form(
@@ -33,7 +39,7 @@ class _NewPassword extends State<NewPassword> {
             ),
             const SizedBox(height: 32),
             Text(
-              'Sua identidade foi verificada. Digite sua nova senha , por favor.',
+              'Sua identidade foi verificada. Digite sua nova senha, por favor.',
               style: Theme.of(context).textTheme.bodyText1,
         ),
             const SizedBox(height: 36),
@@ -116,7 +122,7 @@ class _NewPassword extends State<NewPassword> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const LoginScreen()),
+                      builder: (context) => const EmailConfirmation()),
                 );
               },
             ),
