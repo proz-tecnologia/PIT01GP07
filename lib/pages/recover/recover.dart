@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/styleapp.dart';
 import '../../widgets/dialog_box/custom_dialog_box.dart';
 import '../email_confirmation/email_confirmation.dart';
 import '../../widgets/default_button/default_button.dart';

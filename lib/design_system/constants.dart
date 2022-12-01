@@ -7,7 +7,9 @@ ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xfff6f6f6),
     colorScheme: const ColorScheme.light(
       primary: Color(0xff32847a),
-  ),
+      secondary: Color(0xfff6f6f6),
+
+),
 
   /// TEXT THEME
     textTheme: const TextTheme(
@@ -26,6 +28,9 @@ ThemeData lightTheme = ThemeData(
 
       bodyText2: TextStyle (
         color: Color(0xff32847a),
+      ),
+      subtitle1: TextStyle (
+        color: Color(0xfff6f6f6),
       ),
       caption: TextStyle (
         color: Color(0xff2F595B),

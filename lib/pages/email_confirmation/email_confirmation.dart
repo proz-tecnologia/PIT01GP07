@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
-
 class EmailConfirmation extends StatefulWidget {
   const EmailConfirmation({super.key});
 
@@ -12,7 +10,6 @@ class _EmailConfirmation extends State<EmailConfirmation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),

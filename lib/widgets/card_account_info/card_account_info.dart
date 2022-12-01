@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
-
 import '../../design_system/styleapp.dart';
 import '../../widgets/account_info/account_info.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
