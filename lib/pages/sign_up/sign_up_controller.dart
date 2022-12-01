@@ -3,25 +3,16 @@ import 'sign_up_model.dart';
 import 'sign_up_repository.dart';
 import 'sign_up_states.dart';
 
-class SignUpController extends ChangeNotifier {
-  static final SignUpController instance = SignUpController();
-
-  SignUpState state = SignUpInitialState();
-
+class SignUpController extends ValueNotifier<SignUpState> {
   SignUpRepository repository = SignUpRepository();
 
-  Future<void> addUser(SignUpModel userModel) async {
-    updateState(SignUpLoadingState());
-    if (await repository.saveUser(userModel)) {
-      updateState(
-          SignUpSuccessState(message: "Usuário cadastrado com sucesso!"));
-    } else {
-      updateState(SignUpErrorState(message: 'O usuário já está cadastrado!'));
-    }
-  }
+  SignUpController(this.repository) : super(SignUpInitialState());
 
-  void updateState(SignUpState newState) {
-    state = newState;
-    notifyListeners();
+  Future<void> addUser(SignUpModel userModel) async {
+    if (await repository.saveUser(userModel)) {
+      value = SignUpSuccessState(message: "Usuário cadastrado com sucesso!");
+    } else {
+      value = SignUpErrorState(message: 'O usuário já está cadastrado!');
+    }
   }
 }

@@ -29,11 +29,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller.addListener(() {
       if (controller.value is LoginErrorState) {
-        final errorState = controller as LoginErrorState;
+        final errorState = controller.value as LoginErrorState;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
