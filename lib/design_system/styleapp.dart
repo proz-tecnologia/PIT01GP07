@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'colors.dart';
+import 'constants.dart';
 
 class StyleApp {
   StyleApp._();
@@ -14,7 +13,6 @@ class StyleApp {
   static OutlineInputBorder outlinedBorder = OutlineInputBorder(
     borderRadius: StyleApp.buttonBorderRadius,
     borderSide: const BorderSide(
-      color: AppColors.backgroudColor,
       width: 2.0,
     ),
   );
@@ -22,19 +20,19 @@ class StyleApp {
   static OutlineInputBorder outlineTextField = OutlineInputBorder(
     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
     borderSide: BorderSide(
-      color: AppColors.focusTextFormFieldColor.withOpacity(0.4),
+      color: Colors.green.withOpacity(0.4),
       width: 2,
     ),
   );
 
   static OutlineInputBorder focusTextField = const OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(12.0)),
-    borderSide: BorderSide(color: AppColors.backgroudColor, width: 2),
+    //borderSide: BorderSide(color: Colors.green, width: 2),
   );
 
   static const titleCardStyle = TextStyle(
       fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
-      color: AppColors.secondtextColor,
+      //color: Colors.green,
       fontSize: 18);
 }

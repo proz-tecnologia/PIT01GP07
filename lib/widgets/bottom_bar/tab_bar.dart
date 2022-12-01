@@ -29,7 +29,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             bottomLeft: StyleApp.borderRadius,
             bottomRight: StyleApp.borderRadius,
           ))),
-      color: AppColors.secondBackgroudColor,
+      color: Colors.green,
       child: Row(
         children: [
           tabItem(icon: const Icon(Icons.home), index: 0, text: 'Início'),
@@ -58,8 +58,8 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             child: IconButton(
               icon: icon,
               color: isSelected
-                  ? AppColors.secondtextColor
-                  : AppColors.secondtextColor.withOpacity(0.5),
+                  ? Colors.green
+                  : Colors.green.withOpacity(0.5),
               onPressed: () => widget.onChangedTab(index),
             ),
           ),
@@ -68,8 +68,8 @@ class _TabBarWidgetState extends State<TabBarWidget> {
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w500,
                   color: isSelected
-                      ? AppColors.secondtextColor
-                      : AppColors.secondtextColor.withOpacity(0.5),
+                      ? Colors.green
+                      : Colors.green.withOpacity(0.5),
                   //const Color(0XFF92A7A8),
                   fontSize: 14)),
         ],

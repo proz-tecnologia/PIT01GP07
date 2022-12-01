@@ -44,8 +44,8 @@ Widget card({
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16.0),
             ),
-            backgroundColor: AppColors.secondBackgroudColor,
-            foregroundColor: AppColors.secondtextColor,
+            backgroundColor:  Colors.green,
+            foregroundColor:  Colors.green,
           ),
           child: icon,
           onPressed: () {},
@@ -56,7 +56,7 @@ Widget card({
           style: const TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
-              color: AppColors.secondBackgroudColor,
+              color:  Colors.green,
               fontSize: 10),
         ),
       ],

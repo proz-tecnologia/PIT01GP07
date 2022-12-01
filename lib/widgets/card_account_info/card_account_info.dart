@@ -25,7 +25,7 @@ class CardAccountInfoState extends State<CardAccountInfo> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-                color: AppColors.revertBackgroundColor,
+                color: Colors.green,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(10),
                 ),

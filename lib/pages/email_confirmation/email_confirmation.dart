@@ -12,7 +12,7 @@ class _EmailConfirmation extends State<EmailConfirmation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondBackgroudColor,
+      backgroundColor: Colors.green,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
@@ -27,7 +27,7 @@ class _EmailConfirmation extends State<EmailConfirmation> {
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                   fontSize: 32,
-                  color: AppColors.backgroudColor,
+                  color: Colors.green,
                 ),
               ),
             ),
@@ -38,7 +38,7 @@ class _EmailConfirmation extends State<EmailConfirmation> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
-                color: AppColors.backgroudColor,
+                color: Colors.green,
               ),
             ),
             const SizedBox(height: 36),
@@ -57,14 +57,14 @@ class _EmailConfirmation extends State<EmailConfirmation> {
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 48),
-                  backgroundColor: AppColors.backgroudColor),
+                  backgroundColor: Colors.green),
               child: const Text(
                 'Finalizar',
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w500,
                   fontSize: 24,
-                  color: AppColors.primarytextColor,
+                  color:Colors.green,
                 ),
               ),
             ),

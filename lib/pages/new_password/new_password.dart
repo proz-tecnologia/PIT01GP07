@@ -19,7 +19,7 @@ class _NewPassword extends State<NewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.secondBackgroudColor,
+      backgroundColor: Colors.green,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Form(

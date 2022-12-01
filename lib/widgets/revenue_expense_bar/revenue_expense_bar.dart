@@ -14,7 +14,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.primarytextColor,
+        color:  Colors.green,
         borderRadius: BorderRadius.all(StyleApp.borderRadius),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
@@ -23,7 +23,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
           children: [
             const Icon(
               Icons.arrow_circle_up,
-              color: AppColors.revenueColor,
+              color:  Colors.green,
               size: 35,
             ),
             Column(
@@ -32,14 +32,14 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
                 Text(
                   'Receita',
                   style: TextStyle(
-                    color: AppColors.revenueColor,
+                    color:  Colors.green,
                     fontSize: 18,
                   ),
                 ),
                 Text(
                   'R\$ 250,00',
                   style: TextStyle(
-                      color: AppColors.revenueColor,
+                      color:  Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
                 ),
@@ -48,7 +48,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
           ],
         ),
         Container(
-          color: AppColors.secondtextColor,
+          color:  Colors.green,
           width: 1.5,
           height: 30,
         ),
@@ -57,7 +57,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
           children: [
             const Icon(
               Icons.arrow_circle_down,
-              color: AppColors.expenseColor,
+              color:  Colors.green,
               size: 35,
             ),
             Column(
@@ -66,14 +66,14 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
                 Text(
                   'Despesa',
                   style: TextStyle(
-                    color: AppColors.expenseColor,
+                    color:  Colors.green,
                     fontSize: 18,
                   ),
                 ),
                 Text(
                   'R\$ 120,00',
                   style: TextStyle(
-                    color: AppColors.expenseColor,
+                    color:  Colors.green,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),

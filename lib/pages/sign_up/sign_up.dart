@@ -59,10 +59,10 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.secondBackgroudColor,
+        backgroundColor: Colors.green,
         appBar: AppBar(
-          backgroundColor: AppColors.secondBackgroudColor,
-          iconTheme: const IconThemeData(color: AppColors.backgroudColor),
+          backgroundColor: Colors.green,
+          iconTheme: const IconThemeData(color: Colors.green),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -77,7 +77,7 @@ class _SignUpState extends State<SignUp> {
                       ' Cadastre-se',
                       style: TextStyle(
                         fontSize: 24,
-                        color: AppColors.backgroudColor,
+                        color: Colors.green,
                       ),
                     ),
                   ],
@@ -91,7 +91,7 @@ class _SignUpState extends State<SignUp> {
                     Icon(
                       Icons.account_circle,
                       size: 100,
-                      color: AppColors.backgroudColor,
+                      color: Colors.green,
                     )
                   ],
                 ),

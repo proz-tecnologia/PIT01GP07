@@ -55,7 +55,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                     fontFamily: 'Inter',
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.backgroudColor),
+                    color: Colors.green),
               ),
               const SizedBox(
                 height: 15,
@@ -66,7 +66,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                     fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.backgroudColor),
+                    color: Colors.green),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -76,7 +76,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.backgroudColor),
+                        backgroundColor: Colors.green),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },

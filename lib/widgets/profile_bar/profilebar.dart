@@ -24,11 +24,11 @@ class ProfileBar extends StatelessWidget {
                 children: [
                   Text(
                     getTime(),
-                    style: const TextStyle(color: AppColors.primarytextColor),
+                    style: const TextStyle(color:  Colors.green),
                   ),
                   Text(
                     name,
-                    style: const TextStyle(color: AppColors.primarytextColor),
+                    style: const TextStyle(color:  Colors.green),
                   ),
                 ],
               ),
@@ -36,14 +36,14 @@ class ProfileBar extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.notifications,
-                  color: AppColors.primarytextColor,
+                  color: Colors.green,
                 ),
                 onPressed: (() {}),
               ),
             ],
           ),
           Container(
-            color: AppColors.secondtextColor,
+            color:  Colors.green,
             height: 1.5,
             width: MediaQuery.of(context).size.width * 0.92,
           ),
