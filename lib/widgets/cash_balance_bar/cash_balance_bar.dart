@@ -27,13 +27,13 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                 const Text(
                   'Saldo atual',
                   style: TextStyle(
-                    color: AppColors.primarytextColor,
+                    color: Colors.green,
                   ),
                 ),
                 Text(
                   'R\$ $balanceText',
                   style: const TextStyle(
-                    color: AppColors.primarytextColor,
+                    color: Colors.green,
                   ),
                 ),
               ],

@@ -25,7 +25,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-          color: AppColors.primarytextColor,
+          color:  Colors.green,
           borderRadius: BorderRadius.only(
               bottomLeft: StyleApp.borderRadius,
               bottomRight: StyleApp.borderRadius,
@@ -38,7 +38,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-            color: AppColors.primarytextColor,
+            color:  Colors.green,
             borderRadius: BorderRadius.only(
                 bottomLeft: StyleApp.borderRadius,
                 bottomRight: StyleApp.borderRadius,
@@ -55,7 +55,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                     width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(150),
-                      color: AppColors.revenueColor,
+                      color:  Colors.green,
                     ),
                     child: Center(
                       child: Container(
@@ -82,13 +82,13 @@ class _FinancialTabsState extends State<FinancialTabs> {
                             decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
-                                color: AppColors.revenueColor),
+                                color:  Colors.green),
                           ),
                         ),
                         const Text(
                           "Alugel",
                           style: TextStyle(
-                              fontSize: 18, color: AppColors.secondtextColor),
+                              fontSize: 18, color:  Colors.green),
                         )
                       ],
                     ),
@@ -108,7 +108,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                         const Text(
                           "Alimentação",
                           style: TextStyle(
-                              fontSize: 18, color: AppColors.secondtextColor),
+                              fontSize: 18, color:  Colors.green),
                         )
                       ],
                     ),
@@ -128,7 +128,7 @@ class _FinancialTabsState extends State<FinancialTabs> {
                         const Text(
                           "Carro",
                           style: TextStyle(
-                              fontSize: 18, color: AppColors.secondtextColor),
+                              fontSize: 18, color:  Colors.green),
                         )
                       ],
                     ),

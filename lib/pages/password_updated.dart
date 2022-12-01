@@ -1,60 +1,50 @@
 import 'package:flutter/material.dart';
 import '../../widgets/default_button/default_button.dart';
-import '../../pages/password_updated.dart';
+import 'homescreen/homescreen.dart';
 
-
-class EmailConfirmation extends StatefulWidget {
-  const EmailConfirmation({super.key});
+class PasswordUpdate extends StatefulWidget {
+  const PasswordUpdate({super.key});
 
   @override
-  State<EmailConfirmation> createState() => _EmailConfirmation();
+  State<PasswordUpdate> createState() => _PasswordUpdate();
 }
 
-class _EmailConfirmation extends State<EmailConfirmation> {
+class _PasswordUpdate extends State<PasswordUpdate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color:Theme.of(context).colorScheme.primary,
-          ),
-          elevation: 0.0,
-        ),
+
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 32),
+            const SizedBox(height: 56),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'E-mail enviado',style:Theme.of(context).textTheme.headline4
+                'Senha atualizada',style:Theme.of(context).textTheme.headline4
                 ),
               ),
              const SizedBox(height: 32),
              Text(
-              'Verifique sua conta de e-mail para a finalizar a verificação. O link enviado irá lhe redirencionar para a criação de uma nova senha.',
+              'Sua nova senha foi definida e já pode ser atualizada.',
               style:  Theme.of(context).textTheme.bodyText1,
               ),
             const SizedBox(height: 36),
             const Expanded(
               child: Image(
-                image: AssetImage("assets/images/background/email.png"),
-                width: 200,
-                height: 200,
+                image: AssetImage("assets/images/background/confirmed_password.png"),
               ),
             ),
             const SizedBox(height: 36),
             DefaultButton(
-              title: 'Finalizar',
+              title: 'Login',
               func: (){
-                Navigator.pop(context);
-                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const PasswordUpdate()),
+                      builder: (context) =>  HomeScreen()),
                 );
               },
             ),

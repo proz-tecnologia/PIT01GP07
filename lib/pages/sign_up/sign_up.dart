@@ -1,8 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:teste/pages/sign_up/sign_up_repository.dart';
-import '../../design_system/colors.dart';
-import '../../design_system/styleapp.dart';
 import '../../widgets/default_button/default_button.dart';
 import 'sign_up_controller.dart';
 import 'sign_up_model.dart';
@@ -60,10 +57,10 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.secondBackgroudColor,
         appBar: AppBar(
-          backgroundColor: AppColors.secondBackgroudColor,
-          iconTheme: const IconThemeData(color: AppColors.backgroudColor),
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color:Theme.of(context).colorScheme.primary,
+          ),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -73,13 +70,10 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children:  [
                     Text(
                       ' Cadastre-se',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: AppColors.backgroudColor,
-                      ),
+                        style:Theme.of(context).textTheme.headline4
                     ),
                   ],
                 ),
@@ -92,7 +86,6 @@ class _SignUpState extends State<SignUp> {
                     Icon(
                       Icons.account_circle,
                       size: 100,
-                      color: AppColors.backgroudColor,
                     )
                   ],
                 ),
@@ -106,10 +99,10 @@ class _SignUpState extends State<SignUp> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
+                    decoration: const InputDecoration(
                       hintText: 'Nome',
                     ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Padding(
@@ -124,20 +117,25 @@ class _SignUpState extends State<SignUp> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
+                    decoration: const InputDecoration(
                       hintText: 'Digite seu e-mail',
-                      suffixIcon: const Icon(Icons.email),
+                      suffixIcon: Icon(Icons.email),
                     ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     controller: passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Por favor, digite a senha!';
+                      }
+                      return null;
+                    },
                     obscureText: obscure,
                     decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
                       hintText: 'Digite sua senha',
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -154,6 +152,7 @@ class _SignUpState extends State<SignUp> {
                         icon: icon,
                       ),
                     ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Padding(
@@ -168,7 +167,6 @@ class _SignUpState extends State<SignUp> {
                     },
                     obscureText: obscure2,
                     decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
                       hintText: 'Digite sua senha',
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -185,6 +183,7 @@ class _SignUpState extends State<SignUp> {
                         icon: icon2,
                       ),
                     ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 DefaultButton(

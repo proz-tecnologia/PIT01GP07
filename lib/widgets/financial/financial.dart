@@ -15,10 +15,10 @@ class Financial extends StatefulWidget {
 
 class _FinancialState extends State<Financial> {
   bool financialTime = false;
-  Color patternColor = AppColors.primarytextColor;
-  Color behindColor = AppColors.backgroudColor;
-  Color primaryTextColor = AppColors.primarytextColor;
-  Color secondTextColor = AppColors.secondtextColor;
+  //Color patternColor =  Colors.green;
+  //Color behindColor =  Colors.green;
+  //Color primaryTextColor =  Colors.green;
+  //Color secondTextColor =  Colors.green;
   TextDecoration underline = TextDecoration.none;
   TextDecoration secunderline = TextDecoration.underline;
   Radius leftRadius = const Radius.circular(0.0);
@@ -40,7 +40,7 @@ class _FinancialState extends State<Financial> {
             width: double.infinity,
             height: 290,
             decoration: BoxDecoration(
-              color: AppColors.backgroudColor,
+              color:  Colors.green,
               borderRadius: const BorderRadius.all(StyleApp.borderRadius),
               boxShadow: [
                 BoxShadow(
@@ -60,7 +60,7 @@ class _FinancialState extends State<Financial> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: behindColor,
+                            color:  Colors.green,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: rightRadius,
                                 bottomRight: rightRadius,
@@ -73,16 +73,16 @@ class _FinancialState extends State<Financial> {
                             style: TextStyle(
                                 decoration: underline,
                                 fontWeight: FontWeight.w700,
-                                color: primaryTextColor,
+                                color:  Colors.green,
                                 fontSize: 18),
                           ),
                         ),
                         onTap: () {
                           setState(() {
-                            patternColor = AppColors.backgroudColor;
-                            behindColor = AppColors.primarytextColor;
-                            primaryTextColor = AppColors.secondtextColor;
-                            secondTextColor = AppColors.primarytextColor;
+                            //patternColor = AppColors.backgroudColor;
+                           // behindColor =  Colors.green;
+                           // primaryTextColor =  Colors.green;
+                           // secondTextColor =  Colors.green;
                             secunderline = TextDecoration.none;
                             underline = TextDecoration.underline;
                             leftRadius = const Radius.circular(20.0);
@@ -97,7 +97,7 @@ class _FinancialState extends State<Financial> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: patternColor,
+                              color:  Colors.green,
                               borderRadius: BorderRadius.only(
                                   bottomRight: leftRadius,
                                   bottomLeft: leftRadius,
@@ -109,16 +109,16 @@ class _FinancialState extends State<Financial> {
                             style: TextStyle(
                                 decoration: secunderline,
                                 fontWeight: FontWeight.w700,
-                                color: secondTextColor,
+                                color:  Colors.green,
                                 fontSize: 18),
                           ),
                         ),
                         onTap: () {
                           setState(() {
-                            patternColor = AppColors.primarytextColor;
-                            behindColor = AppColors.backgroudColor;
-                            primaryTextColor = AppColors.primarytextColor;
-                            secondTextColor = AppColors.secondtextColor;
+                           // patternColor = AppColors.primarytextColor;
+                           // behindColor = AppColors.backgroudColor;
+                            //primaryTextColor = AppColors.primarytextColor;
+                            //secondTextColor = AppColors.secondtextColor;
                             underline = TextDecoration.none;
                             secunderline = TextDecoration.underline;
                             leftRadius = const Radius.circular(0.0);

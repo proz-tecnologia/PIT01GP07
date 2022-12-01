@@ -1,9 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:teste/pages/login/login_repository.dart';
-
-import '../../design_system/colors.dart';
-import '../../design_system/styleapp.dart';
 import '../../widgets/default_button/default_button.dart';
 import '../../widgets/login_with/login_with.dart';
 import '../homescreen/homescreen.dart';
@@ -59,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondBackgroudColor,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -70,23 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  SizedBox(width: 16),
-                  Text(
-                    ' Olá!',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 36,
-                      color: AppColors.backgroudColor,
-                    ),
-                  ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(left: 16, right: 16,top:8),
                 child: TextFormField(
-                  cursorColor: AppColors.focusTextFormFieldColor,
                   controller: emailController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -96,26 +79,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    enabledBorder: StyleApp.outlineTextField,
-                    focusColor: AppColors.focusTextFormFieldColor,
-                    border: StyleApp.outlineTextField,
-                    focusedBorder: StyleApp.focusTextField,
+                  decoration: const InputDecoration(
                     hintText: 'Digite seu e-mail',
-                    suffixIcon: const Icon(Icons.email),
+                    suffixIcon: Icon(Icons.email),
                   ),
-                  style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: AppColors.secondtextColor,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
-              ),
+                  ),
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16,top:8),
                 child: TextFormField(
-                  cursorColor: AppColors.focusTextFormFieldColor,
                   controller: passwordController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -125,10 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   obscureText: obscure,
                   decoration: InputDecoration(
-                    enabledBorder: StyleApp.outlineTextField,
-                    focusColor: AppColors.focusTextFormFieldColor,
-                    border: StyleApp.outlineTextField,
-                    focusedBorder: StyleApp.focusTextField,
                     hintText: 'Digite sua senha',
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -145,10 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: icon,
                     ),
                   ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8, right: 16),
+                padding: const EdgeInsets.only(top: 8, right: 16, bottom:16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -160,12 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const RecoverScreen()),
                         );
                       },
-                      child: const Text(
-                        'Recuperar senha?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.secondtextColor,
-                            fontSize: 14),
+                      child: Text( 'Recuperar senha?',style:Theme.of(context).textTheme.caption,
                       ),
                     )
                   ],
@@ -180,8 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
               const LoginWith(),
             ],
           ),
-        ),
-      ),
+          ),
+    ),
     );
   }
 

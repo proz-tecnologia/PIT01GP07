@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 
-import '../../design_system/colors.dart';
 
 class LoginWith extends StatelessWidget {
   const LoginWith({super.key});
@@ -16,18 +15,16 @@ class LoginWith extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                color: AppColors.backgroudColor,
+                color: Theme.of(context).colorScheme.primary,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
-              const Text(
+               Text(
                 "Ou entrar com",
-                style: TextStyle(
-                  color: AppColors.secondtextColor,
-                ),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               Container(
-                color: AppColors.backgroudColor,
+                color: Theme.of(context).colorScheme.primary,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
@@ -59,9 +56,9 @@ class LoginWith extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+               Text(
                 "Ainda não é cadastrado?",
-                style: TextStyle(color: AppColors.secondtextColor),
+                   style: Theme.of(context).textTheme.bodyText2,
               ),
               InkWell(
                 onTap: () {
@@ -69,11 +66,9 @@ class LoginWith extends StatelessWidget {
                     builder: (BuildContext context) => const SignUp(),
                   ));
                 },
-                child: const Text(
+                child: Text(
                   " Crie sua conta",
-                  style: TextStyle(
-                      color: AppColors.secondtextColor,
-                      fontWeight: FontWeight.bold),
+                  style:Theme.of(context).textTheme.caption,
                 ),
               )
             ],

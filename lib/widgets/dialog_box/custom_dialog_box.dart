@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
 import '../../design_system/constants.dart';
 
 class CustomDialogBox extends StatefulWidget {
@@ -43,7 +42,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
           margin: const EdgeInsets.only(top: Constants.avatarRadius),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
-            color: Colors.white,
+            color:Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(Constants.padding),
           ),
           child: Column(
@@ -51,22 +50,14 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
             children: <Widget>[
               Text(
                 widget.title,
-                style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.backgroudColor),
+                style:Theme.of(context).textTheme.headline4,
               ),
               const SizedBox(
                 height: 15,
               ),
               Text(
                 widget.descriptions,
-                style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.backgroudColor),
+                style: Theme.of(context).textTheme.bodyText2,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -76,18 +67,15 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.backgroudColor),
+                        backgroundColor: Theme.of(context).colorScheme.primary),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                     child: Text(
                       widget.text,
-                      style: const TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFFF6F6F6)),
-                    )),
+                      style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ),
               ),
             ],
           ),
