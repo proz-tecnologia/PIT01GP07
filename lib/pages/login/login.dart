@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginController controller = LoginController.instance;
+  LoginController controller = LoginController(LoginRepository());
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   bool obscure = true;
@@ -27,8 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     controller.addListener(() {
-      if (controller.state is LoginErrorState) {
-        final errorState = controller.state as LoginErrorState;
+      if (controller.value is LoginErrorState) {
+        final errorState = controller.value as LoginErrorState;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
@@ -36,13 +36,18 @@ class _LoginScreenState extends State<LoginScreen> {
             content: Text(errorState.message),
           ),
         );
-      } else if (controller.state is LoginSuccessState) {
-        final successState = controller.state as LoginSuccessState;
+      } else if (controller.value is LoginSuccessState) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => HomeScreen(
-            name: successState.message,
-          ),
+          builder: (BuildContext context) => HomeScreen(),
         ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            behavior: SnackBarBehavior.floating,
+            content: Text(controller.toString()),
+          ),
+        );
       }
     });
   }
@@ -60,9 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox (width:16),
-                  Text('Olá!',style:Theme.of(context).textTheme.headline2),
                 ],
               ),
               Padding(

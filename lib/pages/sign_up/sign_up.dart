@@ -13,7 +13,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  SignUpController controller = SignUpController.instance;
+  SignUpController controller = SignUpController(SignUpRepository());
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   Icon icon2 = const Icon(Icons.visibility);
@@ -28,8 +28,8 @@ class _SignUpState extends State<SignUp> {
   void initState() {
     super.initState();
     controller.addListener(() {
-      if (controller.state is SignUpErrorState) {
-        final errorState = controller.state as SignUpErrorState;
+      if (controller.value is SignUpErrorState) {
+        final errorState = controller.value as SignUpErrorState;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
@@ -37,12 +37,12 @@ class _SignUpState extends State<SignUp> {
             content: Text(errorState.message),
           ),
         );
-      } else if (controller.state is SignUpSuccessState) {
+      } else if (controller.value is SignUpSuccessState) {
         nameController.text = '';
         emailController.text = '';
         passwordController.text = '';
         confirmPassowrdController.text = '';
-        final errorState = controller.state as SignUpSuccessState;
+        final errorState = controller.value as SignUpSuccessState;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),

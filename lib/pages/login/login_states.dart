@@ -4,13 +4,7 @@ class LoginInitialState implements LoginState {}
 
 class LoginLoadingState implements LoginState {}
 
-class LoginSuccessState implements LoginState {
-  final String message;
-
-  LoginSuccessState({
-    required this.message,
-  });
-}
+class LoginSuccessState implements LoginState {}
 
 class LoginErrorState implements LoginState {
   final String message;
