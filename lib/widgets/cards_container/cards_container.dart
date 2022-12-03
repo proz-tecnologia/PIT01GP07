@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../design_system/colors.dart';
@@ -22,7 +21,7 @@ class _CardsContainerState extends State<CardsContainer> {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-          color: Colors.green,
+          color: AppColors.secondBackgroudColor,
           borderRadius: BorderRadius.only(
             topLeft: StyleApp.borderRadius,
             topRight: StyleApp.borderRadius,

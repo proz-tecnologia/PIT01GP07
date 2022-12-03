@@ -24,7 +24,7 @@ class CardCreditCardsState extends State<CardCreditCards> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: AppColors.revertBackgroundColor,
               borderRadius: const BorderRadius.all(
                 StyleApp.borderRadius,
               ),

@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     title: "CONTINUAR",
                     func: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => HomeScreen(),
+                        builder: (BuildContext context) => const HomeScreen(),
                       ));
                     }),
                 DefaultButton(

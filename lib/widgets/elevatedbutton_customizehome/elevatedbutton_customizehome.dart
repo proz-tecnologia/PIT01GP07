@@ -10,15 +10,15 @@ Widget customizehomebutton() {
         padding: const EdgeInsets.all(16.0),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.green,
+        backgroundColor: AppColors.revertBackgroundColor,
+        foregroundColor: AppColors.secondtextColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
           Icon(
             Icons.dashboard_customize,
-            color: Colors.green,
+            color: AppColors.secondtextColor,
           ),
           Text(
             "Customizar tela inicial",
@@ -26,7 +26,7 @@ Widget customizehomebutton() {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Colors.green,
+              color: AppColors.secondtextColor,
             ),
           ),
         ],

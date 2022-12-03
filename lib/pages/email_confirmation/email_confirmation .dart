@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
+import 'package:teste/design_system/colors.dart';
 
 class EmailConfirmation extends StatefulWidget {
   const EmailConfirmation({super.key});

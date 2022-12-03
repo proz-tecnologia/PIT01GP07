@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/login/login.dart';
-
-import 'package:teste/pages/repository/repository.dart';
-import 'design_system/constants.dart';
-import 'design_system/theme_manager.dart';
+import 'design_system/colors.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
-ThemeManager _themeManager = ThemeManager();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -14,9 +9,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: _themeManager.themeMode,
+      theme: ThemeData(
+        fontFamily: 'Inter',
+        iconTheme: const IconThemeData(
+          color: AppColors.primarytextColor,
+        ),
+        scaffoldBackgroundColor: AppColors.backgroudColor,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(const Color(0xff3b3d53)),
+        )),
+        appBarTheme: const AppBarTheme(backgroundColor: Color(0xff5cb3b9)),
+      ),
       home: const SplashScreen(),
     );
   }

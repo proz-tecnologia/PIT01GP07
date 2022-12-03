@@ -25,7 +25,7 @@ class _ExpensesState extends State<Expenses> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-          color: Colors.green,
+          color: AppColors.primarytextColor,
           borderRadius: BorderRadius.only(
               bottomLeft: StyleApp.borderRadius,
               bottomRight: StyleApp.borderRadius,
@@ -38,7 +38,7 @@ class _ExpensesState extends State<Expenses> {
         width: double.infinity,
         height: 240,
         decoration: const BoxDecoration(
-            color: Colors.green,
+            color: AppColors.primarytextColor,
             borderRadius: BorderRadius.only(
                 bottomLeft: StyleApp.borderRadius,
                 bottomRight: StyleApp.borderRadius,

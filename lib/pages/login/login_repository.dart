@@ -27,13 +27,4 @@ class LoginRepository {
     preferences.setBool('isLogged', true);
     preferences.setString('lastLogged', userModel.email);
   }
-
-  Future<String> lastLogged() async {
-    preferences = await SharedPreferences.getInstance();
-    return preferences.getString("lastLogged")!;
-  }
-
-  String getUser() {
-    return userMap['name'];
-  }
 }

@@ -18,13 +18,13 @@ Widget seemorebutton({
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
               fontSize: 12,
-              color:  Colors.green,
+              color: AppColors.secondtextColor,
             ),
           ),
           const Icon(
             Icons.arrow_forward_ios,
             size: 18,
-            color:  Colors.green,
+            color: AppColors.secondtextColor,
           )
         ],
       ),

@@ -8,7 +8,6 @@ class SplashScreenRepository {
     preferences = await SharedPreferences.getInstance();
     preferences.setBool('isLogged', true);
     preferences.setString('lastLogged', userModel.email);
-    print(preferences.getBool('isLogged').toString());
   }
 
   Future<String> lastLogged() async {

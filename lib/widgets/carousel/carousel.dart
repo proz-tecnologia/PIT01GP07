@@ -71,8 +71,8 @@ class CarrouselSliderState extends State<CarrouselSlider> {
         effect: WormEffect(
           dotWidth: 8,
           dotHeight: 8,
-          dotColor: Colors.green.withOpacity(0.5),
-          activeDotColor: Colors.green,
+          dotColor: AppColors.secondtextColor.withOpacity(0.5),
+          activeDotColor: AppColors.secondtextColor,
         ),
       );
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 
+import '../../design_system/colors.dart';
 
 class LoginWith extends StatelessWidget {
   const LoginWith({super.key});
@@ -15,16 +16,18 @@ class LoginWith extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                color: Theme.of(context).colorScheme.primary,
+                color: AppColors.backgroudColor,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
-               Text(
+              const Text(
                 "Ou entrar com",
-                style: Theme.of(context).textTheme.bodyText2,
+                style: TextStyle(
+                  color: AppColors.secondtextColor,
+                ),
               ),
               Container(
-                color: Theme.of(context).colorScheme.primary,
+                color: AppColors.backgroudColor,
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
@@ -56,9 +59,9 @@ class LoginWith extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Text(
+              const Text(
                 "Ainda não é cadastrado?",
-                   style: Theme.of(context).textTheme.bodyText2,
+                style: TextStyle(color: AppColors.secondtextColor),
               ),
               InkWell(
                 onTap: () {
@@ -66,9 +69,11 @@ class LoginWith extends StatelessWidget {
                     builder: (BuildContext context) => const SignUp(),
                   ));
                 },
-                child: Text(
+                child: const Text(
                   " Crie sua conta",
-                  style:Theme.of(context).textTheme.caption,
+                  style: TextStyle(
+                      color: AppColors.secondtextColor,
+                      fontWeight: FontWeight.bold),
                 ),
               )
             ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen_controller.dart';
+
 import '../../design_system/colors.dart';
 
 class CashBalanceBar extends StatefulWidget {
@@ -10,17 +10,10 @@ class CashBalanceBar extends StatefulWidget {
 }
 
 class _CashBalanceBarState extends State<CashBalanceBar> {
-  HomeScreenController controller = HomeScreenController();
   bool obscure = true;
   Icon icon = const Icon(Icons.visibility_off);
+  String balanceText = '130,00';
   String textTemp = '';
-
-  @override
-  void initState() {
-    super.initState();
-    controller.getCashValue();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,33 +27,27 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
               children: [
                 const Text(
                   'Saldo atual',
-                  style: TextStyle(
-                    color: AppColors.primarytextColor,
-                  ),
+                  style: TextStyle(color: AppColors.primarytextColor),
                 ),
-                ValueListenableBuilder(
-                    valueListenable: controller.cashValue,
-                    builder: (context, value, child) {
-                      return Text(
-                        'R\$ ${controller.cashValue.value}',
-                        style: const TextStyle(
-                          color: AppColors.primarytextColor,
-                        ),
-                      );
-                    }),
+                Text(
+                  'R\$ $balanceText',
+                  style: const TextStyle(color: AppColors.primarytextColor),
+                ),
               ],
             ),
           ),
           IconButton(
               onPressed: () {
-                controller.cashVisibility;
                 setState(() {
                   if (obscure) {
                     icon = const Icon(Icons.visibility);
                     obscure = false;
+                    textTemp = balanceText;
+                    balanceText = '*******';
                   } else {
                     icon = const Icon(Icons.visibility_off);
                     obscure = true;
+                    balanceText = textTemp;
                   }
                 });
               },

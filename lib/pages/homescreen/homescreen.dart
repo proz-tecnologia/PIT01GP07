@@ -8,10 +8,8 @@ import '../../widgets/profile_bar/profilebar.dart';
 import '../../widgets/revenue_expense_bar/revenue_expense_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  String name;
-  HomeScreen({
+  const HomeScreen({
     Key? key,
-    this.name = '',
   }) : super(key: key);
 
   @override
@@ -25,23 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            const SizedBox(
+          children: const [
+            SizedBox(
               height: 16.0,
             ),
-            ProfileBar(
-              name: widget.name,
-            ),
-            const CashBalanceBar(),
-            const RevenueExpenseBar(),
-            const SizedBox(
+            ProfileBar(),
+            CashBalanceBar(),
+            RevenueExpenseBar(),
+            SizedBox(
               height: 16.0,
             ),
-            const OptionsCards(),
-            const SizedBox(
+            OptionsCards(),
+            SizedBox(
               height: 16.0,
             ),
-            const CardsContainer(),
+            CardsContainer(),
           ],
         ),
       ),
