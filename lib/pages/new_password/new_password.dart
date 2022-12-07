@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
-
+import '../../widgets/default_button/default_button.dart';
 import '../login/login.dart';
 
 class NewPassword extends StatefulWidget {
@@ -19,7 +18,12 @@ class _NewPassword extends State<NewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.secondBackgroudColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary,
+        ),
+        elevation: 0.0,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Form(
@@ -27,45 +31,27 @@ class _NewPassword extends State<NewPassword> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 32),
-              const Align(
+               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Nova senha',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32,
-                    color: Color(0xFF539CA1),
-                  ),
+                  style:Theme.of(context).textTheme.headline1,
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
+               Text(
                 'Sua identidade foi verificada. Digite sua nova senha , por favor.',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: Color(0xFF539CA1),
-                ),
+                style:Theme.of(context).textTheme.subtitle1,
               ),
               const SizedBox(height: 36),
               SizedBox(
                 child: TextFormField(
                   controller: _passwordController,
                   onChanged: (value) {},
-                  style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: Color(0xFF2F595B),
-                  ),
                   obscureText: hidePassword,
-                  cursorColor: const Color(0xFF539CA1),
                   decoration: InputDecoration(
                     counterText: " ",
                     suffixIcon: IconButton(
-                      disabledColor: const Color(0xFF2F595B),
                       icon: hidePassword
                           ? const Icon(Icons.visibility_off)
                           : const Icon(Icons.visibility),
@@ -77,26 +63,7 @@ class _NewPassword extends State<NewPassword> {
                         );
                       },
                     ),
-                    focusColor: const Color(0xFF539CA1),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(12.0)),
-                      borderSide: BorderSide(
-                          color: const Color(0xFF539CA1).withOpacity(0.4),
-                          width: 2),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide:
-                          BorderSide(color: Color(0xFF539CA1), width: 2),
-                    ),
-                    labelText: 'Digite nova senha',
-                    labelStyle: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: const Color(0xFF539CA1).withOpacity(0.5),
-                    ),
+                    hintText: 'Digite nova senha',
                   ),
                   validator: (senha) {
                     if (senha == null || senha.isEmpty) {
@@ -114,18 +81,10 @@ class _NewPassword extends State<NewPassword> {
                 child: TextFormField(
                   controller: _confirmPasswordController,
                   onChanged: (value) {},
-                  style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: Color(0xFF2F595B),
-                  ),
                   obscureText: hidePassword,
-                  cursorColor: const Color(0xFF539CA1),
                   decoration: InputDecoration(
                     counterText: " ",
                     suffixIcon: IconButton(
-                      disabledColor: const Color(0xFF2F595B),
                       icon: hidePassword
                           ? const Icon(Icons.visibility_off)
                           : const Icon(Icons.visibility),
@@ -137,26 +96,7 @@ class _NewPassword extends State<NewPassword> {
                         );
                       },
                     ),
-                    focusColor: const Color(0xFF539CA1),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(12.0)),
-                      borderSide: BorderSide(
-                          color: const Color(0xFF539CA1).withOpacity(0.4),
-                          width: 2),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide:
-                          BorderSide(color: Color(0xFF539CA1), width: 2),
-                    ),
-                    labelText: 'Confirme nova senha',
-                    labelStyle: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: const Color(0xFF539CA1).withOpacity(0.5),
-                    ),
+                    hintText: 'Confirme nova senha',
                   ),
                   validator: (senha2) {
                     if (senha2 == null || senha2.isEmpty) {
@@ -171,8 +111,9 @@ class _NewPassword extends State<NewPassword> {
                 ),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
+              DefaultButton(
+                title: 'Confirmar',
+                func: (){
                   if (_formKey.currentState!.validate()) {}
                   Navigator.push(
                     context,
@@ -180,18 +121,6 @@ class _NewPassword extends State<NewPassword> {
                         builder: (context) => const LoginScreen()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(200, 48),
-                    backgroundColor: const Color(0xFF539CA1)),
-                child: const Text(
-                  'Confirmar',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24,
-                    color: Color(0xFFF6F6F6),
-                  ),
-                ),
               ),
               const SizedBox(height: 36),
               const Expanded(
