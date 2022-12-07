@@ -1,7 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
-import '../../design_system/styleapp.dart';
 import '../../widgets/default_button/default_button.dart';
 import 'sign_up_controller.dart';
 import 'sign_up_model.dart';
@@ -60,140 +58,144 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.secondBackgroudColor,
         appBar: AppBar(
-          backgroundColor: AppColors.secondBackgroudColor,
-          iconTheme: const IconThemeData(color: AppColors.backgroudColor),
+        backgroundColor: Colors.transparent,
+        iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary,
+        ),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      ' Cadastre-se',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: AppColors.backgroudColor,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:  [
+                       const SizedBox(
+                        height: 8.0,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 4.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.account_circle,
-                      size: 100,
-                      color: AppColors.backgroudColor,
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: nameController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Nome obrigatório';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
-                      hintText: 'Nome',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: emailController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'E-mail obrigatório';
-                      } else if (EmailValidator.validate(value) == false) {
-                        return 'Insira um e-mail válido';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
-                      hintText: 'Digite seu e-mail',
-                      suffixIcon: const Icon(Icons.email),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: passwordController,
-                    obscureText: obscure,
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
-                      hintText: 'Digite sua senha',
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (obscure) {
-                              icon = const Icon(Icons.visibility_off);
-                              obscure = false;
-                            } else {
-                              icon = const Icon(Icons.visibility);
-                              obscure = true;
-                            }
-                          });
-                        },
-                        icon: icon,
+                      Text(
+                        ' Cadastre-se',
+                        style:Theme.of(context).textTheme.headline1,
                       ),
-                    ),
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: confirmPassowrdController,
-                    validator: (value) {
-                      if (value != passwordController.text) {
-                        return 'Você deve repetir a senha para confirmação';
-                      }
-                      return null;
-                    },
-                    obscureText: obscure2,
-                    decoration: InputDecoration(
-                      enabledBorder: StyleApp.outlinedBorder,
-                      hintText: 'Digite sua senha',
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (obscure2) {
-                              icon2 = const Icon(Icons.visibility_off);
-                              obscure2 = false;
-                            } else {
-                              icon2 = const Icon(Icons.visibility);
-                              obscure2 = true;
-                            }
-                          });
-                        },
-                        icon: icon2,
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.account_circle,
+                        size: 100,
+                        color: Theme.of(context).colorScheme.primary,
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: nameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Nome obrigatório';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Nome',
+                        suffixIcon: Icon(Icons.account_box),
                       ),
+                      style:Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
-                ),
-                DefaultButton(
-                  title: "Cadastrar",
-                  func: () {
-                    register();
-                  },
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: emailController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'E-mail obrigatório';
+                        } else if (EmailValidator.validate(value) == false) {
+                          return 'Insira um e-mail válido';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Digite seu e-mail',
+                        suffixIcon: Icon(Icons.email),
+                      ),
+                      style:Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: passwordController,
+                      obscureText: obscure,
+                      decoration: InputDecoration(
+                        hintText: 'Digite sua senha',
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (obscure) {
+                                icon = const Icon(Icons.visibility_off);
+                                obscure = false;
+                              } else {
+                                icon = const Icon(Icons.visibility);
+                                obscure = true;
+                              }
+                            });
+                          },
+                          icon: icon,
+                        ),
+                      ),
+                      style:Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: confirmPassowrdController,
+                      validator: (value) {
+                        if (value != passwordController.text) {
+                          return 'Você deve repetir a senha para confirmação';
+                        }
+                        return null;
+                      },
+                      obscureText: obscure2,
+                      decoration: InputDecoration(
+                        hintText: 'Digite sua senha',
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (obscure2) {
+                                icon2 = const Icon(Icons.visibility_off);
+                                obscure2 = false;
+                              } else {
+                                icon2 = const Icon(Icons.visibility);
+                                obscure2 = true;
+                              }
+                            });
+                          },
+                          icon: icon2,
+                        ),
+                      ),
+                      style:Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
+                  DefaultButton(
+                    title: "Cadastrar",
+                    func: () {
+                      register();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ));
