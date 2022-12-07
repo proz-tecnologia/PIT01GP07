@@ -21,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody:true,
+      backgroundColor:Theme.of(context).colorScheme.primary,
       body: SingleChildScrollView(
         child: Column(
           children: const [
@@ -41,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: fab(icon: const Icon(Icons.add)),
+      floatingActionButton: const Fab(icon: Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: TabBarWidget(
         index: index,
