@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/styleapp.dart';
-import '../../design_system/colors.dart';
+import '../../widgets/default_button/default_button.dart';
 import '../../widgets/dialog_box/custom_dialog_box.dart';
 import '../email_confirmation/email_confirmation.dart';
 
@@ -17,13 +16,13 @@ class _RecoverScreen extends State<RecoverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondBackgroudColor,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: AppColors.secondBackgroudColor,
-        iconTheme: const IconThemeData(color: AppColors.backgroudColor),
-        elevation: 0.0,
+      backgroundColor: Colors.transparent,
+      iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary,
       ),
+      elevation: 0.0,
+    ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Form(
@@ -31,54 +30,28 @@ class _RecoverScreen extends State<RecoverScreen> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 32),
-              const Align(
+               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Recuperar senha',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32,
-                    color: AppColors.backgroudColor,
-                  ),
+                  style:Theme.of(context).textTheme.headline1,
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
+               Text(
                 'Por favor, informe seu email cadastrado para que uma nova senha seja criada.',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: AppColors.backgroudColor,
-                ),
+                style:Theme.of(context).textTheme.subtitle1,
               ),
               const SizedBox(height: 32),
               SizedBox(
                 child: TextFormField(
                     controller: _emailController,
-                    cursorColor: AppColors.focusTextFormFieldColor,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counterText: " ",
-                      focusColor: AppColors.focusTextFormFieldColor,
-                      border: StyleApp.outlineTextField,
-                      focusedBorder: StyleApp.focusTextField,
                       hintText: 'Digite seu e-mail',
-                      suffixIcon: const Icon(Icons.email),
-                      labelStyle: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color:
-                            AppColors.focusTextFormFieldColor.withOpacity(0.5),
-                      ),
+                      suffixIcon: Icon(Icons.email),
                     ),
-                    style: const TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: AppColors.secondtextColor,
-                    ),
+                    style:Theme.of(context).textTheme.bodyText1,
                     validator: (email) {
                       if (email == null || email.isEmpty) {
                         return 'E-mail obrigatório';
@@ -89,8 +62,9 @@ class _RecoverScreen extends State<RecoverScreen> {
                     }),
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
+              DefaultButton(
+                title: "Próximo",
+                func: () {
                   if (_formKey.currentState!.validate()) {}
                   Navigator.push(
                     context,
@@ -98,47 +72,24 @@ class _RecoverScreen extends State<RecoverScreen> {
                         builder: (context) => const EmailConfirmation()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(200, 48),
-                    backgroundColor: AppColors.backgroudColor),
-                child: const Text(
-                  'Próximo',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: AppColors.secondBackgroudColor,
-                  ),
-                ),
               ),
-              const SizedBox(height: 96),
-              ElevatedButton(
-                onPressed: () {
+              const SizedBox(height: 16),
+              DefaultButton(
+                title: "MENSAGEM DE ERRO",
+                func: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return CustomDialogBox(
                         title: "Oops!",
                         descriptions:
-                            "Não conseguimos identificar esse endereço de e-mail, mas você pode tentar de novo. ",
+                        "Não conseguimos identificar esse endereço de e-mail, mas você pode tentar de novo. ",
                         text: "Tentar de novo",
                         img: Image.asset('assets/images/background/erro.png'),
                       );
                     },
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(200, 48),
-                    backgroundColor: AppColors.backgroudColor),
-                child: const Text(
-                  'MENSAGEM DE ERRO',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: AppColors.secondBackgroudColor,
-                  ),
-                ),
               ),
               const SizedBox(height: 16),
               const Expanded(
