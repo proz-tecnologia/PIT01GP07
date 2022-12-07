@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
 
-Widget creditcardInfo({
-  required String nome,
-  required String tipo,
-  required double limite,
-  required double fatura,
-}) {
+class CreditCardInfo extends StatelessWidget {
+  final String nome;
+  final String tipo;
+  final double limite;
+  final double fatura;
+  const CreditCardInfo(
+      {super.key, required this.nome, required this.tipo, required this.limite, required this.fatura});
+
+  @override
+  Widget build(BuildContext context) {
+
+    String meuLimite= limite.toStringAsFixed(2).replaceAll(".", ",");
+    String minhaFatura= fatura.toStringAsFixed(2).replaceAll(".", ",");
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,40 +23,20 @@ Widget creditcardInfo({
         children: [
           Text(
             "Cartão $nome",
-            style: const TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              fontSize: 16,
-              color: AppColors.secondtextColor,
-            ),
+            style:Theme.of(context).textTheme.subtitle2,
           ),
           Text(
             tipo,
-            style: const TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: AppColors.secondtextColor,
-            ),
+            style:Theme.of(context).textTheme.bodyText1,
           ),
           const SizedBox(height: 16),
-          const Text(
+           Text(
             "Limite Disponível",
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              fontSize: 16,
-              color: AppColors.secondtextColor,
-            ),
+             style:Theme.of(context).textTheme.subtitle2,
           ),
           Text(
-            "R\$ $limite",
-            style: const TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: AppColors.secondtextColor,
-            ),
+            "R\$ $meuLimite",
+            style:Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),
@@ -58,35 +44,28 @@ Widget creditcardInfo({
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             "Fatura Aberta",
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              fontSize: 16,
-              color: AppColors.secondtextColor,
-            ),
+             style:Theme.of(context).textTheme.subtitle2,
           ),
           Text(
-            "R\$ $fatura",
-            style: const TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 20,
-              color: AppColors.secondtextColor,
+            "R\$ $minhaFatura",
+            style:  TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 24,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
-          const Text(
+           Text(
             "Vencimento em 10/10",
             style: TextStyle(
-              fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: 12,
-              color: AppColors.secondtextColor,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
         ],
       ),
     ],
   );
-}
+}}

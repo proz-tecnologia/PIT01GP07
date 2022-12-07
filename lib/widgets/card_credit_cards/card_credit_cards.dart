@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
-import '../../design_system/styleapp.dart';
 import '../carousel/carousel.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
+import '../../design_system/styleapp.dart';
+
 
 class CardCreditCards extends StatefulWidget {
   const CardCreditCards({super.key});
@@ -19,24 +19,25 @@ class CardCreditCardsState extends State<CardCreditCards> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Meus Cartões", style: StyleApp.titleCardStyle),
+           Text("Meus Cartões",
+            style:Theme.of(context).textTheme.headline2,
+          ),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.revertBackgroundColor,
-              borderRadius: const BorderRadius.all(
-                StyleApp.borderRadius,
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: const BorderRadius.all(StyleApp.borderRadius,
               ),
               boxShadow: [
                 StyleApp.boxShadow,
               ],
             ),
             child: Column(
-              children: [
-                const SizedBox(height: 16),
-                const CarrouselSlider(),
-                seemorebutton(text: "Ver fatura"),
+              children: const [
+                SizedBox(height: 16),
+                CarrouselSlider(),
+                SeeMoreButton(text: "Ver fatura"),
               ],
             ),
           ),

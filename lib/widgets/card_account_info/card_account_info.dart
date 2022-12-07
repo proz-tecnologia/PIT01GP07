@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
-
-import '../../design_system/styleapp.dart';
 import '../../widgets/account_info/account_info.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
+import '../../design_system/styleapp.dart';
 
 class CardAccountInfo extends StatefulWidget {
   const CardAccountInfo({super.key});
@@ -20,38 +18,40 @@ class CardAccountInfoState extends State<CardAccountInfo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Minhas Contas", style: StyleApp.titleCardStyle),
+          Text("Minhas Contas", style:Theme.of(context).textTheme.headline2,),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-                color: AppColors.revertBackgroundColor,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-                boxShadow: [StyleApp.boxShadow]),
+                color: Theme.of(context).colorScheme.surface,
+              borderRadius: const BorderRadius.all(StyleApp.borderRadius,
+              ),
+              boxShadow: [
+                StyleApp.boxShadow,
+              ],
+            ),
             child: Column(
-              children: [
-                const SizedBox(height: 8),
-                accountInfo(
+              children: const [
+                SizedBox(height: 8),
+                AccountInfo(
                     nome: "PicPay",
                     tipo: "Carteira Digital",
                     saldo: 1200,
                     assetImage: 'assets/images/bank_accounts/picpay.png'),
-                const SizedBox(height: 8),
-                accountInfo(
+                SizedBox(height: 8),
+                AccountInfo(
                     nome: "Caixa Econômica",
                     tipo: "Conta Poupança",
                     saldo: 123.43,
                     assetImage: 'assets/images/bank_accounts/caixa.png'),
-                const SizedBox(height: 8),
-                accountInfo(
+                SizedBox(height: 8),
+                AccountInfo(
                     nome: "Banco Inter",
                     tipo: "Conta Corrente",
                     saldo: 98.4,
                     assetImage: 'assets/images/bank_accounts/inter.png'),
-                const SizedBox(height: 8),
-                seemorebutton(text: "Ver tudo"),
+                SizedBox(height: 8),
+                SeeMoreButton(text: "Ver tudo"),
               ],
             ),
           ),

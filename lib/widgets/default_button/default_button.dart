@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/design_system/colors.dart';
 import 'package:teste/design_system/styleapp.dart';
 
 // ignore: must_be_immutable
@@ -21,14 +20,14 @@ class DefaultButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(200, 50),
-          backgroundColor: AppColors.backgroudColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape:
               RoundedRectangleBorder(borderRadius: StyleApp.buttonBorderRadius),
         ),
         child: Text(
           title,
-          style: const TextStyle(
-            color: AppColors.primarytextColor,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
             fontSize: 24,
           ),
         ),

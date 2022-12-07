@@ -1,5 +1,4 @@
-import 'package:flutter/widgets.dart';
-
+import 'package:flutter/material.dart';
 import '../../design_system/colors.dart';
 import 'package:teste/widgets/financial/financial.dart';
 import '../../design_system/styleapp.dart';
@@ -29,6 +28,15 @@ class _CardsContainerState extends State<CardsContainer> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+        const SizedBox(
+        height: 4.0),
+         Center(
+           child: Container(
+              color:Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+              width: 50,
+              height: 2.3,
+            ),
+         ),
           const SizedBox(
             height: 16.0,
           ),
@@ -38,7 +46,7 @@ class _CardsContainerState extends State<CardsContainer> {
           const Financial(),
           customizehomebutton(),
           const SizedBox(
-            height: 32.0,
+            height: 96.0,
           ),
         ],
       ),

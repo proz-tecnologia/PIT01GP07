@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
 
-Widget seemorebutton({
-  required String text,
-}) {
-  return Container(
+class SeeMoreButton extends StatelessWidget{
+  final String text;
+  const SeeMoreButton({super.key, required this.text});
+  @override
+  Widget build (BuildContext context){
+
+    return Container(
     alignment: Alignment.bottomRight,
     color: Colors.transparent,
     child: TextButton(
       onPressed: () {},
       child: Row(
+        crossAxisAlignment:CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             text,
-            style: const TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              fontSize: 12,
-              color: AppColors.secondtextColor,
-            ),
+            style: Theme.of(context).textTheme.overline,
           ),
-          const Icon(
+           Icon(
             Icons.arrow_forward_ios,
             size: 18,
-            color: AppColors.secondtextColor,
+            color: Theme.of(context).colorScheme.tertiary,
           )
         ],
       ),
     ),
   );
-}
+}}

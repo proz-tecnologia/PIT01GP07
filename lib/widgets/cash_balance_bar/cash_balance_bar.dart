@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/homescreen/homescreen_controller.dart';
-import '../../design_system/colors.dart';
 
 class CashBalanceBar extends StatefulWidget {
   const CashBalanceBar({super.key});
@@ -31,11 +30,14 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   'Saldo atual',
                   style: TextStyle(
-                    color: AppColors.primarytextColor,
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize:16,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 ValueListenableBuilder(
@@ -43,15 +45,14 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                     builder: (context, value, child) {
                       return Text(
                         'R\$ ${controller.cashValue.value}',
-                        style: const TextStyle(
-                          color: AppColors.primarytextColor,
-                        ),
+                        style:Theme.of(context).textTheme.headline3,
                       );
                     }),
               ],
             ),
           ),
           IconButton(
+              color: Theme.of(context).colorScheme.secondary,
               onPressed: () {
                 controller.cashVisibility;
                 setState(() {

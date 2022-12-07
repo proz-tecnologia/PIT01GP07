@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../design_system/colors.dart';
-import '../../design_system/styleapp.dart';
 
 class RevenueExpenseBar extends StatefulWidget {
   const RevenueExpenseBar({super.key});
@@ -13,27 +12,30 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.primarytextColor,
-        borderRadius: BorderRadius.all(StyleApp.borderRadius),
+      height:56,
+      decoration:  BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Row(
           children: [
             const Icon(
               Icons.arrow_circle_up,
-              color: AppColors.revenueColor,
+              color: Color(0xff32847a),
               size: 35,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
+                SizedBox(height:8),
                 Text(
                   'Receita',
                   style: TextStyle(
-                    color: AppColors.revenueColor,
-                    fontSize: 18,
+                    color: Color(0xff32847a),
+                    fontSize: 14,
                   ),
                 ),
                 Text(
@@ -41,14 +43,14 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
                   style: TextStyle(
                       color: AppColors.revenueColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                      fontSize: 20),
                 ),
               ],
             )
           ],
         ),
         Container(
-          color: AppColors.secondtextColor,
+          color:Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
           width: 1.5,
           height: 30,
         ),
@@ -57,25 +59,26 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
           children: [
             const Icon(
               Icons.arrow_circle_down,
-              color: AppColors.expenseColor,
+              color: Color(0xffbf3131),
               size: 35,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
+                SizedBox(height:8),
                 Text(
                   'Despesa',
                   style: TextStyle(
-                    color: AppColors.expenseColor,
-                    fontSize: 18,
+                    color: Color(0xffbf3131),
+                    fontSize: 14,
                   ),
                 ),
                 Text(
                   'R\$ 120,00',
                   style: TextStyle(
-                    color: AppColors.expenseColor,
+                    color: Color(0xffbf3131),
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 20,
                   ),
                 ),
               ],

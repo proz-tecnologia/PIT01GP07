@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../design_system/colors.dart';
 import '../credit_cardsinfo/credit_cardsinfo.dart';
 
 class CarrouselSlider extends StatefulWidget {
@@ -19,11 +18,10 @@ class CarrouselSliderState extends State<CarrouselSlider> {
     "assets/images/credit_cards/fortbrasil.png"
   ];
   final dados = [
-    creditcardInfo(nome: 'DIGIO', tipo: "Crédito", limite: 450, fatura: 200),
-    creditcardInfo(nome: 'NUBANK', tipo: "Crédito", limite: 600, fatura: 230),
-    creditcardInfo(nome: 'AME', tipo: "Crédito", limite: 651, fatura: 100),
-    creditcardInfo(
-        nome: 'FORTBRASIL', tipo: "Crédito", limite: 453, fatura: 450),
+    const CreditCardInfo(nome: 'DIGIO', tipo: "Crédito", limite: 450, fatura: 200),
+    const CreditCardInfo(nome: 'NUBANK', tipo: "Crédito", limite: 600, fatura: 230),
+    const CreditCardInfo(nome: 'AME', tipo: "Crédito", limite: 651, fatura: 100),
+    const CreditCardInfo(nome: 'FORTBRASIL', tipo: "Crédito", limite: 453, fatura: 450),
   ];
   int activeIndex = 0;
 
@@ -71,8 +69,8 @@ class CarrouselSliderState extends State<CarrouselSlider> {
         effect: WormEffect(
           dotWidth: 8,
           dotHeight: 8,
-          dotColor: AppColors.secondtextColor.withOpacity(0.5),
-          activeDotColor: AppColors.secondtextColor,
+          dotColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+          activeDotColor: Theme.of(context).colorScheme.tertiary,
         ),
       );
 
