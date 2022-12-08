@@ -35,7 +35,7 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                  Text(
                   'Saldo atual',
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize:16,
                     fontWeight: FontWeight.w400,
                   ),
