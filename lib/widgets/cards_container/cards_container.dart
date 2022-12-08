@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
 import 'package:teste/widgets/financial/financial.dart';
 import '../../design_system/styleapp.dart';
 import '../card_account_info/card_account_info.dart';
@@ -19,9 +18,9 @@ class _CardsContainerState extends State<CardsContainer> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-          color: AppColors.secondBackgroudColor,
-          borderRadius: BorderRadius.only(
+      decoration:  BoxDecoration(
+          color:  Theme.of(context).colorScheme.secondary,
+          borderRadius: const BorderRadius.only(
             topLeft: StyleApp.borderRadius,
             topRight: StyleApp.borderRadius,
           )),
@@ -44,7 +43,7 @@ class _CardsContainerState extends State<CardsContainer> {
           const CardCreditCards(),
           const CardAccountInfo(),
           const Financial(),
-          customizehomebutton(),
+          const CustomizeHomeButton(),
           const SizedBox(
             height: 96.0,
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
 
 class RevenueExpenseBar extends StatefulWidget {
   const RevenueExpenseBar({super.key});
@@ -41,7 +40,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
                 Text(
                   'R\$ 250,00',
                   style: TextStyle(
-                      color: AppColors.revenueColor,
+                      color: Color(0xff32847a),
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),

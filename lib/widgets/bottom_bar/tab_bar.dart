@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../design_system/colors.dart';
 import '../../design_system/styleapp.dart';
 
 class TabBarWidget extends StatefulWidget {
@@ -18,7 +17,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
   Widget build(BuildContext context) {
     return BottomAppBar(
       notchMargin: 4,
-      shape: const AutomaticNotchedShape(
+      shape:  const AutomaticNotchedShape(
           RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   topLeft: StyleApp.borderRadius,
@@ -28,7 +27,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             bottomLeft: StyleApp.borderRadius,
             bottomRight: StyleApp.borderRadius,
           ))),
-      color: AppColors.secondBackgroudColor,
+      color: Theme.of(context).colorScheme.secondary,
       child: Row(
         children: [
           tabItem(icon: const Icon(Icons.home), index: 0, text: 'Início'),
@@ -57,8 +56,8 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             child: IconButton(
               icon: icon,
               color: isSelected
-                  ? AppColors.secondtextColor
-                  : AppColors.secondtextColor.withOpacity(0.5),
+                  ? Theme.of(context).colorScheme.tertiary
+                  : Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
               onPressed: () => widget.onChangedTab(index),
             ),
           ),
@@ -67,8 +66,8 @@ class _TabBarWidgetState extends State<TabBarWidget> {
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w500,
                   color: isSelected
-                      ? AppColors.secondtextColor
-                      : AppColors.secondtextColor.withOpacity(0.5),
+                      ? Theme.of(context).colorScheme.tertiary
+                      : Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
                   //const Color(0XFF92A7A8),
                   fontSize: 14)),
         ],
