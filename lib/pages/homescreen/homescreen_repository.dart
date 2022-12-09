@@ -31,7 +31,7 @@ class HomeScreenRepository {
       String user = preferences.getString(email)!;
       final userMap = json.decode(user) as Map;
       if (userMap.containsKey('cash')) {
-        cash = '111';
+        cash = userMap['cash'];
         return cash;
       } else {
         userMap['cash'] = '0.00';
