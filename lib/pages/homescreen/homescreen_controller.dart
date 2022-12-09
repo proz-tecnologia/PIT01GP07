@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'homescreen_repository.dart';
-import 'homescreen_states.dart';
 
 class HomeScreenController {
   final HomeScreenRepository repository = HomeScreenRepository();
@@ -11,7 +9,7 @@ class HomeScreenController {
   ValueNotifier<Icon> iconVisibility =
       ValueNotifier(const Icon(Icons.visibility_off));
   bool obscure = true;
-  String lastCashValue = '';
+  String lastCashValueLoaded = '';
 
   Future<void> getUserName() async {
     String user = await repository.currentUserName();
@@ -31,7 +29,7 @@ class HomeScreenController {
     } else {
       cashValue.value = "Erro de servidor";
     }
-    lastCashValue = cashValue.value;
+    lastCashValueLoaded = cashValue.value;
   }
 
   void cashVisibility() {
@@ -42,7 +40,7 @@ class HomeScreenController {
     } else {
       iconVisibility.value = const Icon(Icons.visibility_off);
       obscure = true;
-      cashValue.value = lastCashValue;
+      cashValue.value = lastCashValueLoaded;
     }
   }
 }
