@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
-import 'package:teste/pages/homescreen/homescreen_states.dart';
 import 'homescreen_repository.dart';
+import 'homescreen_states.dart';
 
 class HomeScreenController {
   final HomeScreenRepository repository = HomeScreenRepository();
