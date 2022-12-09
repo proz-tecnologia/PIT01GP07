@@ -27,7 +27,7 @@ class HomeScreenController {
     if (cash != 'error') {
       cashValue.value = cash;
     } else {
-      cashValue.value = "Erro de servidor";
+      cashValue.value = "Erro no servidor";
     }
     lastCashValueLoaded = cashValue.value;
   }
