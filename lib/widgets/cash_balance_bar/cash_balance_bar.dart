@@ -32,11 +32,11 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text(
+                Text(
                   'Saldo atual',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
-                    fontSize:16,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -45,29 +45,31 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                     builder: (context, value, child) {
                       return Text(
                         'R\$ ${controller.cashValue.value}',
-                        style:Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.headline3,
                       );
                     }),
               ],
             ),
           ),
-          IconButton(
-              color: Theme.of(context).colorScheme.secondary,
-              onPressed: () {
-                controller.cashVisibility;
-                setState(() {
-                  if (obscure) {
-                    icon = const Icon(Icons.visibility);
-                    obscure = false;
-                  } else {
-                    icon = const Icon(Icons.visibility_off);
-                    obscure = true;
-                  }
-                });
-              },
-              icon: icon)
+          ValueListenableBuilder(
+              valueListenable: controller.iconVisibility,
+              builder: (context, value, child) {
+                return IconButton(
+                    color: Theme.of(context).colorScheme.secondary,
+                    onPressed: controller.cashVisibility,
+                    icon: controller.iconVisibility.value);
+              }),
         ],
       ),
     );
   }
 }
+// setState(() {
+//                   if (obscure) {
+//                     icon = const Icon(Icons.visibility);
+//                     obscure = false;
+//                   } else {
+//                     icon = const Icon(Icons.visibility_off);
+//                     obscure = true;
+//                   }
+//                 });
