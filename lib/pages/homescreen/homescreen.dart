@@ -22,9 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody:true,
-      backgroundColor:Theme.of(context).colorScheme.primary,
-      drawer: NavigationDrawer(),
+      extendBody: true,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      drawer: const NavigationDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: const [

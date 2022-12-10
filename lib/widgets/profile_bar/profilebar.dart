@@ -3,7 +3,9 @@ import '../../pages/homescreen/homescreen_controller.dart';
 import '../user_photo/userphoto.dart';
 
 class ProfileBar extends StatefulWidget {
-  const ProfileBar({Key? key,}) : super(key: key);
+  const ProfileBar({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ProfileBar> createState() => _ProfileBarState();
@@ -28,26 +30,32 @@ class _ProfileBarState extends State<ProfileBar> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const UserPhoto(),
+              InkWell(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: const UserPhoto(),
+              ),
               const SizedBox(height: 8.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     getTime(),
-                    style:const TextStyle (
+                    style: const TextStyle(
                       color: Color(0xfff6f6f6),
-                      fontSize:16,
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
-                    ),),
+                    ),
+                  ),
                   ValueListenableBuilder(
                     valueListenable: controller.userName,
                     builder: (context, value, child) {
                       return Text(
                         controller.userName.value,
-                        style:const TextStyle (
+                        style: const TextStyle(
                           color: Color(0xfff6f6f6),
-                          fontSize:24,
+                          fontSize: 24,
                           fontWeight: FontWeight.w400,
                         ),
                       );
