@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/login/login.dart';
 import '../../widgets/default_button/default_button.dart';
-import 'homescreen/homescreen.dart';
 
 class PasswordUpdate extends StatefulWidget {
   const PasswordUpdate({super.key});

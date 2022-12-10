@@ -83,10 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextFormField(
                   controller: emailController,
                   validator: (value) {
-                    if (value == null || value!.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return 'E-mail obrigatório';
                     } else if (EmailValidator.validate(value) == false) {
-                      return 'E-mail inválido';
+                      return 'Insira um e-mail válido';
                     }
                     return null;
                   },
