@@ -43,4 +43,14 @@ class HomeScreenController {
       cashValue.value = lastCashValueLoaded;
     }
   }
+
+  Future<bool?> logout() async {
+    String logout = await repository.logout();
+    if (logout == 'success') {
+      return true;
+    } else if (logout == 'error') {
+      return false;
+    }
+    return null;
+  }
 }
