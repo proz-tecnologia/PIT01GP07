@@ -9,6 +9,7 @@ class TabBarWidget extends StatefulWidget {
       {super.key, required this.index, required this.onChangedTab});
 
   @override
+  // ignore: library_private_types_in_public_api
   _TabBarWidgetState createState() => _TabBarWidgetState();
 }
 
@@ -17,7 +18,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
   Widget build(BuildContext context) {
     return BottomAppBar(
       notchMargin: 4,
-      shape:  const AutomaticNotchedShape(
+      shape: const AutomaticNotchedShape(
           RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   topLeft: StyleApp.borderRadius,
