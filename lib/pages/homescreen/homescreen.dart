@@ -3,6 +3,7 @@ import '../../widgets/bottom_bar/tab_bar.dart';
 import '../../widgets/cards_container/cards_container.dart';
 import '../../widgets/cash_balance_bar/cash_balance_bar.dart';
 import '../../widgets/fab/fab.dart';
+import '../../widgets/navigation_drawer.dart';
 import '../../widgets/option_cards/options_cards.dart';
 import '../../widgets/profile_bar/profilebar.dart';
 import '../../widgets/revenue_expense_bar/revenue_expense_bar.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody:true,
       backgroundColor:Theme.of(context).colorScheme.primary,
+      drawer: NavigationDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: const [

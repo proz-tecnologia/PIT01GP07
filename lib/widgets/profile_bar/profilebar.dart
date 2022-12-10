@@ -3,9 +3,7 @@ import '../../pages/homescreen/homescreen_controller.dart';
 import '../user_photo/userphoto.dart';
 
 class ProfileBar extends StatefulWidget {
-  const ProfileBar({
-    Key? key,
-  }) : super(key: key);
+  const ProfileBar({Key? key,}) : super(key: key);
 
   @override
   State<ProfileBar> createState() => _ProfileBarState();
