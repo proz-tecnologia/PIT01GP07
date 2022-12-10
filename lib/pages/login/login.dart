@@ -70,9 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(width: 16),
                   Text(
                     ' Olá!',
-                    style:TextStyle (
+                    style: TextStyle(
                       color: Color(0xff5CB3B9),
-                      fontSize:60,
+                      fontSize: 60,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
@@ -83,10 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextFormField(
                   controller: emailController,
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value == null || value!.isEmpty) {
                       return 'E-mail obrigatório';
                     } else if (EmailValidator.validate(value) == false) {
-                      return 'Insira um e-mail válido';
+                      return 'E-mail inválido';
                     }
                     return null;
                   },
@@ -94,8 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Digite seu e-mail',
                     suffixIcon: Icon(Icons.email),
                   ),
-                  style:Theme.of(context).textTheme.bodyText1,
-              ),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: icon,
                     ),
                   ),
-                  style:Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
               Padding(

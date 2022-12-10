@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/pages/login/login.dart';
 import '../../widgets/default_button/default_button.dart';
 import 'homescreen/homescreen.dart';
 
@@ -14,7 +15,6 @@ class _PasswordUpdate extends State<PasswordUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
@@ -22,29 +22,28 @@ class _PasswordUpdate extends State<PasswordUpdate> {
             const SizedBox(height: 84),
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                'Senha atualizada',style:Theme.of(context).textTheme.headline1
-                ),
-              ),
-             const SizedBox(height: 32),
-             Text(
+              child: Text('Senha atualizada',
+                  style: Theme.of(context).textTheme.headline1),
+            ),
+            const SizedBox(height: 32),
+            Text(
               'Sua nova senha foi definida e já pode ser atualizada.',
-              style:  Theme.of(context).textTheme.subtitle1,
-              ),
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
             const SizedBox(height: 36),
             const Expanded(
               child: Image(
-                image: AssetImage("assets/images/background/confirmed_password.png"),
+                image: AssetImage(
+                    "assets/images/background/confirmed_password.png"),
               ),
             ),
             const SizedBox(height: 36),
             DefaultButton(
               title: 'Login',
-              func: (){
+              func: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>  const HomeScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
             ),
