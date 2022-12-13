@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
+import '../../pages/new_icome.dart';
+
 class Fab extends StatelessWidget {
 
   final Icon icon;
@@ -21,13 +23,23 @@ class Fab extends StatelessWidget {
           label:'Adicionar despesa',
           labelStyle:Theme.of(context).textTheme.caption,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AddIncome()),
+            );
+          },
         ),
         SpeedDialChild(
           child: const Icon (Icons.arrow_upward, color: Colors.green),
           label:'Nova receita',
           labelStyle:Theme.of(context).textTheme.caption,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
         ),
+
+
         SpeedDialChild(
           child: const Icon (Icons.compare_arrows, color: Colors.blue),
           label:'Nova transferência',
