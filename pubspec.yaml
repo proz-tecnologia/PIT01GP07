@@ -11,12 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_charts: ^20.3.59
 
+  flutter_localizations:
+    sdk: flutter
+
+  syncfusion_flutter_charts: ^20.3.59
+  intl: ^0.17.0
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
-
   flutter_speed_dial: ^6.2.0
+  math_expressions: ^1.1.1
 
   # image carousel slider
   carousel_slider: ^4.1.1
@@ -25,6 +29,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   shared_preferences: ^2.0.15
   email_validator: ^2.1.17
+
 
 dev_dependencies:
   flutter_test:

@@ -32,6 +32,12 @@ ThemeData lightTheme = ThemeData(
         fontWeight: FontWeight.w500,
       ),
 
+      headline4: TextStyle (
+        color: Color(0xff2F595B),
+        fontSize:32,
+        fontWeight: FontWeight.w500,
+      ),
+
       subtitle1: TextStyle (
         color: Color(0xff539CA1),
         fontSize:16,
