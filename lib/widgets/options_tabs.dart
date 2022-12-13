@@ -5,7 +5,7 @@ import '../../design_system/styleapp.dart';
 class TabView extends StatelessWidget {
   final String title1;
   final String title2;
-  final Widget  content1;
+  final Widget content1;
   final Widget content2;
   final double cardHeight;
 
