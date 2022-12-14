@@ -22,6 +22,10 @@ class HomeScreenController {
     }
   }
 
+  void setCashValue(String cash) {
+    cashValue.value = cash;
+  }
+
   Future<void> getCashValue() async {
     String cash = await repository.getCashValue();
     if (cash != 'error') {
