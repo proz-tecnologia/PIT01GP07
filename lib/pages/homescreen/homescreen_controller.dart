@@ -22,6 +22,10 @@ class HomeScreenController {
     }
   }
 
+  void setCashValue(String cash) {
+    cashValue.value = cash;
+  }
+
   Future<void> getCashValue() async {
     String cash = await repository.getCashValue();
     if (cash != 'error') {
@@ -42,5 +46,15 @@ class HomeScreenController {
       obscure = true;
       cashValue.value = lastCashValueLoaded;
     }
+  }
+
+  Future<bool?> logout() async {
+    String logout = await repository.logout();
+    if (logout == 'success') {
+      return true;
+    } else if (logout == 'error') {
+      return false;
+    }
+    return null;
   }
 }

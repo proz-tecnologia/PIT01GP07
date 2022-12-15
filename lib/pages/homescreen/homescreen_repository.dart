@@ -42,4 +42,14 @@ class HomeScreenRepository {
       return 'error';
     }
   }
+
+  Future<String> logout() async {
+    try {
+      preferences = await SharedPreferences.getInstance();
+      preferences.setBool('isLogged', false);
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }
