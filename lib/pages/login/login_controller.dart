@@ -8,12 +8,11 @@ class LoginController extends ValueNotifier<LoginState> {
   LoginController(this.repository) : super(LoginInitialState());
 
   Future<void> validateUser(LoginModel userModel) async {
-    String loginMessage = await repository.checkingUser(userModel);
+    String? loginMessage = await repository.checkingUser(userModel);
     if (loginMessage == 'Success') {
       value = LoginSuccessState();
-      await repository.userLogin(userModel);
     } else {
-      value = LoginErrorState(message: loginMessage);
+      value = LoginErrorState(message: 'Erro no login');
     }
   }
 }
