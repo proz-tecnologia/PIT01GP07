@@ -4,8 +4,6 @@ import 'login_model.dart';
 class LoginRepository {
   final _firebase = FirebaseAuth.instance;
 
-  Map userMap = {};
-
   Future<String?> checkingUser(LoginModel userModel) async {
     String check = '';
     try {
@@ -21,6 +19,7 @@ class LoginRepository {
     return check;
   }
 
+  //Map userMap = {};
   // Future<String> checkingUser(LoginModel userModel) async {
   //   preferences = await SharedPreferences.getInstance();
   //   String? check = preferences.getString(userModel.email);
