@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenRepository {
+  final _firebase = FirebaseAuth.instance;
+
+  Future<String> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  // Shared Preferences Stack
   late SharedPreferences preferences;
 
   HomeScreenRepository() {
@@ -43,13 +56,13 @@ class HomeScreenRepository {
     }
   }
 
-  Future<String> logout() async {
-    try {
-      preferences = await SharedPreferences.getInstance();
-      preferences.setBool('isLogged', false);
-      return 'success';
-    } catch (e) {
-      return 'error';
-    }
-  }
+  // Future<String> logout() async {
+  //   try {
+  //     preferences = await SharedPreferences.getInstance();
+  //     preferences.setBool('isLogged', false);
+  //     return 'success';
+  //   } catch (e) {
+  //     return 'error';
+  //   }
+  // }
 }
