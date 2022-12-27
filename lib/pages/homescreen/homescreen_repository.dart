@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenRepository {
   final _firebase = FirebaseAuth.instance;
-
+  final database = FirebaseFirestore.instance;
   Future<String> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -13,13 +14,6 @@ class HomeScreenRepository {
     } catch (e) {
       return 'error';
     }
-  }
-
-  // Shared Preferences Stack
-  late SharedPreferences preferences;
-
-  HomeScreenRepository() {
-    SharedPreferences.getInstance().then((value) => preferences);
   }
 
   Future<String> currentUserName() async {
@@ -35,6 +29,27 @@ class HomeScreenRepository {
       return 'error';
     }
   }
+
+  // Shared Preferences Stack
+  late SharedPreferences preferences;
+
+  HomeScreenRepository() {
+    SharedPreferences.getInstance().then((value) => preferences);
+  }
+
+  // Future<String> currentUserName() async {
+  //   try {
+  //     preferences = await SharedPreferences.getInstance();
+  //     String email = preferences.getString("lastLogged")!;
+  //     String user = preferences.getString(email)!;
+  //     final userMap = json.decode(user);
+  //     log(userMap.toString());
+  //     final name = userMap['name'];
+  //     return name;
+  //   } catch (e) {
+  //     return 'error';
+  //   }
+  // }
 
   Future<String> getCashValue() async {
     String cash;
