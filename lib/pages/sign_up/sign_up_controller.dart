@@ -9,10 +9,13 @@ class SignUpController extends ValueNotifier<SignUpState> {
   SignUpController(this.repository) : super(SignUpInitialState());
 
   Future<void> addUser(SignUpModel userModel) async {
-    if (await repository.saveUser(userModel)) {
+    String addUser = await repository.saveUser(userModel);
+    if (addUser == 'Success') {
       value = SignUpSuccessState(message: "Usuário cadastrado com sucesso!");
-    } else {
+    } else if (addUser == 'The account already exists for that email.') {
       value = SignUpErrorState(message: 'O usuário já está cadastrado!');
+    } else {
+      value = SignUpErrorState(message: 'Erro no servidor!');
     }
   }
 }

@@ -1,18 +1,35 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SplashScreenRepository {
-  late SharedPreferences preferences;
+  final _firebase = FirebaseAuth.instance;
 
   Future<bool?> islogged() async {
-    preferences = await SharedPreferences.getInstance();
+    bool? islogged = false;
+    try {
+      User? user = _firebase.currentUser;
+      if (user == null) {
+        islogged = false;
+      } else {
+        islogged = true;
+      }
 
-    bool? islogged = preferences.getBool('isLogged');
-
-    if (islogged == null) {
-      preferences.setBool('islogged', false);
-      return false;
-    } else {
       return islogged;
+    } catch (e) {
+      return null;
     }
   }
+  // late SharedPreferences preferences;
+
+  // Future<bool?> islogged() async {
+  //   preferences = await SharedPreferences.getInstance();
+
+  //   bool? islogged = preferences.getBool('isLogged');
+
+  //   if (islogged == null) {
+  //     preferences.setBool('islogged', false);
+  //     return false;
+  //   } else {
+  //     return islogged;
+  //   }
+  // }
 }

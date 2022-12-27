@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/default_button/default_button.dart';
-import '../homescreen/homescreen.dart';
-import '../login/login.dart';
 import 'splashscreeen_controller.dart';
 import 'splashscreen_repository.dart';
 import 'splashscreen_states.dart';
@@ -22,6 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     controller.checkingLogin();
+    controller.addListener(() {
+      if (controller.value is SplashScreenNoUserLoggedState) {
+        Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+      } else if (controller.value is SplashScreenUserLoggedState) {
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      }
+    });
   }
 
   @override
@@ -36,55 +41,13 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         } else if (value is SplashScreenLoadingState) {
           return const Center(child: CircularProgressIndicator());
-        } else if (value is SplashScreenNoUserLoggedState) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Não há usuário logado. Por favor faça login"),
-                DefaultButton(
-                    title: "LOGIN",
-                    func: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginScreen(),
-                      ));
-                    }),
-              ],
-            ),
-          );
-        } else if (value is SplashScreenUserLoggedState) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Já há um usuário logado.'),
-                const Text(' Deseja continuar ou fazer novo login?'),
-                DefaultButton(
-                    title: "CONTINUAR",
-                    func: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const HomeScreen(),
-                      ));
-                    }),
-                DefaultButton(
-                    title: "LOGIN",
-                    func: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginScreen(),
-                      ));
-                    }),
-              ],
-            ),
-          );
         } else if (value is SplashScreenErrorState) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-            behavior: SnackBarBehavior.floating,
-            content: Text(value.message),
-          ));
+          return const Center(
+            child: Text("Tivemos um problema!"),
+          );
         }
         return const Center(
-          child: Text("Tivemos um problema!"),
+          child: Text(""),
         );
       }),
     ));
