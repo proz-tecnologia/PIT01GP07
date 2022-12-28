@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'homescreen_repository.dart';
 
@@ -13,8 +12,6 @@ class HomeScreenController {
 
   Future<void> getUserName() async {
     String user = await repository.currentUserName();
-    log(user);
-
     if (user != 'error') {
       userName.value = user;
     } else {

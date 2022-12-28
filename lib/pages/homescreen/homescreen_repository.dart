@@ -1,10 +1,19 @@
 import 'dart:convert';
-import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenRepository {
   final _firebase = FirebaseAuth.instance;
+  final _database = FirebaseFirestore.instance;
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getUserData() async {
+    final userData = await _database
+        .collection('users')
+        .where('email', isEqualTo: _firebase.currentUser!.email)
+        .get();
+    return userData;
+  }
 
   Future<String> logout() async {
     try {
@@ -15,26 +24,36 @@ class HomeScreenRepository {
     }
   }
 
-  // Shared Preferences Stack
-  late SharedPreferences preferences;
-
-  HomeScreenRepository() {
-    SharedPreferences.getInstance().then((value) => preferences);
-  }
-
   Future<String> currentUserName() async {
+    final userDdata = await getUserData();
     try {
-      preferences = await SharedPreferences.getInstance();
-      String email = preferences.getString("lastLogged")!;
-      String user = preferences.getString(email)!;
-      final userMap = json.decode(user);
-      log(userMap.toString());
-      final name = userMap['name'];
-      return name;
+      final name = userDdata.docs.first.data();
+      return name['name'];
     } catch (e) {
       return 'error';
     }
   }
+
+  // Shared Preferences Stack
+  late SharedPreferences preferences;
+
+  // HomeScreenRepository() {
+  //   SharedPreferences.getInstance().then((value) => preferences);
+  // }
+
+  // Future<String> currentUserName() async {
+  //   try {
+  //     preferences = await SharedPreferences.getInstance();
+  //     String email = preferences.getString("lastLogged")!;
+  //     String user = preferences.getString(email)!;
+  //     final userMap = json.decode(user);
+  //     log(userMap.toString());
+  //     final name = userMap['name'];
+  //     return name;
+  //   } catch (e) {
+  //     return 'error';
+  //   }
+  // }
 
   Future<String> getCashValue() async {
     String cash;
