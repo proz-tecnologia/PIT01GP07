@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:teste/widgets/financial/financial.dart';
 import 'package:teste/widgets/tab_cards.dart';
 import '../../design_system/styleapp.dart';
 import '../card_account_info/card_account_info.dart';
 import '../card_credit_cards/card_credit_cards.dart';
 import '../elevatedbutton_customizehome/elevatedbutton_customizehome.dart';
-import '../financial/financial_tabs.dart';
-import '../my_expenses/expenses_tabs.dart';
-import '../my_expenses/my_expenses.dart';
+import '../financial_tabs.dart';
+import '../expenses_tabs.dart';
 
 class CardsContainer extends StatefulWidget {
   const CardsContainer({super.key});
@@ -43,7 +41,7 @@ class _CardsContainerState extends State<CardsContainer> {
           ),
           TabCards(
             cardtitle: 'Minhas Despesas',
-            firstTabTitle: 'Atrasdas',
+            firstTabTitle: 'Atrasadas',
             secondTabTitle: 'Em dia',
             firstTabContent: despesasAtrasadas(),
             secondTabContent: despesasEmDia(),
