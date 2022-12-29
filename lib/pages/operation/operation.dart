@@ -162,7 +162,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                               borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             ),
                             child: TabBar(
-                              controller: _selectedController,
+                              //controller: _selectedController,
                               labelStyle: const TextStyle (
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
@@ -238,7 +238,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                 children: [
                                   addIncome (),
                                   addExpense(),
-                                  const Text('A'),
+                                  newTransference (),
                                 ]
                             ),
                           ),
@@ -463,6 +463,111 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
               .toList(),
           onChanged: (val) {},
         ),
+        const SizedBox(
+          height: 16.0,
+        ),
+        TextField(
+          decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.dehaze),
+            labelText: 'Descrição',
+          ),
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        const SizedBox(height: 16.0),
+        TextField(
+          decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.receipt),
+            labelText: 'Comprovante',
+          ),
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        const SizedBox(height: 16.0),
+      ],
+    );
+  }
+  Widget newTransference () {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:[
+
+        const SizedBox(
+          height: 8.0,
+        ),
+        const Divider(
+          thickness: 2,
+        ),
+
+        const SizedBox(
+          height: 16.0,
+        ),
+        DropdownButtonFormField(
+          decoration: const InputDecoration(
+            labelText:"De Conta",
+          ),
+          value: selectedExpense,
+          items:
+          categoriesExpenses.map(
+                (e) => DropdownMenuItem  (
+              value: e,
+              child:
+              Row(
+                children:[
+                  expensesIcon[categoriesExpenses.indexWhere((note) => note == e)],
+                  const SizedBox(
+                    width: 16.0,
+                  ),
+                  Text(e,
+                    style: TextStyle(color:Theme.of(context).colorScheme.tertiary),),
+                ],
+              ),
+            ),
+          )
+              .toList(),
+          onChanged: (val) {},
+        ),
+        const SizedBox(
+          height: 8.0,
+        ),
+        const Center(
+          child: Icon(
+              Icons.compare_arrows,
+              size: 36,
+              color: Colors.grey),
+        ),
+        const SizedBox(
+          height: 8.0,
+        ),
+        DropdownButtonFormField(
+          decoration: const InputDecoration(
+            labelText:"Para Conta",
+          ),
+          value: selectedExpense,
+          items:
+          categoriesExpenses.map(
+                (e) => DropdownMenuItem  (
+              value: e,
+              child:
+              Row(
+                children:[
+                  expensesIcon[categoriesExpenses.indexWhere((note) => note == e)],
+                  const SizedBox(
+                    width: 16.0,
+                  ),
+                  Text(e),
+                ],
+              ),
+            ),
+          )
+              .toList(),
+          onChanged: (val) {},
+        ),
+        const SizedBox(
+          height: 16.0,
+        ),
+        const Divider(
+          thickness: 2,
+        ),
+
         const SizedBox(
           height: 16.0,
         ),
