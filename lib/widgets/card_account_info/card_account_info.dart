@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../pages/my_accounts.dart';
 import '../../widgets/account_info/account_info.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
 import '../../design_system/styleapp.dart';
@@ -31,27 +32,36 @@ class CardAccountInfoState extends State<CardAccountInfo> {
               ],
             ),
             child: Column(
-              children: const [
-                SizedBox(height: 8),
-                AccountInfo(
+              children: [
+                const SizedBox(height: 8),
+                const AccountInfo(
                     nome: "PicPay",
                     tipo: "Carteira Digital",
                     saldo: 1200,
                     assetImage: 'assets/images/bank_accounts/picpay.png'),
-                SizedBox(height: 8),
-                AccountInfo(
+                const SizedBox(height: 8),
+                const AccountInfo(
                     nome: "Caixa Econômica",
                     tipo: "Conta Poupança",
                     saldo: 123.43,
                     assetImage: 'assets/images/bank_accounts/caixa.png'),
-                SizedBox(height: 8),
-                AccountInfo(
+                const SizedBox(height: 8),
+                const AccountInfo(
                     nome: "Banco Inter",
                     tipo: "Conta Corrente",
                     saldo: 98.4,
                     assetImage: 'assets/images/bank_accounts/inter.png'),
-                SizedBox(height: 8),
-                SeeMoreButton(text: "Ver tudo"),
+                const SizedBox(height: 8),
+                 SeeMoreButton(
+                   text: "Ver tudo",
+                   page: (){
+                     Navigator.push(
+                         context,
+                         MaterialPageRoute(
+                         builder: (context) => const MyAccounts()),
+                     );
+                   },
+                 ),
               ],
             ),
           ),
