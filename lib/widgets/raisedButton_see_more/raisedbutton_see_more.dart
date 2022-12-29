@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SeeMoreButton extends StatelessWidget{
   final String text;
   Function page;
-  const SeeMoreButton({super.key, required this.text, required this.page});
+  SeeMoreButton({super.key, required this.text, required this.page});
   @override
   Widget build (BuildContext context){
 
