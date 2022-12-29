@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../pages/my_credit_cards.dart';
 import '../carousel/carousel.dart';
 import '../raisedButton_see_more/raisedbutton_see_more.dart';
 import '../../design_system/styleapp.dart';
@@ -34,10 +35,19 @@ class CardCreditCardsState extends State<CardCreditCards> {
               ],
             ),
             child: Column(
-              children: const [
-                SizedBox(height: 16),
-                CarrouselSlider(),
-                SeeMoreButton(text: "Ver fatura"),
+              children:  [
+                const SizedBox(height: 16),
+                const CarrouselSlider(),
+                SeeMoreButton(
+                  text: "Ver fatura",
+                  page: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyCreditCards()),
+                    );
+                  },
+                ),
               ],
             ),
           ),
