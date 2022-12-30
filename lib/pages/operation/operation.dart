@@ -86,7 +86,18 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
 
   String? selectedIncome = 'Salário';
   String? selectedExpense = 'Aluguel / Prestação da casa';
-
+  Widget title1 () {
+    return const Text(
+      'Nova Receita');
+        }
+  Widget title2 () {
+    return const Text(
+        'Nova Despesa');
+  }
+  Widget title3 () {
+    return const Text(
+        'Nova Transação');
+  }
   bool received = false;
   TextEditingController dateController = TextEditingController();
   TextEditingController cashValue = TextEditingController();
@@ -113,7 +124,16 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
-          title: const Text('Nova Despesa'),
+          title: Container(
+            height:20,
+            child:TabBarView(
+              controller: _selectedController,
+              children: [
+                title1 (),
+                title2 (),
+                title3 (),
+              ],
+            ),          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -162,7 +182,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                               borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             ),
                             child: TabBar(
-                              //controller: _selectedController,
+                              controller: _selectedController,
                               labelStyle: const TextStyle (
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
@@ -234,12 +254,14 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                             height:420,
-                            child: TabBarView(
-                                children: [
+                            child:
+                            TabBarView(
+                              controller: _selectedController,
+                              children: [
                                   addIncome (),
                                   addExpense(),
                                   newTransference (),
-                                ]
+                                ],
                             ),
                           ),
                         ]
