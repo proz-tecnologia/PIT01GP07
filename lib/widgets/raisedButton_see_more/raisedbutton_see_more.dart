@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SeeMoreButton extends StatelessWidget{
   final String text;
-  const SeeMoreButton({super.key, required this.text});
+  Function page;
+  SeeMoreButton({super.key, required this.text, required this.page});
   @override
   Widget build (BuildContext context){
 
@@ -10,7 +12,9 @@ class SeeMoreButton extends StatelessWidget{
     alignment: Alignment.bottomRight,
     color: Colors.transparent,
     child: TextButton(
-      onPressed: () {},
+      onPressed: () {
+        page();
+      },
       child: Row(
         crossAxisAlignment:CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,

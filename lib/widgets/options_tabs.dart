@@ -31,6 +31,7 @@ class TabView extends StatelessWidget {
           boxShadow: [
             StyleApp.boxShadow,
           ],
+
         ),
         child: Column(children: [
           TabBar(
@@ -81,7 +82,10 @@ class TabView extends StatelessWidget {
                 bottomLeft: Radius.circular(10),
               ),
             ),
-            child: const SeeMoreButton(text: "Ver tudo"),
+            child:  SeeMoreButton(
+                    text: "Ver tudo",
+                    page: (){}
+                ),
           ),
         ]),
       ),

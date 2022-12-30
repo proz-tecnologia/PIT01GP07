@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-
 import '../../pages/operation/operation.dart';
 
 class Fab extends StatelessWidget {
@@ -28,7 +27,7 @@ class Fab extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AddIncome(
+                    builder: (context) => const Operation(
                           tabController: 0,
                         )),
               );
@@ -45,7 +44,7 @@ class Fab extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AddIncome(
+                    builder: (context) => const Operation(
                           tabController: 1,
                         )),
               );
@@ -62,7 +61,7 @@ class Fab extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AddIncome(
+                    builder: (context) => const Operation(
                           tabController: 2,
                         )),
               );
