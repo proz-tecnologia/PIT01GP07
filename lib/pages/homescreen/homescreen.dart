@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'homescreen_controller.dart';
 import 'homescreen_widgets/tab_bar.dart';
 import 'homescreen_widgets/cards_container_widgets/cards_container.dart';
 import 'homescreen_widgets/cash_balance_bar.dart';
@@ -18,6 +19,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeScreenController controller = HomeScreenController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUserName();
+  }
+
   int index = 0;
   @override
   Widget build(BuildContext context) {

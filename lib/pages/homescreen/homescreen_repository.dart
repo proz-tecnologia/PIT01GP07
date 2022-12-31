@@ -24,13 +24,13 @@ class HomeScreenRepository {
     }
   }
 
-  Future<String> currentUserName() async {
+  Future<Map?> currentUserName() async {
     final userDdata = await getUserData();
     try {
       final name = userDdata.docs.first.data();
-      return name['name'];
+      return name;
     } catch (e) {
-      return 'error';
+      return null;
     }
   }
 

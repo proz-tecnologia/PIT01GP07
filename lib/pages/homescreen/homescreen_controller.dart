@@ -4,6 +4,7 @@ import 'homescreen_repository.dart';
 class HomeScreenController {
   final HomeScreenRepository repository = HomeScreenRepository();
   ValueNotifier<String> userName = ValueNotifier('Usuário');
+  ValueNotifier<String> userEmail = ValueNotifier('Email');
   ValueNotifier<String> cashValue = ValueNotifier('0.00');
   ValueNotifier<Icon> iconVisibility =
       ValueNotifier(const Icon(Icons.visibility_off));
@@ -11,9 +12,10 @@ class HomeScreenController {
   String lastCashValueLoaded = '';
 
   Future<void> getUserName() async {
-    String user = await repository.currentUserName();
-    if (user != 'error') {
-      userName.value = user;
+    final user = await repository.currentUserName();
+    if (user != null) {
+      userName.value = user['name'];
+      userEmail.value = user['email'];
     } else {
       userName.value = 'Deu ruim';
     }
