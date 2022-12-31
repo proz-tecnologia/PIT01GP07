@@ -85,6 +85,8 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
 
   String? selectedIncome = 'Salário';
   String? selectedExpense = 'Aluguel / Prestação da casa';
+  String? selectedAccount = '';
+  String? selectedCategorie = '';
   Widget title1() {
     return const Text('Nova Receita');
   }
@@ -100,6 +102,8 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   bool received = false;
   TextEditingController dateController = TextEditingController();
   TextEditingController cashValue = TextEditingController();
+  TextEditingController description = TextEditingController();
+  TextEditingController receipt = TextEditingController();
   OperationController controller = OperationController();
   late TabController _selectedController;
   String selectedOperation = '';
@@ -274,17 +278,19 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                               selectedOperation = 'expense';
                             }
                             OperationModel newoperation = OperationModel(
-                              date: dateModel,
-                              operation: selectedOperation,
-                              operationValue: cashValue.text,
-                            );
+                                operationValue: cashValue.text,
+                                operation: selectedOperation,
+                                date: dateModel,
+                                paid: received,
+                                account: selectedAccount!,
+                                categorie: selectedCategorie!,
+                                description: description.text,
+                                receipt: receipt.text);
                             controller.performOperation(newoperation);
-                            Navigator.pop(context);
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const HomeScreen(),
-                            ));
+                            setState(() {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/home', (route) => false);
+                            });
                           }),
                     ),
                   ],
@@ -331,7 +337,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           decoration: const InputDecoration(
             labelText: "Conta",
           ),
-          value: selectedIncome,
+          value: selectedAccount = selectedIncome,
           items: categoriesIncome
               .map(
                 (e) => DropdownMenuItem(
@@ -362,7 +368,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           decoration: const InputDecoration(
             labelText: "Categoria",
           ),
-          value: selectedIncome,
+          value: selectedCategorie = selectedIncome,
           items: categoriesIncome
               .map(
                 (e) => DropdownMenuItem(
@@ -386,6 +392,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           height: 16.0,
         ),
         TextField(
+          controller: description,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.dehaze),
             labelText: 'Descrição',
@@ -394,6 +401,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
         ),
         const SizedBox(height: 16.0),
         TextField(
+          controller: receipt,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.receipt),
             labelText: 'Comprovante',
@@ -438,7 +446,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           decoration: const InputDecoration(
             labelText: "Conta",
           ),
-          value: selectedExpense,
+          value: selectedAccount = selectedExpense,
           items: categoriesExpenses
               .map(
                 (e) => DropdownMenuItem(
@@ -469,7 +477,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           decoration: const InputDecoration(
             labelText: "Categoria",
           ),
-          value: selectedExpense,
+          value: selectedCategorie = selectedExpense,
           items: categoriesExpenses
               .map(
                 (e) => DropdownMenuItem(
@@ -493,6 +501,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           height: 16.0,
         ),
         TextField(
+          controller: description,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.dehaze),
             labelText: 'Descrição',
@@ -501,6 +510,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
         ),
         const SizedBox(height: 16.0),
         TextField(
+          controller: receipt,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.receipt),
             labelText: 'Comprovante',

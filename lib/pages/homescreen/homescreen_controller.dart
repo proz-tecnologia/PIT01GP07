@@ -12,7 +12,7 @@ class HomeScreenController {
   String lastCashValueLoaded = '';
 
   Future<void> getUserName() async {
-    final user = await repository.currentUserName();
+    final user = await repository.userData();
     if (user != null) {
       userName.value = user['name'];
       userEmail.value = user['email'];
@@ -26,13 +26,15 @@ class HomeScreenController {
   }
 
   Future<void> getCashValue() async {
-    String cash = await repository.getCashValue();
-    if (cash != 'error') {
-      cashValue.value = cash;
-    } else {
-      cashValue.value = "Erro no servidor";
+    final user = await repository.userData();
+    if (user != null) {
+      if (user['cash'] != null) {
+        cashValue.value = user['cash'];
+      } else {
+        cashValue.value = cashValue.value;
+      }
+      lastCashValueLoaded = cashValue.value;
     }
-    lastCashValueLoaded = cashValue.value;
   }
 
   void cashVisibility() {
