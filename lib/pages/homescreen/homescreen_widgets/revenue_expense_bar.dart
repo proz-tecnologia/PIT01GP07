@@ -11,14 +11,13 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:56,
-      decoration:  BoxDecoration(
+      height: 56,
+      decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Row(
           children: [
             const Icon(
@@ -29,7 +28,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                SizedBox(height:8),
+                SizedBox(height: 8),
                 Text(
                   'Receita',
                   style: TextStyle(
@@ -49,7 +48,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
           ],
         ),
         Container(
-          color:Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+          color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
           width: 1.5,
           height: 30,
         ),
@@ -64,7 +63,7 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                SizedBox(height:8),
+                SizedBox(height: 8),
                 Text(
                   'Despesa',
                   style: TextStyle(

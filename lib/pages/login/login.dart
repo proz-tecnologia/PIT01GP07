@@ -1,8 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/pages/login/login_repository.dart';
-import '../../widgets/default_button/default_button.dart';
-import '../../widgets/login_with/login_with.dart';
+import '../../widgets/default_button.dart';
+import 'login_widgets/login_with.dart';
 import '../homescreen/homescreen.dart';
 import '../recover/recover.dart';
 import 'login_controller.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../pages/homescreen/homescreen_controller.dart';
-import '../user_photo/userphoto.dart';
+import '../../homescreen_controller.dart';
+import 'userphoto.dart';
 
 class ProfileBar extends StatefulWidget {
   const ProfileBar({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/default_button/default_button.dart';
+import '../../widgets/default_button.dart';
 import 'splashscreeen_controller.dart';
 import 'splashscreen_repository.dart';
 import 'splashscreen_states.dart';

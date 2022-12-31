@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../design_system/styleapp.dart';
+import '../../../design_system/styleapp.dart';
 
 class TabBarWidget extends StatefulWidget {
   final int index;

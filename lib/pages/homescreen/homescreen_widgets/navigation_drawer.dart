@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../pages/homescreen/homescreen_controller.dart';
-import '../pages/login/login.dart';
+import '../homescreen_controller.dart';
+import '../../login/login.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);

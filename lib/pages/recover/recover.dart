@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/default_button/default_button.dart';
-import '../../widgets/dialog_box/custom_dialog_box.dart';
+import '../../widgets/default_button.dart';
+import 'recover_widgets/custom_dialog_box.dart';
 import '../email_confirmation/email_confirmation.dart';
 
 class RecoverScreen extends StatefulWidget {
