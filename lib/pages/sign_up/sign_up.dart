@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/default_button/default_button.dart';
+import '../../widgets/default_button.dart';
 import 'sign_up_controller.dart';
 import 'sign_up_model.dart';
 import 'sign_up_repository.dart';
@@ -59,9 +59,10 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary,
-        ),
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.primary,
+          ),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -73,13 +74,13 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children:  [
-                       const SizedBox(
+                    children: [
+                      const SizedBox(
                         height: 8.0,
                       ),
                       Text(
                         ' Cadastre-se',
-                        style:Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                     ],
                   ),
@@ -110,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: 'Nome',
                         suffixIcon: Icon(Icons.account_box),
                       ),
-                      style:Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   Padding(
@@ -129,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: 'Digite seu e-mail',
                         suffixIcon: Icon(Icons.email),
                       ),
-                      style:Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   Padding(
@@ -154,7 +155,7 @@ class _SignUpState extends State<SignUp> {
                           icon: icon,
                         ),
                       ),
-                      style:Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   Padding(
@@ -185,7 +186,7 @@ class _SignUpState extends State<SignUp> {
                           icon: icon2,
                         ),
                       ),
-                      style:Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   DefaultButton(

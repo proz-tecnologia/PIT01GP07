@@ -2,36 +2,44 @@ import 'dart:convert';
 
 class OperationModel {
   String operationValue;
-  bool paid;
-  String description;
-  DateTime date;
-  String account;
   String operation;
+  DateTime date;
+  bool paid;
+  String account;
+  String categorie;
+  String description;
+  String receipt;
 
   OperationModel({
     this.operationValue = '',
-    this.paid = false,
-    this.description = '',
-    required this.date,
-    this.account = '',
     this.operation = '',
+    required this.date,
+    this.paid = false,
+    this.account = '',
+    this.categorie = '',
+    this.description = '',
+    this.receipt = '',
   });
 
   OperationModel copyWith({
     String? operationValue,
-    bool? paid,
-    String? description,
-    DateTime? date,
-    String? account,
     String? operation,
+    DateTime? date,
+    bool? paid,
+    String? account,
+    String? categorie,
+    String? description,
+    String? receipt,
   }) {
     return OperationModel(
       operationValue: operationValue ?? this.operationValue,
-      paid: paid ?? this.paid,
-      description: description ?? this.description,
-      date: date ?? this.date,
-      account: account ?? this.account,
       operation: operation ?? this.operation,
+      date: date ?? this.date,
+      paid: paid ?? this.paid,
+      account: account ?? this.account,
+      categorie: categorie ?? this.categorie,
+      description: description ?? this.description,
+      receipt: receipt ?? this.receipt,
     );
   }
 
@@ -39,11 +47,13 @@ class OperationModel {
     final result = <String, dynamic>{};
 
     result.addAll({'operationValue': operationValue});
-    result.addAll({'paid': paid});
-    result.addAll({'description': description});
-    result.addAll({'date': date.millisecondsSinceEpoch});
-    result.addAll({'account': account});
     result.addAll({'operation': operation});
+    result.addAll({'date': date.millisecondsSinceEpoch});
+    result.addAll({'paid': paid});
+    result.addAll({'account': account});
+    result.addAll({'categorie': categorie});
+    result.addAll({'description': description});
+    result.addAll({'receipt': receipt});
 
     return result;
   }
@@ -51,11 +61,13 @@ class OperationModel {
   factory OperationModel.fromMap(Map<String, dynamic> map) {
     return OperationModel(
       operationValue: map['operationValue'] ?? '',
-      paid: map['paid'] ?? false,
-      description: map['description'] ?? '',
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-      account: map['account'] ?? '',
       operation: map['operation'] ?? '',
+      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+      paid: map['paid'] ?? false,
+      account: map['account'] ?? '',
+      categorie: map['categorie'] ?? '',
+      description: map['description'] ?? '',
+      receipt: map['receipt'] ?? '',
     );
   }
 
@@ -66,7 +78,7 @@ class OperationModel {
 
   @override
   String toString() {
-    return 'OperationModel(operationValue: $operationValue, paid: $paid, description: $description, date: $date, account: $account, operation: $operation)';
+    return 'OperationModel(operationValue: $operationValue, operation: $operation, date: $date, paid: $paid, account: $account, categorie: $categorie, description: $description, receipt: $receipt)';
   }
 
   @override
@@ -75,20 +87,24 @@ class OperationModel {
 
     return other is OperationModel &&
         other.operationValue == operationValue &&
-        other.paid == paid &&
-        other.description == description &&
+        other.operation == operation &&
         other.date == date &&
+        other.paid == paid &&
         other.account == account &&
-        other.operation == operation;
+        other.categorie == categorie &&
+        other.description == description &&
+        other.receipt == receipt;
   }
 
   @override
   int get hashCode {
     return operationValue.hashCode ^
-        paid.hashCode ^
-        description.hashCode ^
+        operation.hashCode ^
         date.hashCode ^
+        paid.hashCode ^
         account.hashCode ^
-        operation.hashCode;
+        categorie.hashCode ^
+        description.hashCode ^
+        receipt.hashCode;
   }
 }

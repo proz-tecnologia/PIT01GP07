@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_bar/tab_bar.dart';
-import '../../widgets/cards_container/cards_container.dart';
-import '../../widgets/cash_balance_bar/cash_balance_bar.dart';
-import '../../widgets/fab/fab.dart';
-import '../../widgets/navigation_drawer.dart';
-import '../../widgets/option_cards/options_cards.dart';
-import '../../widgets/profile_bar/profilebar.dart';
-import '../../widgets/revenue_expense_bar/revenue_expense_bar.dart';
+import 'homescreen_controller.dart';
+import 'homescreen_widgets/tab_bar.dart';
+import 'homescreen_widgets/cards_container_widgets/cards_container.dart';
+import 'homescreen_widgets/cash_balance_bar.dart';
+import 'homescreen_widgets/fab.dart';
+import 'homescreen_widgets/navigation_drawer.dart';
+import 'homescreen_widgets/options_cards.dart';
+import 'homescreen_widgets/profilebar_widgets/profilebar.dart';
+import 'homescreen_widgets/revenue_expense_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -18,6 +19,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeScreenController controller = HomeScreenController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUserName();
+  }
+
   int index = 0;
   @override
   Widget build(BuildContext context) {

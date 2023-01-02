@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/default_button/default_button.dart';
+import '../../widgets/default_button.dart';
 import '../login/login.dart';
 
 class NewPassword extends StatefulWidget {
@@ -20,7 +20,8 @@ class _NewPassword extends State<NewPassword> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.primary,
         ),
         elevation: 0.0,
       ),
@@ -31,17 +32,17 @@ class _NewPassword extends State<NewPassword> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 32),
-               Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Nova senha',
-                  style:Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headline1,
                 ),
               ),
               const SizedBox(height: 32),
-               Text(
+              Text(
                 'Sua identidade foi verificada. Digite sua nova senha , por favor.',
-                style:Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               const SizedBox(height: 36),
               SizedBox(
@@ -113,7 +114,7 @@ class _NewPassword extends State<NewPassword> {
               const SizedBox(height: 16),
               DefaultButton(
                 title: 'Confirmar',
-                func: (){
+                func: () {
                   if (_formKey.currentState!.validate()) {}
                   Navigator.push(
                     context,

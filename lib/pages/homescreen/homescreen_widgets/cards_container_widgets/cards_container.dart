@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:teste/widgets/tab_cards.dart';
-import '../../design_system/styleapp.dart';
-import '../card_account_info/card_account_info.dart';
-import '../card_credit_cards/card_credit_cards.dart';
-import '../elevatedbutton_customizehome/elevatedbutton_customizehome.dart';
-import '../financial_tabs.dart';
-import '../expenses_tabs.dart';
+import 'package:teste/pages/homescreen/homescreen_widgets/tab_cards_widgets/tab_cards.dart';
+import '../../../../design_system/styleapp.dart';
+import 'card_account_widgets/card_account_info.dart';
+import 'card_credit_cards_widgets/card_credit_cards.dart';
+import 'elevatedbutton_customizehome.dart';
+import '../tab_cards_widgets/financial_tabs.dart';
+import '../tab_cards_widgets/expenses_tabs.dart';
 
 class CardsContainer extends StatefulWidget {
   const CardsContainer({super.key});

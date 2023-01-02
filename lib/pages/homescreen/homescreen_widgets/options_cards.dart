@@ -13,17 +13,29 @@ class _OptionsCardsState extends State<OptionsCards> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-        Cards(icon: ImageIcon(AssetImage('assets/images/option_icons/pix.png'),),
-            text:'CHAVES PIX'),
+        Cards(
+            icon: ImageIcon(
+              AssetImage('assets/images/option_icons/pix.png'),
+            ),
+            text: 'CHAVES PIX'),
         SizedBox(width: 4),
-        Cards(icon: ImageIcon(AssetImage('assets/images/option_icons/receipt.png'),),
-            text:'COMPROVANTES'),
+        Cards(
+            icon: ImageIcon(
+              AssetImage('assets/images/option_icons/receipt.png'),
+            ),
+            text: 'COMPROVANTES'),
         SizedBox(width: 4),
-        Cards(icon: ImageIcon(AssetImage('assets/images/option_icons/target.png'),),
-            text:'METAS'),
+        Cards(
+            icon: ImageIcon(
+              AssetImage('assets/images/option_icons/target.png'),
+            ),
+            text: 'METAS'),
         SizedBox(width: 4),
-        Cards( icon: ImageIcon(AssetImage('assets/images/option_icons/calendar.png'),),
-            text:'CALENDÁRIO'),
+        Cards(
+            icon: ImageIcon(
+              AssetImage('assets/images/option_icons/calendar.png'),
+            ),
+            text: 'CALENDÁRIO'),
       ],
     );
   }
@@ -34,7 +46,6 @@ class Cards extends StatelessWidget {
   final ImageIcon icon;
 
   const Cards({super.key, required this.text, required this.icon});
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +59,8 @@ class Cards extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),
               ),
-              backgroundColor: Theme
-                  .of(context)
-                  .colorScheme
-                  .secondary,
-              foregroundColor: Theme
-                  .of(context)
-                  .colorScheme
-                  .tertiary,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.tertiary,
             ),
             child: icon,
             onPressed: () {},
@@ -66,10 +71,7 @@ class Cards extends StatelessWidget {
             style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .tertiary,
+                color: Theme.of(context).colorScheme.tertiary,
                 fontSize: 10),
           ),
         ],

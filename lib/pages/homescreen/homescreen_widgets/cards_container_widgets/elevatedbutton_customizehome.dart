@@ -12,22 +12,16 @@ class CustomizeHomeButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(16.0),
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           backgroundColor: Theme.of(context).colorScheme.surface,
-          foregroundColor: Theme
-              .of(context)
-              .colorScheme
-              .tertiary,
+          foregroundColor: Theme.of(context).colorScheme.tertiary,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Icon(
               Icons.dashboard_customize,
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .tertiary,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
             Text(
               "Customizar tela inicial",
@@ -35,10 +29,7 @@ class CustomizeHomeButton extends StatelessWidget {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .tertiary,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
             ),
           ],

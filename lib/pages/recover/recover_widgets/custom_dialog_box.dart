@@ -52,7 +52,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
-                  color: Theme.of(context).colorScheme.primary),
+                    color: Theme.of(context).colorScheme.primary),
               ),
               const SizedBox(
                 height: 15,
@@ -60,9 +60,10 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
               Text(
                 widget.descriptions,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.primary,),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -72,16 +73,16 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor:Theme.of(context).colorScheme.primary),
+                        backgroundColor: Theme.of(context).colorScheme.primary),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                     child: Text(
                       widget.text,
-                      style:  TextStyle(
+                      style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                         color: Theme.of(context).colorScheme.secondary),
+                          color: Theme.of(context).colorScheme.secondary),
                     )),
               ),
             ],
@@ -104,9 +105,8 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
   }
 }
 
-class Constants{
+class Constants {
   Constants._();
-  static const double padding =20;
-  static const double avatarRadius=45;
-
+  static const double padding = 20;
+  static const double avatarRadius = 45;
 }

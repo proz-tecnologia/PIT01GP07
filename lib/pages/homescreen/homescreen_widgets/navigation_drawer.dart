@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../pages/homescreen/homescreen_controller.dart';
-import '../pages/login/login.dart';
+import '../homescreen_controller.dart';
+import '../../login/login.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -15,6 +15,12 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   bool notifications = false;
 
   @override
+  void initState() {
+    super.initState();
+    controller.getUserName();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
@@ -27,20 +33,30 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   UserAccountsDrawerHeader(
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary),
-                    accountName: Text(
-                      'Thalia Bôto',
-                      style: Theme.of(context).textTheme.headline2,
+                    accountName: ValueListenableBuilder(
+                      valueListenable: controller.userName,
+                      builder: ((context, value, child) {
+                        return Text(
+                          value,
+                          style: Theme.of(context).textTheme.headline2,
+                        );
+                      }),
                     ),
-                    accountEmail: Text(
-                      'thaliaboto@gmail.com',
-                      style: TextStyle(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .tertiary
-                            .withOpacity(0.5),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    accountEmail: ValueListenableBuilder(
+                      valueListenable: controller.userEmail,
+                      builder: ((context, value, child) {
+                        return Text(
+                          value,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .tertiary
+                                .withOpacity(0.5),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      }),
                     ),
                     currentAccountPicture: const CircleAvatar(
                       child: ClipOval(),
