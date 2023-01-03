@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:teste/pages/homescreen/homescreen_controller.dart';
 
-class RevenueExpenseBar extends StatefulWidget {
-  const RevenueExpenseBar({super.key});
+class IncomeExpenseBar extends StatefulWidget {
+  const IncomeExpenseBar({super.key});
 
   @override
-  State<RevenueExpenseBar> createState() => _RevenueExpenseBarState();
+  State<IncomeExpenseBar> createState() => _IncomeExpenseBarState();
 }
 
-class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
+class _IncomeExpenseBarState extends State<IncomeExpenseBar> {
+  @override
+  void initState() {
+    super.initState();
+    controller.getUserData();
+  }
+
+  @override
+  void dispose() {
+    controller.incomes.dispose();
+    controller.expenses.dispose();
+    super.dispose();
+  }
+
+  HomeScreenController controller = HomeScreenController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,21 +42,26 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                SizedBox(height: 8),
-                Text(
+              children: [
+                const SizedBox(height: 8),
+                const Text(
                   'Receita',
                   style: TextStyle(
                     color: Color(0xff32847a),
                     fontSize: 14,
                   ),
                 ),
-                Text(
-                  'R\$ 250,00',
-                  style: TextStyle(
-                      color: Color(0xff32847a),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
+                ValueListenableBuilder(
+                  valueListenable: controller.incomes,
+                  builder: ((context, value, child) {
+                    return Text(
+                      'R\$ $value',
+                      style: const TextStyle(
+                          color: Color(0xff32847a),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    );
+                  }),
                 ),
               ],
             )
@@ -62,22 +82,27 @@ class _RevenueExpenseBarState extends State<RevenueExpenseBar> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                SizedBox(height: 8),
-                Text(
+              children: [
+                const SizedBox(height: 8),
+                const Text(
                   'Despesa',
                   style: TextStyle(
                     color: Color(0xffbf3131),
                     fontSize: 14,
                   ),
                 ),
-                Text(
-                  'R\$ 120,00',
-                  style: TextStyle(
-                    color: Color(0xffbf3131),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                ValueListenableBuilder(
+                  valueListenable: controller.expenses,
+                  builder: ((context, value, child) {
+                    return Text(
+                      'R\$ $value',
+                      style: const TextStyle(
+                        color: Color(0xffbf3131),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    );
+                  }),
                 ),
               ],
             )

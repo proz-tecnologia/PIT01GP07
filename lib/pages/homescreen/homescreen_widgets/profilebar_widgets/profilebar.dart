@@ -17,7 +17,7 @@ class _ProfileBarState extends State<ProfileBar> {
   @override
   void initState() {
     super.initState();
-    controller.getUserName();
+    controller.getUserData();
   }
 
   @override

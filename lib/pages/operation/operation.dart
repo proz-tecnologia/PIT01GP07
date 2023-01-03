@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:teste/pages/homescreen/homescreen.dart';
-import 'package:teste/pages/operation/operation_controller.dart';
-import 'package:teste/pages/operation/operation_model.dart';
-import 'package:teste/widgets/default_button.dart';
+
+import '../../widgets/default_button.dart';
+import 'operation_controller.dart';
+import 'operation_model.dart';
 
 class Operation extends StatefulWidget {
   final int tabController;
@@ -127,7 +127,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
-          title: Container(
+          title: SizedBox(
             height: 20,
             child: TabBarView(
               controller: _selectedController,
@@ -287,10 +287,8 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                 description: description.text,
                                 receipt: receipt.text);
                             controller.performOperation(newoperation);
-                            setState(() {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/home', (route) => false);
-                            });
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/home', (route) => false);
                           }),
                     ),
                   ],

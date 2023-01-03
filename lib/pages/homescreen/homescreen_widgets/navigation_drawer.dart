@@ -17,7 +17,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   void initState() {
     super.initState();
-    controller.getUserName();
+    controller.getUserData();
+  }
+
+  @override
+  void dispose() {
+    controller.cashValue.dispose();
+    controller.userName.dispose();
+    controller.userEmail.dispose();
+    super.dispose();
   }
 
   @override

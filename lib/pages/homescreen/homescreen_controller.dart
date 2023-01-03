@@ -6,16 +6,24 @@ class HomeScreenController {
   ValueNotifier<String> userName = ValueNotifier('Usuário');
   ValueNotifier<String> userEmail = ValueNotifier('Email');
   ValueNotifier<String> cashValue = ValueNotifier('0.00');
+  ValueNotifier<String> incomes = ValueNotifier('0.00');
+  ValueNotifier<String> expenses = ValueNotifier('0.00');
   ValueNotifier<Icon> iconVisibility =
       ValueNotifier(const Icon(Icons.visibility_off));
   bool obscure = true;
   String lastCashValueLoaded = '';
 
-  Future<void> getUserName() async {
+  Future<void> getUserData() async {
     final user = await repository.userData();
     if (user != null) {
       userName.value = user['name'];
       userEmail.value = user['email'];
+      cashValue.value = user['cash'];
+      incomes.value = user['totalIncomes'];
+      print(incomes.value);
+      expenses.value = user['totalExpenses'];
+      print(expenses.value);
+      lastCashValueLoaded = cashValue.value;
     } else {
       userName.value = 'Deu ruim';
     }
@@ -23,18 +31,6 @@ class HomeScreenController {
 
   void setCashValue(String cash) {
     cashValue.value = cash;
-  }
-
-  Future<void> getCashValue() async {
-    final user = await repository.userData();
-    if (user != null) {
-      if (user['cash'] != null) {
-        cashValue.value = user['cash'];
-      } else {
-        cashValue.value = cashValue.value;
-      }
-      lastCashValueLoaded = cashValue.value;
-    }
   }
 
   void cashVisibility() {
