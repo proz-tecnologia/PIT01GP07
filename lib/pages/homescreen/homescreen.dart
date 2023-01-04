@@ -7,7 +7,7 @@ import 'homescreen_widgets/fab.dart';
 import 'homescreen_widgets/navigation_drawer.dart';
 import 'homescreen_widgets/options_cards.dart';
 import 'homescreen_widgets/profilebar_widgets/profilebar.dart';
-import 'homescreen_widgets/revenue_expense_bar.dart';
+import 'homescreen_widgets/income_expense_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    controller.getUserName();
+    controller.getUserData();
   }
 
   int index = 0;
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ProfileBar(),
             CashBalanceBar(),
-            RevenueExpenseBar(),
+            IncomeExpenseBar(),
             SizedBox(
               height: 16.0,
             ),

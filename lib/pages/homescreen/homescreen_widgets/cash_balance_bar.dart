@@ -17,7 +17,13 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
   @override
   void initState() {
     super.initState();
-    controller.getCashValue();
+    controller.getUserData();
+  }
+
+  @override
+  void dispose() {
+    controller.cashValue.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,7 +50,7 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                     valueListenable: controller.cashValue,
                     builder: (context, value, child) {
                       return Text(
-                        'R\$ ${controller.cashValue.value}',
+                        'R\$ $value',
                         style: Theme.of(context).textTheme.headline3,
                       );
                     }),

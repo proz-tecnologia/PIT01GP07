@@ -26,11 +26,18 @@ class OperationRepository {
     }
   }
 
-  Future<String> setNewCashValue(String newCash) async {
+  Future<String> setNewCashIncomesExpenses({
+    required String newCash,
+    required String totalOperations,
+    required String operation,
+  }) async {
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData.set({'cash': newCash}, SetOptions(merge: true));
+      userData.set({
+        'cash': newCash,
+        operation: totalOperations,
+      }, SetOptions(merge: true));
       return 'success';
     } catch (e) {
       return 'error';

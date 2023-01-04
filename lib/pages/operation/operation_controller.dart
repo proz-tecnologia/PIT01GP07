@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:teste/pages/homescreen/homescreen_repository.dart';
-
 import '../homescreen/homescreen_controller.dart';
 import 'operation_repository.dart';
 import 'operation_model.dart';
@@ -17,21 +14,35 @@ class OperationController {
     String cashString = await repository.addOperation(operation: operation);
     double modelCash = double.parse(operation.operationValue);
     double cash = 0.0;
-    print(cashString);
+    double incomes = 0.0;
+    double expenses = 0.0;
     final userData = await homeScreenRepository.userData();
     if (userData != null) {
       cash = double.parse(userData['cash']);
     }
     if (cashString != 'error') {
-      print('4444');
       if (operation.operation == 'income') {
         double newCash = cash + modelCash;
-        homeScreenController.setCashValue(newCash.toString());
-        repository.setNewCashValue(newCash.toString());
+        incomes = double.parse(userData!['totalIncomes']) + modelCash;
+        homeScreenController.cashValue.value = newCash.toString();
+        homeScreenController.incomes.value = incomes.toString();
+
+        repository.setNewCashIncomesExpenses(
+          newCash: newCash.toString(),
+          totalOperations: incomes.toString(),
+          operation: 'totalIncomes',
+        );
       } else if (operation.operation == 'expense') {
         double newCash = cash - modelCash;
-        homeScreenController.setCashValue(newCash.toString());
-        repository.setNewCashValue(newCash.toString());
+        expenses = double.parse(userData!['totalExpenses']) + modelCash;
+        homeScreenController.cashValue.value = newCash.toString();
+        homeScreenController.expenses.value = incomes.toString();
+
+        repository.setNewCashIncomesExpenses(
+          newCash: newCash.toString(),
+          totalOperations: expenses.toString(),
+          operation: 'totalExpenses',
+        );
       }
     }
   }

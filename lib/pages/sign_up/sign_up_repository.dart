@@ -14,9 +14,13 @@ class SignUpRepository {
         email: user.email,
         password: user.password,
       );
-      collection
-          .doc(credential.user!.uid.toString())
-          .set({'name': user.name, 'email': user.email, 'cash': '0.00'});
+      collection.doc(credential.user!.uid.toString()).set({
+        'name': user.name,
+        'email': user.email,
+        'cash': '0.00',
+        'totalIncomes': '0.00',
+        'totalExpenses': '0.00',
+      });
       return "Success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
