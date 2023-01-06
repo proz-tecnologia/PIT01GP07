@@ -15,12 +15,6 @@ class _ProfileBarState extends State<ProfileBar> {
   HomeScreenController controller = HomeScreenController();
 
   @override
-  void initState() {
-    super.initState();
-    controller.getUserData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -49,10 +43,10 @@ class _ProfileBarState extends State<ProfileBar> {
                     ),
                   ),
                   ValueListenableBuilder(
-                    valueListenable: controller.userName,
+                    valueListenable: HomeScreenController.userName,
                     builder: (context, value, child) {
                       return Text(
-                        controller.userName.value,
+                        HomeScreenController.userName.value,
                         style: const TextStyle(
                           color: Color(0xfff6f6f6),
                           fontSize: 24,

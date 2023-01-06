@@ -15,18 +15,6 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
   String textTemp = '';
 
   @override
-  void initState() {
-    super.initState();
-    controller.getUserData();
-  }
-
-  @override
-  void dispose() {
-    controller.cashValue.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -47,7 +35,7 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                   ),
                 ),
                 ValueListenableBuilder(
-                    valueListenable: controller.cashValue,
+                    valueListenable: HomeScreenController.cashValue,
                     builder: (context, value, child) {
                       return Text(
                         'R\$ $value',
