@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../widgets/default_button.dart';
 import 'operation_controller.dart';
 import 'operation_model.dart';
@@ -287,8 +286,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                 description: description.text,
                                 receipt: receipt.text);
                             controller.performOperation(newoperation);
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/home', (route) => false);
+                            Navigator.pop(context);
                           }),
                     ),
                   ],
