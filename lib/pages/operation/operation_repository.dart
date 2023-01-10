@@ -18,6 +18,7 @@ class OperationRepository {
         'paid/received': operation.paid,
         'account': operation.account,
         'categorie': operation.categorie,
+        'description': operation.description,
         'receipt': operation.receipt
       });
       return 'success';
