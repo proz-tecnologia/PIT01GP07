@@ -3,11 +3,11 @@ import 'homescreen_repository.dart';
 
 class HomeScreenController {
   final HomeScreenRepository repository = HomeScreenRepository();
-  ValueNotifier<String> userName = ValueNotifier('Usuário');
-  ValueNotifier<String> userEmail = ValueNotifier('Email');
-  ValueNotifier<String> cashValue = ValueNotifier('0.00');
-  ValueNotifier<String> incomes = ValueNotifier('0.00');
-  ValueNotifier<String> expenses = ValueNotifier('0.00');
+  static ValueNotifier<String> userName = ValueNotifier('Usuário');
+  static ValueNotifier<String> userEmail = ValueNotifier('Email');
+  static ValueNotifier<String> cashValue = ValueNotifier('0.00');
+  static ValueNotifier<String> incomes = ValueNotifier('0.00');
+  static ValueNotifier<String> expenses = ValueNotifier('0.00');
   ValueNotifier<Icon> iconVisibility =
       ValueNotifier(const Icon(Icons.visibility_off));
   bool obscure = true;
@@ -20,9 +20,7 @@ class HomeScreenController {
       userEmail.value = user['email'];
       cashValue.value = user['cash'];
       incomes.value = user['totalIncomes'];
-      print(incomes.value);
       expenses.value = user['totalExpenses'];
-      print(expenses.value);
       lastCashValueLoaded = cashValue.value;
     } else {
       userName.value = 'Deu ruim';

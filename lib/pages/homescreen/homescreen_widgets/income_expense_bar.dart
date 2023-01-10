@@ -9,19 +9,6 @@ class IncomeExpenseBar extends StatefulWidget {
 }
 
 class _IncomeExpenseBarState extends State<IncomeExpenseBar> {
-  @override
-  void initState() {
-    super.initState();
-    controller.getUserData();
-  }
-
-  @override
-  void dispose() {
-    controller.incomes.dispose();
-    controller.expenses.dispose();
-    super.dispose();
-  }
-
   HomeScreenController controller = HomeScreenController();
   @override
   Widget build(BuildContext context) {
@@ -52,7 +39,7 @@ class _IncomeExpenseBarState extends State<IncomeExpenseBar> {
                   ),
                 ),
                 ValueListenableBuilder(
-                  valueListenable: controller.incomes,
+                  valueListenable: HomeScreenController.incomes,
                   builder: ((context, value, child) {
                     return Text(
                       'R\$ $value',
@@ -92,7 +79,7 @@ class _IncomeExpenseBarState extends State<IncomeExpenseBar> {
                   ),
                 ),
                 ValueListenableBuilder(
-                  valueListenable: controller.expenses,
+                  valueListenable: HomeScreenController.expenses,
                   builder: ((context, value, child) {
                     return Text(
                       'R\$ $value',
