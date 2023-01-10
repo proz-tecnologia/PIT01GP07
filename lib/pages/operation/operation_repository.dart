@@ -12,7 +12,7 @@ class OperationRepository {
           _database.collection('users').doc(_firebase.currentUser!.uid);
       userData
           .collection(operation.operation)
-          .doc(operation.date.millisecond.toString())
+          .doc(operation.date.toString())
           .set({
         'cashvalue': operation.operationValue,
         'paid/received': operation.paid,
