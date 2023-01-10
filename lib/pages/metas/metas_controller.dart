@@ -20,6 +20,10 @@ class MetasController {
       state.value = MetasState.error;
     }
   }
+
+  Future<void> createMeta(MetasModel meta) async {
+    final result = await _metasRepository.createMeta(meta: meta);
+  }
 }
 
 enum MetasState { start, loading, success, error }
