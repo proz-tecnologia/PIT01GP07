@@ -468,7 +468,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedAccount = selectedExpense = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
@@ -495,7 +497,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedCategorie = selectedExpense = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
