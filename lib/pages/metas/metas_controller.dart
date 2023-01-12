@@ -14,16 +14,16 @@ class MetasController {
   Future start() async {
     state.value = MetasState.loading;
     try {
-      metas = await _metasRepository.fetchMetas();
+      metas = await _metasRepository.getMetas();
       state.value = MetasState.success;
     } catch (e) {
       state.value = MetasState.error;
     }
   }
 
-  Future<void> createMeta(MetasModel meta) async {
-    final result = await _metasRepository.createMeta(meta: meta);
-  }
+  // Future<void> createMeta(MetasModel meta) async {
+  //   final result = await _metasRepository.addMeta(meta: meta);
+  // }
 }
 
 enum MetasState { start, loading, success, error }

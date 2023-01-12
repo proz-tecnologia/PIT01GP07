@@ -6,48 +6,37 @@ class MetasRepository {
   final _firebase = FirebaseAuth.instance;
   final _database = FirebaseFirestore.instance;
 
-  Future<QuerySnapshot<Map<String, dynamic>>> getUserData() async {
-    final userData = await _database
-        .collection('users')
-        .where('email', isEqualTo: _firebase.currentUser!.email)
-        .get();
-    return userData;
+  Future<List<MetasModel>> getMetas() async {
+    final userData =
+        _database.collection('users').doc(_firebase.currentUser!.uid);
+
+    final userMetas = userData.collection('metas');
+    QuerySnapshot querySnapshot = await userMetas.get();
+
+    final allData = List<MetasModel>.from(querySnapshot.docs
+        .map((doc) => MetasModel.fromJson(doc.data() as Map<String, dynamic>)));
+
+    //querySnapshot.docs.map((doc) => MetasModel.fromJson(doc.data())).toList();
+    print(allData);
+    return allData;
   }
 
-  Future<String> createMeta({required MetasModel meta}) async {
-    try {
-      final userData =
-          _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData
-          .collection(metas.meta)
-          .doc(meta.conclusao.millisecond.toString())
-          .set({
-        ''
-            'done': meta.realizado,
-        'title': meta.titulo,
-        'value': meta.valor
-      });
-      return 'success';
-    } catch (e) {
-      return 'error';
-    }
-  }
-
-  Future<String> setNewCashIncomesExpenses({
-    required String newCash,
-    required String totalOperations,
-    required String operation,
-  }) async {
-    try {
-      final userData =
-          _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData.set({
-        'cash': newCash,
-        operation: totalOperations,
-      }, SetOptions(merge: true));
-      return 'success';
-    } catch (e) {
-      return 'error';
-    }
-  }
+  // Future<String> addMeta({required MetasModel meta}) async {
+  //   try {
+  //     final userData =
+  //         _database.collection('users').doc(_firebase.currentUser!.uid);
+  //     userData
+  //         .collection(metas)
+  //         .doc(meta.conclusao?.millisecond.toString())
+  //         .set({
+  //       ''
+  //           'done': meta.realizado,
+  //       'title': meta.titulo,
+  //       'value': meta.valor
+  //     });
+  //     return 'success';
+  //   } catch (e) {
+  //     return 'error';
+  //   }
+  // }
 }

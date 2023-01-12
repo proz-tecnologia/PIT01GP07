@@ -8,8 +8,6 @@ class AddMetasScreen extends StatefulWidget {
 }
 
 class _AddMetasScreenState extends State<AddMetasScreen> {
-  final add
-
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
