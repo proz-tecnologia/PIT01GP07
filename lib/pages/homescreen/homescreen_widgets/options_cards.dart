@@ -63,7 +63,9 @@ class Cards extends StatelessWidget {
               foregroundColor: Theme.of(context).colorScheme.tertiary,
             ),
             child: icon,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/metas');
+            },
           ),
           const SizedBox(height: 8),
           Text(
