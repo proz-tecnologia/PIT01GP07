@@ -4,7 +4,7 @@ class MetasModel {
   String? valor;
   bool? realizado;
 
-  MetasModel({this.conclusao, this.titulo, this.valor, this.realizado});
+  MetasModel({this.conclusao, this.titulo, this.valor, this.realizado = false});
 
   MetasModel.fromJson(Map<String, dynamic> json) {
     conclusao = DateTime.tryParse(json['conclusao']);

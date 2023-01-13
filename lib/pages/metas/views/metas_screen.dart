@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../metas_controller.dart';
-import '../metas_repository.dart';
 
 class MetasScreen extends StatefulWidget {
   const MetasScreen({Key? key}) : super(key: key);
@@ -12,7 +11,6 @@ class MetasScreen extends StatefulWidget {
 
 class _MetasScreenState extends State<MetasScreen> {
   final metasController = MetasController();
-  final metasRepository = MetasRepository();
 
   _start() {
     return Container();
@@ -79,8 +77,7 @@ class _MetasScreenState extends State<MetasScreen> {
   }
 
   void onPressedAdd() {
-    metasRepository.getMetas();
-    // Navigator.of(context).pushNamed('/addMeta');
+    Navigator.of(context).pushNamed('/addMeta');
   }
 
   @override

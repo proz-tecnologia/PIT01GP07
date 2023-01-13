@@ -15,28 +15,17 @@ class MetasRepository {
 
     final allData = List<MetasModel>.from(querySnapshot.docs
         .map((doc) => MetasModel.fromJson(doc.data() as Map<String, dynamic>)));
-
-    //querySnapshot.docs.map((doc) => MetasModel.fromJson(doc.data())).toList();
-    print(allData);
     return allData;
   }
 
-  // Future<String> addMeta({required MetasModel meta}) async {
-  //   try {
-  //     final userData =
-  //         _database.collection('users').doc(_firebase.currentUser!.uid);
-  //     userData
-  //         .collection(metas)
-  //         .doc(meta.conclusao?.millisecond.toString())
-  //         .set({
-  //       ''
-  //           'done': meta.realizado,
-  //       'title': meta.titulo,
-  //       'value': meta.valor
-  //     });
-  //     return 'success';
-  //   } catch (e) {
-  //     return 'error';
-  //   }
-  // }
+  Future<String> addMeta({required MetasModel meta}) async {
+    try {
+      final userData =
+          _database.collection('users').doc(_firebase.currentUser!.uid);
+      userData.collection('metas').doc().set(meta.toJson());
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
 }

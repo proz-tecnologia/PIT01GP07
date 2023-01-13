@@ -21,9 +21,13 @@ class MetasController {
     }
   }
 
-  // Future<void> createMeta(MetasModel meta) async {
-  //   final result = await _metasRepository.addMeta(meta: meta);
-  // }
+  Future<void> createMeta(MetasModel meta) async {
+    try {
+      await _metasRepository.addMeta(meta: meta);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
 enum MetasState { start, loading, success, error }

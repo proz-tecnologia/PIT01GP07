@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:teste/pages/email_confirmation/email_confirmation.dart';
 import 'package:teste/pages/homescreen/homescreen.dart';
 import 'package:teste/pages/login/login.dart';
+import 'package:teste/pages/metas/views/add_metas_screen.dart';
 import 'package:teste/pages/metas/views/metas_screen.dart';
 import 'package:teste/pages/new_password/new_password.dart';
 import 'package:teste/pages/recover/recover.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         '/newpassword': (context) => const NewPassword(),
         '/recover': (context) => const RecoverScreen(),
         '/emailconfirmation': (context) => const EmailConfirmation(),
-        '/metas': (context) => const MetasScreen()
+        '/metas': (context) => const MetasScreen(),
+        '/addMeta': (context) => const AddMetasScreen()
       },
     );
   }
