@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:teste/pages/metas/controllers/add_meta_controller.dart';
 import 'package:teste/pages/metas/metas_model.dart';
 
@@ -14,6 +15,13 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
   DateTime? conclusao;
   final titulo = TextEditingController();
   final valor = TextEditingController();
+  TextEditingController dateInput = TextEditingController();
+
+  @override
+  void initState() {
+    dateInput.text = "";
+    super.initState();
+  }
 
   void onPressedSave() {
     addMetaController.createMeta(MetasModel(
@@ -54,20 +62,33 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
             ),
             Column(
               children: [
-                IconButton(
-                  onPressed: () {
-                    showDatePicker(
+                TextField(
+                  controller: dateInput,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.calendar_today),
+                    labelText: "Data de Conclusão",
+                  ),
+                  readOnly: true,
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate: DateTime(2020),
-                      lastDate: DateTime(2025),
-                    ).then((date) {
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2100),
+                    );
+                    if (pickedDate != null) {
+                      print(pickedDate);
+                      conclusao = pickedDate;
+                      String formattedDate =
+                          DateFormat('dd-MM-yyyy').format(pickedDate);
+                      print(formattedDate);
                       setState(() {
-                        conclusao = date;
+                        dateInput.text = formattedDate;
                       });
-                    });
+                    } else {
+                      print("Date is not selected");
+                    }
                   },
-                  icon: const Icon(Icons.date_range),
                 ),
                 TextFormField(
                   decoration: const InputDecoration(

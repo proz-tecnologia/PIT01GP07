@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/metas_controller.dart';
 
@@ -36,11 +37,26 @@ class _MetasScreenState extends State<MetasScreen> {
                 });
               },
             ),
-            title: Text(
-              "${meta.titulo!} ${meta.conclusao}",
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Conclusão: ${DateFormat('dd-MM-yyyy').format(meta.conclusao!)}',
+                ),
+                Text(
+                  'Meta: ${meta.titulo!}',
+                ),
+              ],
             ),
             subtitle: Text(
-              meta.valor!,
+              'Valor: R\$ ${NumberFormat.currency(
+                locale: 'pt_BR',
+                customPattern: '#,### \u00a4',
+                decimalDigits: 2,
+                symbol: '',
+              ).format(
+                double.parse(meta.valor!),
+              )}',
             ),
           );
         });
