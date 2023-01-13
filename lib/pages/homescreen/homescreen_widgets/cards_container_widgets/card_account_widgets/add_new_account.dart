@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/default_button.dart';
+import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_controller.dart';
+import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_model.dart';
+
+import '../../../../../widgets/default_button.dart';
 
 class AddAccounts extends StatefulWidget {
   const AddAccounts({super.key});
@@ -391,6 +394,10 @@ class _AddAccountsState extends State<AddAccounts> {
   ];
   String? selectedAccountType;
 
+  AccountController controller = AccountController();
+  TextEditingController description = TextEditingController();
+  TextEditingController cash = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -413,13 +420,14 @@ class _AddAccountsState extends State<AddAccounts> {
                     'Saldo atual da conta',
                     style: Theme.of(context).textTheme.subtitle2,
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: cash,
+                    decoration: const InputDecoration(
                       prefix: Text('R\$'),
                       hintText: '0,00',
                       border: InputBorder.none,
                     ),
-                    style: TextStyle(fontSize: 50),
+                    style: const TextStyle(fontSize: 50),
                     keyboardType: TextInputType.number,
                   ),
                   const Divider(
@@ -435,7 +443,7 @@ class _AddAccountsState extends State<AddAccounts> {
                     value: selectedAccount,
                     items: bankAccounts.map((Map map) {
                       return DropdownMenuItem<String>(
-                        value: map["id"].toString(),
+                        value: map["name"],
                         child: Row(
                           children: <Widget>[
                             Image.asset(
@@ -454,12 +462,15 @@ class _AddAccountsState extends State<AddAccounts> {
                         ),
                       );
                     }).toList(),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      selectedAccount = val;
+                    },
                   ),
                   const SizedBox(
                     height: 16.0,
                   ),
                   TextField(
+                    controller: description,
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.dehaze),
                       labelText: 'Descrição',
@@ -477,7 +488,7 @@ class _AddAccountsState extends State<AddAccounts> {
                     value: selectedAccountType,
                     items: typeAccounts.map((Map map) {
                       return DropdownMenuItem<String>(
-                        value: map["id"].toString(),
+                        value: map["type"],
                         child: Container(
                             margin: const EdgeInsets.only(left: 10),
                             child: Text(map["type"],
@@ -486,10 +497,23 @@ class _AddAccountsState extends State<AddAccounts> {
                                 ))),
                       );
                     }).toList(),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      selectedAccountType = val;
+                    },
                   ),
                   Center(
-                    child: DefaultButton(title: 'Salvar', func: () {}),
+                    child: DefaultButton(
+                        title: 'Salvar',
+                        func: () {
+                          AccountModel accountModel = AccountModel(
+                              value: cash.text,
+                              account: selectedAccount!,
+                              description: description.text,
+                              type: selectedAccountType!);
+                          controller.addAccount(accountModel);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        }),
                   ),
                   const SizedBox(
                     height: 16.0,

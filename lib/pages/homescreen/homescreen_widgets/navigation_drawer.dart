@@ -15,20 +15,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   bool notifications = false;
 
   @override
-  void initState() {
-    super.initState();
-    controller.getUserData();
-  }
-
-  @override
-  void dispose() {
-    controller.cashValue.dispose();
-    controller.userName.dispose();
-    controller.userEmail.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
@@ -42,7 +28,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary),
                     accountName: ValueListenableBuilder(
-                      valueListenable: controller.userName,
+                      valueListenable: HomeScreenController.userName,
                       builder: ((context, value, child) {
                         return Text(
                           value,
@@ -51,7 +37,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       }),
                     ),
                     accountEmail: ValueListenableBuilder(
-                      valueListenable: controller.userEmail,
+                      valueListenable: HomeScreenController.userEmail,
                       builder: ((context, value, child) {
                         return Text(
                           value,

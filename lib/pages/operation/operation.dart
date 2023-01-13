@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../widgets/default_button.dart';
 import 'operation_controller.dart';
 import 'operation_model.dart';
@@ -287,8 +286,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                 description: description.text,
                                 receipt: receipt.text);
                             controller.performOperation(newoperation);
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/home', (route) => false);
+                            Navigator.pop(context);
                           }),
                     ),
                   ],
@@ -357,7 +355,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedAccount = selectedIncome = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
@@ -384,7 +384,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedCategorie = selectedIncome = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
@@ -466,7 +468,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedAccount = selectedExpense = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
@@ -493,7 +497,9 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                 ),
               )
               .toList(),
-          onChanged: (val) {},
+          onChanged: (val) {
+            selectedCategorie = selectedExpense = val;
+          },
         ),
         const SizedBox(
           height: 16.0,
