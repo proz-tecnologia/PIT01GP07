@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../metas_controller.dart';
+import '../controllers/metas_controller.dart';
 
 class MetasScreen extends StatefulWidget {
   const MetasScreen({Key? key}) : super(key: key);

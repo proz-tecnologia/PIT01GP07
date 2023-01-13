@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/metas/metas_controller.dart';
+import 'package:teste/pages/metas/controllers/add_meta_controller.dart';
 import 'package:teste/pages/metas/metas_model.dart';
 
 class AddMetasScreen extends StatefulWidget {
@@ -10,13 +10,13 @@ class AddMetasScreen extends StatefulWidget {
 }
 
 class _AddMetasScreenState extends State<AddMetasScreen> {
-  final metasController = MetasController();
+  final addMetaController = AddMetaController();
   DateTime? conclusao;
   final titulo = TextEditingController();
   final valor = TextEditingController();
 
   void onPressedSave() {
-    metasController.createMeta(MetasModel(
+    addMetaController.createMeta(MetasModel(
       conclusao: conclusao,
       titulo: titulo.text,
       valor: valor.text,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import 'metas_model.dart';
-import 'metas_repository.dart';
+import '../metas_model.dart';
+import '../metas_repository.dart';
 
 class MetasController {
   List<MetasModel> metas = [];
@@ -17,15 +17,8 @@ class MetasController {
       metas = await _metasRepository.getMetas();
       state.value = MetasState.success;
     } catch (e) {
+      print(e);
       state.value = MetasState.error;
-    }
-  }
-
-  Future<void> createMeta(MetasModel meta) async {
-    try {
-      await _metasRepository.addMeta(meta: meta);
-    } catch (e) {
-      rethrow;
     }
   }
 }

@@ -10,11 +10,14 @@ class MetasRepository {
     final userData =
         _database.collection('users').doc(_firebase.currentUser!.uid);
 
-    final userMetas = userData.collection('metas');
-    QuerySnapshot querySnapshot = await userMetas.get();
+    final userMetas = await userData.collection('metas').get();
 
-    final allData = List<MetasModel>.from(querySnapshot.docs
-        .map((doc) => MetasModel.fromJson(doc.data() as Map<String, dynamic>)));
+    print(userMetas);
+
+    final allData = List<MetasModel>.from(
+        userMetas.docs.map((doc) => MetasModel.fromJson(doc.data())));
+
+    print(allData);
     return allData;
   }
 
