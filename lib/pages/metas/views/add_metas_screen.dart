@@ -21,6 +21,7 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
       titulo: titulo.text,
       valor: valor.text,
     ));
+    Navigator.of(context).pushNamed('/metas');
   }
 
   @override
