@@ -12,12 +12,9 @@ class MetasRepository {
 
     final userMetas = await userData.collection('metas').get();
 
-    print(userMetas);
-
     final allData = List<MetasModel>.from(
         userMetas.docs.map((doc) => MetasModel.fromJson(doc.data())));
 
-    print(allData);
     return allData;
   }
 
