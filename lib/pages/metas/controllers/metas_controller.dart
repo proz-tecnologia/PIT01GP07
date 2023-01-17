@@ -17,7 +17,6 @@ class MetasController {
       metas = await _metasRepository.getMetas();
       state.value = MetasState.success;
     } catch (e) {
-      print(e);
       state.value = MetasState.error;
     }
   }

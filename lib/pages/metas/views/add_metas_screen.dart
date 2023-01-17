@@ -77,16 +77,15 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
                       lastDate: DateTime(2100),
                     );
                     if (pickedDate != null) {
-                      print(pickedDate);
                       conclusao = pickedDate;
                       String formattedDate =
                           DateFormat('dd-MM-yyyy').format(pickedDate);
-                      print(formattedDate);
+
                       setState(() {
                         dateInput.text = formattedDate;
                       });
                     } else {
-                      print("Date is not selected");
+                      //print("Date is not selected");
                     }
                   },
                 ),
