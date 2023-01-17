@@ -6,6 +6,8 @@ import 'package:teste/pages/login/login.dart';
 import 'package:teste/pages/metas/views/add_metas_screen.dart';
 import 'package:teste/pages/metas/views/metas_screen.dart';
 import 'package:teste/pages/new_password/new_password.dart';
+import 'package:teste/pages/pix/views/add_pix_screen.dart';
+import 'package:teste/pages/pix/views/pix_screen.dart';
 import 'package:teste/pages/recover/recover.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 
@@ -37,7 +39,9 @@ class MyApp extends StatelessWidget {
         '/recover': (context) => const RecoverScreen(),
         '/emailconfirmation': (context) => const EmailConfirmation(),
         '/metas': (context) => const MetasScreen(),
-        '/addMeta': (context) => const AddMetasScreen()
+        '/addMeta': (context) => const AddMetasScreen(),
+        '/pix': (context) => const PixScreen(),
+        '/addPix': (context) => const AddPixScreen(),
       },
     );
   }

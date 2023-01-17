@@ -14,28 +14,35 @@ class _OptionsCardsState extends State<OptionsCards> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         Cards(
-            icon: ImageIcon(
-              AssetImage('assets/images/option_icons/pix.png'),
-            ),
-            text: 'CHAVES PIX'),
+          icon: ImageIcon(
+            AssetImage('assets/images/option_icons/pix.png'),
+          ),
+          text: 'CHAVES PIX',
+          route: '/pix',
+        ),
         SizedBox(width: 4),
         Cards(
-            icon: ImageIcon(
-              AssetImage('assets/images/option_icons/receipt.png'),
-            ),
-            text: 'COMPROVANTES'),
+          icon: ImageIcon(
+            AssetImage('assets/images/option_icons/receipt.png'),
+          ),
+          text: 'COMPROVANTES',
+          route: '/home',
+        ),
         SizedBox(width: 4),
         Cards(
             icon: ImageIcon(
               AssetImage('assets/images/option_icons/target.png'),
             ),
-            text: 'METAS'),
+            text: 'METAS',
+            route: '/metas'),
         SizedBox(width: 4),
         Cards(
-            icon: ImageIcon(
-              AssetImage('assets/images/option_icons/calendar.png'),
-            ),
-            text: 'CALENDÁRIO'),
+          icon: ImageIcon(
+            AssetImage('assets/images/option_icons/calendar.png'),
+          ),
+          text: 'CALENDÁRIO',
+          route: '/home',
+        ),
       ],
     );
   }
@@ -44,8 +51,9 @@ class _OptionsCardsState extends State<OptionsCards> {
 class Cards extends StatelessWidget {
   final String text;
   final ImageIcon icon;
+  final String? route;
 
-  const Cards({super.key, required this.text, required this.icon});
+  const Cards({super.key, required this.text, required this.icon, this.route});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +72,7 @@ class Cards extends StatelessWidget {
             ),
             child: icon,
             onPressed: () {
-              Navigator.of(context).pushNamed('/metas');
+              Navigator.of(context).pushNamed(route!);
             },
           ),
           const SizedBox(height: 8),
