@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:teste/pages/profile/widgets/custom_image_container.dart';
 import '../../widgets/default_button.dart';
 import 'sign_up_controller.dart';
 import 'sign_up_model.dart';
@@ -87,16 +88,7 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(
                     height: 8.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.account_circle,
-                        size: 100,
-                        color: Theme.of(context).colorScheme.primary,
-                      )
-                    ],
-                  ),
+                  const CustomImageContainer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
