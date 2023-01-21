@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/tab_cards_widgets/tab_cards.dart';
 import '../../../../design_system/styleapp.dart';
-import 'card_account_widgets/card_account_info.dart';
-import 'card_credit_cards_widgets/card_credit_cards.dart';
-import 'elevatedbutton_customizehome.dart';
-import '../tab_cards_widgets/financial_tabs.dart';
-import '../tab_cards_widgets/expenses_tabs.dart';
+import '../../../all_accounts/card_account_info.dart';
+import 'cards_container_widgets/tab_cards_widgets/expenses_card/expenses_card.dart';
+import 'cards_container_widgets/tab_cards_widgets/tab_cards.dart';
+import 'cards_container_widgets/my_credit_cards/card_credit_cards.dart';
+import 'cards_container_widgets/elevatedbutton_customizehome.dart';
+import 'cards_container_widgets/tab_cards_widgets/financial_tabs.dart';
 
 class CardsContainer extends StatefulWidget {
   const CardsContainer({super.key});
@@ -43,9 +43,12 @@ class _CardsContainerState extends State<CardsContainer> {
             cardtitle: 'Minhas Despesas',
             firstTabTitle: 'Atrasadas',
             secondTabTitle: 'Em dia',
-            firstTabContent: despesasAtrasadas(),
-            secondTabContent: despesasEmDia(),
+            firstTabContent: const ShowFirstExpenses(),
+            secondTabContent: const ShowFirstExpenses(),
             cardHeight: 120,
+            func: () {
+              Navigator.pushNamed(context, '/myexpenses');
+            },
           ),
           const CardCreditCards(),
           const CardAccountInfo(),
@@ -56,6 +59,7 @@ class _CardsContainerState extends State<CardsContainer> {
             firstTabContent: minhasRendas(),
             secondTabContent: minhasDespesas(),
             cardHeight: 200,
+            func: () {},
           ),
           const CustomizeHomeButton(),
           const SizedBox(

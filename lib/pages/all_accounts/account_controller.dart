@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_model.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_states.dart';
-
+import 'account_model.dart';
 import 'account_repository.dart';
+import 'account_states.dart';
 
 class AccountController {
   AccountRepository repository = AccountRepository();

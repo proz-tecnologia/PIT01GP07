@@ -24,7 +24,7 @@ class OperationController {
       if (operation.operation == 'income') {
         double newCash = cash + modelCash;
         incomes = double.parse(userData!['totalIncomes']) + modelCash;
-        HomeScreenController.cashValue.value = newCash.toString();
+
         HomeScreenController.incomes.value = incomes.toString();
         repository.setNewCashIncomesExpenses(
           newCash: newCash.toString(),
@@ -34,7 +34,7 @@ class OperationController {
       } else if (operation.operation == 'expense') {
         double newCash = cash - modelCash;
         expenses = double.parse(userData!['totalExpenses']) + modelCash;
-        HomeScreenController.cashValue.value = newCash.toString();
+
         HomeScreenController.expenses.value = expenses.toString();
 
         repository.setNewCashIncomesExpenses(

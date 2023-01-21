@@ -104,14 +104,15 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   TextEditingController description = TextEditingController();
   TextEditingController receipt = TextEditingController();
   OperationController controller = OperationController();
-  late TabController _selectedController;
+  late TabController selectedController;
   String selectedOperation = '';
+  late DateTime datemodel;
 
   @override
   void initState() {
     super.initState();
     dateController.text = "";
-    _selectedController = TabController(
+    selectedController = TabController(
       initialIndex: widget.tabController,
       length: 3,
       vsync: this,
@@ -120,16 +121,21 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateModel = DateTime.now();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/home');
+            },
+            child: const Icon(Icons.arrow_back),
+          ),
           title: SizedBox(
             height: 20,
             child: TabBarView(
-              controller: _selectedController,
+              controller: selectedController,
               children: [
                 title1(),
                 title2(),
@@ -183,7 +189,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         ),
                         child: TabBar(
-                          controller: _selectedController,
+                          controller: selectedController,
                           labelStyle: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -239,11 +245,11 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                             lastDate: DateTime(2100),
                           );
                           if (pickedDate != null) {
-                            dateModel = pickedDate;
                             String formattedDate =
                                 DateFormat('MMM d, yyyy', 'pt_Br')
                                     .format(pickedDate);
                             setState(() {
+                              datemodel = pickedDate;
                               dateController.text = formattedDate.toString();
                             });
                           } else {
@@ -258,7 +264,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                         ),
                         height: 420,
                         child: TabBarView(
-                          controller: _selectedController,
+                          controller: selectedController,
                           children: [
                             addIncome(),
                             addExpense(),
@@ -279,14 +285,21 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                             OperationModel newoperation = OperationModel(
                                 operationValue: cashValue.text,
                                 operation: selectedOperation,
-                                date: dateModel,
+                                date: datemodel,
                                 paid: received,
                                 account: selectedAccount!,
                                 categorie: selectedCategorie!,
                                 description: description.text,
                                 receipt: receipt.text);
                             controller.performOperation(newoperation);
-                            Navigator.pop(context);
+
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Operation(
+                                        tabController: selectedController.index,
+                                      )),
+                            );
                           }),
                     ),
                   ],

@@ -10,10 +10,8 @@ class OperationRepository {
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData
-          .collection(operation.operation)
-          .doc(operation.date.toString())
-          .set({
+      userData.collection(operation.operation).doc().set({
+        'date': operation.date,
         'cashvalue': operation.operationValue,
         'paid/received': operation.paid,
         'account': operation.account,
@@ -45,45 +43,3 @@ class OperationRepository {
     }
   }
 }
-//Shared Prefrences Stack
-// late SharedPreferences preferences;
- //SharedPreferences.getInstance().then((value) => preferences);
-  // }
-
-  // Future<String> addOperationReturnBalance(
-  //     {required OperationModel model}) async {
-  //   try {
-  //     preferences = await SharedPreferences.getInstance();
-  //     String email = preferences.getString("lastLogged")!;
-  //     String user = preferences.getString(email)!;
-  //     final userMap = json.decode(user) as Map;
-
-  //     // if (userMap.containsKey('cashHistory')) {
-  //     //   final cashHistory = userMap['cashHistory'] as Map;
-  //     //   if (cashHistory.containsKey(model.operation)) {
-  //     //     userMap['cashHistory'][model.operation][model.date] = model;
-  //     //   } else {
-  //     //     userMap['cashHistory'][model.operation] = {};
-  //     //     userMap['cashHistory'][model.operation][model.date] = model;
-  //     //   }
-  //     // } else {
-  //     //   userMap['cashHistory'] = {};
-  //     //   userMap['cashHistory'][model.operation] = {};
-  //     //   userMap['cashHistory'][model.operation][model.date] = model;
-  //     // }
-  //     return userMap['cash'].toString();
-  //   } catch (e) {
-  //     return 'error';
-  //   }
-  // }
-
-  // Future<void> setNewCashValue(String newCash) async {
-  //   try {
-  //     preferences = await SharedPreferences.getInstance();
-  //     String email = preferences.getString("lastLogged")!;
-  //     String user = preferences.getString(email)!;
-  //     final userMap = json.decode(user) as Map;
-  //     userMap['cash'] = newCash;
-  //     preferences.setString(email, json.encode(userMap));
-  //   } catch (e) {}
-  // }

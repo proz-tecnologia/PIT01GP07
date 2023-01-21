@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../homescreen_controller.dart';
+import '../profilebar_controller.dart';
 import 'userphoto.dart';
 
 class ProfileBar extends StatefulWidget {
@@ -12,7 +12,19 @@ class ProfileBar extends StatefulWidget {
 }
 
 class _ProfileBarState extends State<ProfileBar> {
-  HomeScreenController controller = HomeScreenController();
+  ProfileBarController controller = ProfileBarController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUserName();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.userName.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +55,10 @@ class _ProfileBarState extends State<ProfileBar> {
                     ),
                   ),
                   ValueListenableBuilder(
-                    valueListenable: HomeScreenController.userName,
+                    valueListenable: controller.userName,
                     builder: (context, value, child) {
                       return Text(
-                        HomeScreenController.userName.value,
+                        controller.userName.value,
                         style: const TextStyle(
                           color: Color(0xfff6f6f6),
                           fontSize: 24,
