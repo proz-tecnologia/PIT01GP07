@@ -40,14 +40,7 @@ class _MyExpensesState extends State<MyExpenses> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
-        title: const Text('Minhas Contas'),
-        actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.add,
-              ),
-              onPressed: () {}),
-        ],
+        title: const Text('Minhas Despesas'),
       ),
       body: ValueListenableBuilder(
         valueListenable: controller.expenses,
