@@ -24,7 +24,7 @@ class Fab extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const Operation(
@@ -41,7 +41,7 @@ class Fab extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const Operation(
@@ -58,7 +58,7 @@ class Fab extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const Operation(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../my_credit_cards.dart';
+import '../../../../../my_credit_cards.dart';
 import 'carousel.dart';
-import '../../../../../widgets/raisedbutton_see_more.dart';
-import '../../../../../design_system/styleapp.dart';
+import '../../../../../../widgets/raisedbutton_see_more.dart';
+import '../../../../../../design_system/styleapp.dart';
 
 class CardCreditCards extends StatefulWidget {
   const CardCreditCards({super.key});

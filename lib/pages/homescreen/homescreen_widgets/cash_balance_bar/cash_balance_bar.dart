@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen_controller.dart';
+
+import 'cash_balance_bar_controller.dart';
 
 class CashBalanceBar extends StatefulWidget {
   const CashBalanceBar({super.key});
@@ -9,10 +10,22 @@ class CashBalanceBar extends StatefulWidget {
 }
 
 class _CashBalanceBarState extends State<CashBalanceBar> {
-  HomeScreenController controller = HomeScreenController();
+  CashBalanceBarController controller = CashBalanceBarController();
   bool obscure = true;
   Icon icon = const Icon(Icons.visibility_off);
   String textTemp = '';
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUserCashValue();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.cashValue.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +48,7 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                   ),
                 ),
                 ValueListenableBuilder(
-                    valueListenable: HomeScreenController.cashValue,
+                    valueListenable: controller.cashValue,
                     builder: (context, value, child) {
                       return Text(
                         'R\$ $value',

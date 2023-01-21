@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../homescreen_controller.dart';
-import '../../login/login.dart';
+import '../../homescreen_controller.dart';
+import '../../../login/login.dart';
+import '../profilebar/profilebar_controller.dart';
+import 'navigation_drawer_controller.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -10,9 +12,24 @@ class NavigationDrawer extends StatefulWidget {
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  HomeScreenController controller = HomeScreenController();
   bool darkTheme = false;
   bool notifications = false;
+
+  ProfileBarController profileController = ProfileBarController();
+  NavigationDrawerController navigationDrawerController =
+      NavigationDrawerController();
+
+  @override
+  void initState() {
+    super.initState();
+    profileController.getUserName();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    profileController.userName.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +45,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary),
                     accountName: ValueListenableBuilder(
-                      valueListenable: HomeScreenController.userName,
+                      valueListenable: profileController.userName,
                       builder: ((context, value, child) {
                         return Text(
                           value,
@@ -117,7 +134,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   }
 
   Future<void> logout() async {
-    bool? logout = await controller.logout();
+    bool? logout = await navigationDrawerController.logout();
     if (logout!) {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(MaterialPageRoute(

@@ -10,6 +10,7 @@ import 'package:teste/pages/recover/recover.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 
 import 'design_system/light_theme.dart';
+import 'pages/all_expenses/all_expenses.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         '/recover': (context) => const RecoverScreen(),
         '/emailconfirmation': (context) => const EmailConfirmation(),
         '/metas': (context) => const MetasScreen(),
-        '/addMeta': (context) => const AddMetasScreen()
+        '/addMeta': (context) => const AddMetasScreen(),
+        '/myexpenses': (context) => const MyExpenses()
       },
     );
   }
