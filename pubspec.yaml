@@ -32,6 +32,8 @@ dependencies:
   email_validator: ^2.1.17
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.1
+  image_picker: ^0.8.6+1
+  firebase_storage: ^11.0.10
 
 
 dev_dependencies:
@@ -45,7 +47,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/logotipo.png
+    - assets/images/
     - assets/images/background/
     - assets/images/option_icons/
     - assets/images/credit_cards/
