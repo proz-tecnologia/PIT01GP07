@@ -4,6 +4,10 @@ import 'package:image_picker/image_picker.dart';
 class CustomImageContainer extends StatelessWidget {
   const CustomImageContainer({Key? key}) : super(key: key);
 
+  XFile profileImage(img) {
+    return img;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,6 +43,9 @@ class CustomImageContainer extends StatelessWidget {
                   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
                   if(image == null) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Imagem não selecionada.'),),);
+                  }
+                  if(image != null) {
+                    profileImage(image);
                   }
                 },
               ),

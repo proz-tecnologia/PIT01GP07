@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpModel {
   String name;
   String email;
   String password;
+
   SignUpModel({
     this.name = '',
     this.email = '',
