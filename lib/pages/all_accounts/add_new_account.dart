@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_controller.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/cards_container_widgets/card_account_widgets/account_model.dart';
-
-import '../../../../../widgets/default_button.dart';
+import '../../../../widgets/default_button.dart';
+import 'account_controller.dart';
+import 'account_model.dart';
 
 class AddAccounts extends StatefulWidget {
   const AddAccounts({super.key});

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class HomeScreenRepository {
+class ExpensesCardRepository {
   final _firebase = FirebaseAuth.instance;
   final _database = FirebaseFirestore.instance;
 
@@ -18,6 +18,28 @@ class HomeScreenRepository {
     try {
       final name = userDdata.docs.first.data();
       return name;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>?> firstExpenses() async {
+    try {
+      List<Map<String, dynamic>> expenseList = [];
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('expense')
+          .get();
+      int count = 0;
+      for (var element in userData.docs.reversed) {
+        expenseList.add(element.data());
+        count++;
+        if (count == 3) {
+          break;
+        }
+      }
+      return expenseList;
     } catch (e) {
       return null;
     }
