@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'profilebar_repository.dart';
@@ -5,8 +7,8 @@ import 'profilebar_repository.dart';
 class ProfileBarController {
   ValueNotifier<String> userName = ValueNotifier('Usuário');
 
-  ProfileBarRepository repository = ProfileBarRepository();
-
+  ProfileBarRepository repository =
+      ProfileBarRepository(FirebaseAuth.instance, FirebaseFirestore.instance);
   Future<void> getUserName() async {
     final user = await repository.userData();
     if (user != null) {
@@ -17,7 +19,11 @@ class ProfileBarController {
   }
 
   Future<bool?> logout() async {
-    await repository.logout();
-    return true;
+    String logout = await repository.logout();
+    if (logout == 'Success') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
