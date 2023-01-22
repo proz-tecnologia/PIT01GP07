@@ -49,6 +49,7 @@ flutter:
     - assets/images/background/
     - assets/images/option_icons/
     - assets/images/credit_cards/
+    - assets/images/credit_cards_flags/
     - assets/images/bank_accounts/
     - assets/images/login_icons/facebook.png
     - assets/images/login_icons/google.png
