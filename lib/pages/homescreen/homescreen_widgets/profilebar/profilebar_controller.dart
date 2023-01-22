@@ -15,4 +15,9 @@ class ProfileBarController {
       userName.value = userName.value;
     }
   }
+
+  Future<bool?> logout() async {
+    await repository.logout();
+    return true;
+  }
 }

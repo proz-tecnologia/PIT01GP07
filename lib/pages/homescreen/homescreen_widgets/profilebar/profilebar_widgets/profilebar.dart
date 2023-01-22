@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../profilebar_controller.dart';
-import 'userphoto.dart';
+
 
 class ProfileBar extends StatefulWidget {
   const ProfileBar({
@@ -13,6 +13,23 @@ class ProfileBar extends StatefulWidget {
 
 class _ProfileBarState extends State<ProfileBar> {
   ProfileBarController controller = ProfileBarController();
+
+  Future<void> logout() async {
+    bool? logout = await controller.logout();
+    if (logout!) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed('/login');
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          behavior: SnackBarBehavior.floating,
+          content: Text("Não é possivel fazer logout. Erro no Servidor!"),
+        ),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -36,13 +53,7 @@ class _ProfileBarState extends State<ProfileBar> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: const UserPhoto(),
-              ),
-              const SizedBox(height: 8.0),
+              const SizedBox(width: 16.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,11 +82,12 @@ class _ProfileBarState extends State<ProfileBar> {
               ),
               const Spacer(),
               IconButton(
+                onPressed: logout,
                 icon: Icon(
-                  Icons.notifications,
+                  Icons.logout,
+                  size: 32,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-                onPressed: (() {}),
               ),
             ],
           ),

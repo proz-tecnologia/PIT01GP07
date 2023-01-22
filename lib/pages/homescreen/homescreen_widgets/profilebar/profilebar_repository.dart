@@ -22,4 +22,12 @@ class ProfileBarRepository {
       return null;
     }
   }
+
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print(e);
+    }
+  }
 }
