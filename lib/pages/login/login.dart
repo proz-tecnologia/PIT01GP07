@@ -1,4 +1,5 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/pages/login/login_repository.dart';
 import '../../widgets/default_button.dart';
@@ -17,7 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginController controller = LoginController(LoginRepository());
+  LoginController controller =
+      LoginController(LoginRepository(FirebaseAuth.instance));
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   bool obscure = true;

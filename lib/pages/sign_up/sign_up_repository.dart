@@ -1,26 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../sign_up/sign_up_model.dart';
 
 class SignUpRepository {
-  final _firebase = FirebaseAuth.instance;
-  final database = FirebaseFirestore.instance;
+  final FirebaseAuth _firebase;
 
-  Future<String> saveUser(SignUpModel user) async {
-    final collection = database.collection('users');
+  final FirebaseFirestore database;
 
+  SignUpRepository(
+    this._firebase,
+    this.database,
+  );
+
+  Future<String> saveUser(SignUpModel usermodel) async {
     try {
       final credential = await _firebase.createUserWithEmailAndPassword(
-        email: user.email,
-        password: user.password,
+        email: usermodel.email,
+        password: usermodel.password,
       );
-      collection.doc(credential.user!.uid.toString()).set({
-        'name': user.name,
-        'email': user.email,
-        'cash': '0.00',
-        'totalIncomes': '0.00',
-        'totalExpenses': '0.00',
-      });
+      await saveDataUser(usermodel, credential);
+
       return "Success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -31,15 +31,20 @@ class SignUpRepository {
     }
   }
 
-  //late SharedPreferences preferences;
-  // Future<bool> saveUser(SignUpModel user) async {
-  //   preferences = await SharedPreferences.getInstance();
-  //   String userJson = json.encode(user.toMap());
-  //   if (preferences.getString(user.email) == null) {
-  //     preferences.setString(user.email, userJson);
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  Future<bool> saveDataUser(
+      SignUpModel usermodel, UserCredential credential) async {
+    try {
+      final collection = database.collection('users');
+      collection.doc(credential.user!.uid.toString()).set({
+        'name': usermodel.name,
+        'email': usermodel.email,
+        'cash': '0.00',
+        'totalIncomes': '0.00',
+        'totalExpenses': '0.00',
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

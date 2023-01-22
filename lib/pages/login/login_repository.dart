@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'login_model.dart';
 
 class LoginRepository {
-  final _firebase = FirebaseAuth.instance;
+  final FirebaseAuth _firebase;
+
+  LoginRepository(this._firebase);
 
   Future<String?> checkingUser(LoginModel userModel) async {
     String check = '';
@@ -18,26 +20,4 @@ class LoginRepository {
     }
     return check;
   }
-
-  //Map userMap = {};
-  // Future<String> checkingUser(LoginModel userModel) async {
-  //   preferences = await SharedPreferences.getInstance();
-  //   String? check = preferences.getString(userModel.email);
-  //   if (check == null) {
-  //     return 'Usuário ou senha incorretos!';
-  //   } else {
-  //     userMap = json.decode(check);
-  //     if (userMap['password'] == userModel.password) {
-  //       return 'Success';
-  //     } else {
-  //       return 'Usuário OU senha incorretos!';
-  //     }
-  //   }
-  // }
-
-  // Future<void> userLogin(LoginModel userModel) async {
-  //   preferences = await SharedPreferences.getInstance();
-  //   preferences.setBool('isLogged', true);
-  //   preferences.setString('lastLogged', userModel.email);
-  // }
 }
