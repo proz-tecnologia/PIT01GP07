@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/default_button.dart';
 import 'sign_up_controller.dart';
@@ -14,7 +16,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  SignUpController controller = SignUpController(SignUpRepository());
+  SignUpController controller = SignUpController(
+      SignUpRepository(FirebaseAuth.instance, FirebaseFirestore.instance));
   final _formKey = GlobalKey<FormState>();
   Icon icon = const Icon(Icons.visibility);
   Icon icon2 = const Icon(Icons.visibility);

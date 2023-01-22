@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'sign_up_model.dart';
 import 'sign_up_repository.dart';
 import 'sign_up_states.dart';
 
 class SignUpController extends ValueNotifier<SignUpState> {
-  SignUpRepository repository = SignUpRepository();
+  SignUpRepository repository =
+      SignUpRepository(FirebaseAuth.instance, FirebaseFirestore.instance);
 
   SignUpController(this.repository) : super(SignUpInitialState());
 

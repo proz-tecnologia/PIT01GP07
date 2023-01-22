@@ -23,12 +23,13 @@ class AccountRepository {
   }
 
   Future<List<AccountModel>> getAccounts() async {
-    final userData = _database.collection('users').doc(_firebase.currentUser!.uid);
+    final userData =
+        _database.collection('users').doc(_firebase.currentUser!.uid);
     final userAccounts = await userData.collection('metas').get();
 
-    final allData = List<AccountModel>.from(userAccounts.docs.map((doc) => AccountModel.fromMap(doc.data())));
+    final allData = List<AccountModel>.from(
+        userAccounts.docs.map((doc) => AccountModel.fromMap(doc.data())));
 
-    print(allData);
     return allData;
   }
 }

@@ -32,6 +32,7 @@ dependencies:
   email_validator: ^2.1.17
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.1
+  mocktail: ^0.3.0
 
 
 dev_dependencies:
