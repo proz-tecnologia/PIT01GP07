@@ -498,8 +498,8 @@ class EditDialogBoxState extends State<EditDialogBox> {
     },
     {
       'id': 6,
-      'image': 'assets/images/credit_card_flags/dinners.png',
-      'name': 'Dinners',
+      'image': 'assets/images/credit_card_flags/diners.png',
+      'name': 'Diners',
     },
   ];
   String? selectedFlags;

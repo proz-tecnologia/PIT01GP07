@@ -45,7 +45,7 @@ class DeleteDialogBoxState extends State<DeleteDialogBox> {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
-                    color: Theme.of(context).colorScheme.tertiary),
+                    color: Theme.of(context).colorScheme.primary),
               ),
               const SizedBox(
                 height: 16,

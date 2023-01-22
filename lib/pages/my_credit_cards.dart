@@ -90,7 +90,6 @@ class _MyCreditCardsState extends State<MyCreditCards> {
                                      builder: (BuildContext context) {
                                        return const EditDialogBox(
                                          text: "Salvar",
-
                                        );
                                      },
                                    );
