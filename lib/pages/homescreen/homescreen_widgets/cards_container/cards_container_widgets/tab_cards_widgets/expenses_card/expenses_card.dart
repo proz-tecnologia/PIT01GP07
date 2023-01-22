@@ -55,105 +55,40 @@ class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
                 valueListenable: controller.firstExpenses,
                 builder: ((context, value, child) {
                   return Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16, bottom: 8),
-                      child: Row(children: [
-                        const SizedBox(width: 16),
-                        const Text(
-                          'Despesa 1',
-                          style: TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                    for (int i = 0; i < value.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8, bottom: 4),
+                        child: Row(children: [
+                          const SizedBox(width: 16),
+                          const Text(
+                            'Despesa 1',
+                            style: TextStyle(
+                              color: Color(0xff2F595B),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 32),
-                        Text(
-                          'R\$ ${value[0]['cashvalue']}',
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                          const SizedBox(width: 32),
+                          Text(
+                            'R\$ ${value[i]['cashvalue']}',
+                            style: const TextStyle(
+                              color: Color(0xff2F595B),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          formatDate(value[0]['date']),
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                          const Spacer(),
+                          Text(
+                            formatDate(value[i]['date']),
+                            style: const TextStyle(
+                              color: Color(0xff2F595B),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 16),
-                      ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Row(children: [
-                        const SizedBox(width: 16),
-                        const Text(
-                          'Despesa 2',
-                          style: TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(width: 32),
-                        Text(
-                          'R\$ ${value[1]['cashvalue']}',
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          formatDate(value[1]['date']),
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                      ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Row(children: [
-                        const SizedBox(width: 16),
-                        const Text(
-                          'Despesa 3',
-                          style: TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(width: 32),
-                        Text(
-                          'R\$ ${value[2]['cashvalue']}',
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          formatDate(value[2]['date']),
-                          style: const TextStyle(
-                            color: Color(0xff2F595B),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                      ]),
-                    ),
+                          const SizedBox(width: 16),
+                        ]),
+                      ),
                   ]);
                 }));
           }
