@@ -13,21 +13,14 @@ class SignUpRepository {
     this.database,
   );
 
-  Future<String> saveUser(SignUpModel user) async {
-    final collection = database.collection('users');
-
+  Future<String> saveUser(SignUpModel usermodel) async {
     try {
       final credential = await _firebase.createUserWithEmailAndPassword(
-        email: user.email,
-        password: user.password,
+        email: usermodel.email,
+        password: usermodel.password,
       );
-      collection.doc(credential.user!.uid.toString()).set({
-        'name': user.name,
-        'email': user.email,
-        'cash': '0.00',
-        'totalIncomes': '0.00',
-        'totalExpenses': '0.00',
-      });
+      await saveDataUser(usermodel, credential);
+
       return "Success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -35,6 +28,23 @@ class SignUpRepository {
       } else {
         return 'error';
       }
+    }
+  }
+
+  Future<bool> saveDataUser(
+      SignUpModel usermodel, UserCredential credential) async {
+    try {
+      final collection = database.collection('users');
+      collection.doc(credential.user!.uid.toString()).set({
+        'name': usermodel.name,
+        'email': usermodel.email,
+        'cash': '0.00',
+        'totalIncomes': '0.00',
+        'totalExpenses': '0.00',
+      });
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

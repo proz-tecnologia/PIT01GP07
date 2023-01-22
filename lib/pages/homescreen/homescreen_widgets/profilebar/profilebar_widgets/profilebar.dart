@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../profilebar_controller.dart';
 
-
 class ProfileBar extends StatefulWidget {
   const ProfileBar({
     Key? key,

@@ -2,11 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileBarRepository {
-  final _firebase = FirebaseAuth.instance;
-  final _database = FirebaseFirestore.instance;
+  final FirebaseAuth _firebase;
+
+  final FirebaseFirestore database;
+
+  ProfileBarRepository(this._firebase, this.database);
 
   Future<QuerySnapshot<Map<String, dynamic>>> getUserData() async {
-    final userData = await _database
+    final userData = await database
         .collection('users')
         .where('email', isEqualTo: _firebase.currentUser!.email)
         .get();
@@ -23,11 +26,12 @@ class ProfileBarRepository {
     }
   }
 
-  Future<void> logout() async {
+  Future<String> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
+      return 'Success';
     } catch (e) {
-      print(e);
+      return 'error';
     }
   }
 }

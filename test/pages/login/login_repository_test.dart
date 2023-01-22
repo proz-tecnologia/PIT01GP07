@@ -26,11 +26,12 @@ void main() {
     user = UserMock();
   });
 
-  group('Login Test', () {
+  group('checkingUser', () {
     final userModel = LoginModel(email: 'test@test.com', password: 'test123');
     final userModelFake =
         LoginModel(email: 'testfake@test.com', password: 'test123');
-    test('Checking User Success', () async {
+    test('should return Succees when user login in signInWithEmailAndPassword',
+        () async {
       // Test successful login
       when(
         (() => firebaseAuthMock.signInWithEmailAndPassword(
@@ -40,7 +41,8 @@ void main() {
       final check = await repository.checkingUser(userModel);
       expect(check, 'Success');
     });
-    test('Checking User error', () async {
+    test('should return error when signInWithEmailAndPassword returns error',
+        () async {
       // Test error login
       when(
         (() => firebaseAuthMock.signInWithEmailAndPassword(

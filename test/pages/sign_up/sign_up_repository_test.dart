@@ -26,19 +26,18 @@ void main() {
     credential = AuthCredentialMock();
   });
 
-  group('save user', (() {
-    test('saveUser should create user account and save user data', () async {
+  group('saveUser', (() {
+    test('should return Success when create user account', () async {
       final user = SignUpModel(
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: 'password',
+        name: 'Teste',
+        email: 'teste@test.com',
+        password: 'test123',
       );
-      verifyNever((() => mockDatabase.collection('users')));
 
       when((() => credential.user)).thenReturn(UserMock());
       when((() => mockAuth.createUserWithEmailAndPassword(
-            email: 'johndoe@example.com',
-            password: 'password',
+            email: 'teste@test.com',
+            password: 'test123',
           ))).thenAnswer((_) async => Future.value(credential));
 
       final result = await repository.saveUser(user);
@@ -46,18 +45,16 @@ void main() {
       expect(result, 'Success');
     });
 
-    test('saveUser should return error if email is already in use', () async {
+    test('should return error if email is already in use', () async {
       final user = SignUpModel(
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: 'password',
+        name: 'Teste',
+        email: 'teste@test.com',
+        password: 'test123',
       );
 
-      verifyNever((() => mockDatabase.collection('users')));
-
       when((() => mockAuth.createUserWithEmailAndPassword(
-            email: 'johndoe@example.com',
-            password: 'password',
+            email: 'teste@test.com',
+            password: 'test123',
           ))).thenThrow(FirebaseAuthException(
         code: 'email-already-in-use',
         message: 'The account already exists for that email.',
