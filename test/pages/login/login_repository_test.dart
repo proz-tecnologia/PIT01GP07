@@ -25,7 +25,7 @@ void main() {
     userCredentialMock = UserCredentialMock();
     user = UserMock();
   });
-
+  
   group('checkingUser', () {
     final userModel = LoginModel(email: 'test@test.com', password: 'test123');
     final userModelFake =
