@@ -40,7 +40,7 @@ class _ProfileBarState extends State<ProfileBar> {
                 onTap: () {
                   Scaffold.of(context).openDrawer();
                 },
-                child: const UserPhoto(),
+                child: const UserPhoto(),//TODO Alterar foto profile
               ),
               const SizedBox(height: 8.0),
               Column(
@@ -70,13 +70,13 @@ class _ProfileBarState extends State<ProfileBar> {
                 ],
               ),
               const Spacer(),
-              IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                onPressed: (() {}),
-              ),
+              // IconButton(
+              //   icon: Icon(
+              //     Icons.notifications,
+              //     color: Theme.of(context).colorScheme.secondary,
+              //   ),
+              //   onPressed: (() {}),
+              // ),
             ],
           ),
           Container(

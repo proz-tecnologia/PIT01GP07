@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/pages/profile/widgets/custom_image_container.dart';
 import '../../homescreen_controller.dart';
 import '../../../login/login.dart';
 import '../profilebar/profilebar_controller.dart';
@@ -69,38 +70,36 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         );
                       }),
                     ),
-                    currentAccountPicture: const CircleAvatar(
-                      child: ClipOval(),
-                    ),
+                    currentAccountPicture: const CustomImageContainer(),
                   ),
-                  SwitchListTile(
-                    title: Text('Tema Escuro',
-                        style: Theme.of(context).textTheme.bodyText1),
-                    secondary: Icon(Icons.dark_mode,
-                        color: Theme.of(context).colorScheme.tertiary),
-                    activeColor: Theme.of(context).colorScheme.tertiary,
-                    inactiveThumbColor: Colors.grey,
-                    value: darkTheme,
-                    onChanged: (bool value) {
-                      setState(() {
-                        darkTheme = value;
-                      });
-                    }, // trailing:,
-                  ),
-                  SwitchListTile(
-                    title: Text('Notificações',
-                        style: Theme.of(context).textTheme.bodyText1),
-                    secondary: Icon(Icons.notifications,
-                        color: Theme.of(context).colorScheme.tertiary),
-                    value: notifications,
-                    activeColor: Theme.of(context).colorScheme.tertiary,
-                    inactiveThumbColor: Colors.grey,
-                    onChanged: (bool value) {
-                      setState(() {
-                        notifications = value;
-                      });
-                    },
-                  ),
+                  // SwitchListTile(
+                  //   title: Text('Tema Escuro',
+                  //       style: Theme.of(context).textTheme.bodyText1),
+                  //   secondary: Icon(Icons.dark_mode,
+                  //       color: Theme.of(context).colorScheme.tertiary),
+                  //   activeColor: Theme.of(context).colorScheme.tertiary,
+                  //   inactiveThumbColor: Colors.grey,
+                  //   value: darkTheme,
+                  //   onChanged: (bool value) {
+                  //     setState(() {
+                  //       darkTheme = value;
+                  //     });
+                  //   }, // trailing:,
+                  // ),
+                  // SwitchListTile(
+                  //   title: Text('Notificações',
+                  //       style: Theme.of(context).textTheme.bodyText1),
+                  //   secondary: Icon(Icons.notifications,
+                  //       color: Theme.of(context).colorScheme.tertiary),
+                  //   value: notifications,
+                  //   activeColor: Theme.of(context).colorScheme.tertiary,
+                  //   inactiveThumbColor: Colors.grey,
+                  //   onChanged: (bool value) {
+                  //     setState(() {
+                  //       notifications = value;
+                  //     });
+                  //   },
+                  // ),
                   ListTile(
                     title: Text('Editar Conta',
                         style: Theme.of(context).textTheme.bodyText1),

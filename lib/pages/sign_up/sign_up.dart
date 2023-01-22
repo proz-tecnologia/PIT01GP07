@@ -88,7 +88,6 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(
                     height: 8.0,
                   ),
-                  const CustomImageContainer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -202,6 +201,7 @@ class _SignUpState extends State<SignUp> {
         password: passwordController.text,
       );
       controller.addUser(newUser);
+      Navigator.of(context).pushNamed('/login');
     }
   }
 }
