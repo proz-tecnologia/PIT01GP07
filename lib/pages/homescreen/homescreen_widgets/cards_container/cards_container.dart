@@ -4,8 +4,7 @@ import '../../../all_accounts/card_account_info.dart';
 import 'cards_container_widgets/tab_cards_widgets/expenses_card/expenses_card.dart';
 import 'cards_container_widgets/tab_cards_widgets/tab_cards.dart';
 import 'cards_container_widgets/my_credit_cards/card_credit_cards.dart';
-import 'cards_container_widgets/elevatedbutton_customizehome.dart';
-import 'cards_container_widgets/tab_cards_widgets/financial_tabs.dart';
+
 
 class CardsContainer extends StatefulWidget {
   const CardsContainer({super.key});
@@ -51,17 +50,6 @@ class _CardsContainerState extends State<CardsContainer> {
             },
           ),
           const CardCreditCards(),
-          const CardAccountInfo(),
-          TabCards(
-            cardtitle: 'Meu Financeiro',
-            firstTabTitle: 'Renda',
-            secondTabTitle: 'Despesas',
-            firstTabContent: minhasRendas(),
-            secondTabContent: minhasDespesas(),
-            cardHeight: 200,
-            func: () {},
-          ),
-          const CustomizeHomeButton(),
           const SizedBox(
             height: 96.0,
           ),
