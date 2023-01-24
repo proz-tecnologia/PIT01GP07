@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:teste/pages/all_incomes/all_incomes.dart';
 import 'package:teste/pages/email_confirmation/email_confirmation.dart';
 import 'package:teste/pages/homescreen/homescreen.dart';
 import 'package:teste/pages/login/login.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/metas': (context) => const MetasScreen(),
         '/addMeta': (context) => const AddMetasScreen(),
         '/myexpenses': (context) => const MyExpenses(),
+        '/myincomes': (context) => const MyIncomes(),
         '/pix': (context) => const PixScreen(),
         '/addPix': (context) => const AddPixScreen(),
       },

@@ -1,18 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'expenses_card_controller.dart';
-import 'expenses_card_states.dart';
+import '../../../../../../../widgets/raisedbutton_see_more.dart';
+import 'tab_cards_controller.dart';
+import 'tab_cards_states.dart';
 
-class ShowFirstExpenses extends StatefulWidget {
-  const ShowFirstExpenses({super.key});
+class DefaultTab extends StatefulWidget {
+  final String tabState;
+  const DefaultTab({super.key, required this.tabState});
 
   @override
-  State<ShowFirstExpenses> createState() => _ShowFirstExpensesState();
+  State<DefaultTab> createState() => _DefaultTabState();
 }
 
-class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
+class _DefaultTabState extends State<DefaultTab> {
   ExpensesCardController controller = ExpensesCardController();
+  late String operation;
 
   String formatDate(Timestamp timestamp) {
     final date =
@@ -24,7 +27,13 @@ class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
   @override
   void initState() {
     super.initState();
-    controller.setNewExpense();
+    if (widget.tabState == 'expense') {
+      controller.getOperations('expense');
+      operation = 'Despesa';
+    } else if (widget.tabState == 'income') {
+      controller.getOperations('income');
+      operation = 'Receita';
+    }
   }
 
   @override
@@ -38,17 +47,17 @@ class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
     return ValueListenableBuilder(
         valueListenable: controller.state,
         builder: ((context, value, child) {
-          if (value is ExpensesCardInitialState) {
+          if (value is DefaultTabInitialState) {
             return Container();
-          } else if (value is ExpensesCardLoadingState) {
+          } else if (value is DefaultTabLoadingState) {
             return const Center(child: CircularProgressIndicator());
-          } else if (value is ExpensesCardErrorState) {
+          } else if (value is DefaultTabErrorState) {
             return const Center(
               child: Text('Tivemos um problema'),
             );
-          } else if (value is ExpensesCardFirtAccessState) {
+          } else if (value is DefaultTabFirtAccessState) {
             return const Center(
-              child: Text('Ainda não despesas cadastradas'),
+              child: Text('Ainda não há despesas cadastradas'),
             );
           } else {
             return ValueListenableBuilder(
@@ -57,12 +66,13 @@ class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
                   return Column(children: [
                     for (int i = 0; i < value.length; i++)
                       Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 4),
+                        padding:
+                            const EdgeInsets.only(top: 8, bottom: 4, right: 16),
                         child: Row(children: [
                           const SizedBox(width: 16),
-                          const Text(
-                            'Despesa 1',
-                            style: TextStyle(
+                          Text(
+                            '$operation ${i + 1}',
+                            style: const TextStyle(
                               color: Color(0xff2F595B),
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -86,9 +96,29 @@ class _ShowFirstExpensesState extends State<ShowFirstExpenses> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(width: 16),
                         ]),
                       ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        ),
+                      ),
+                      child: SeeMoreButton(
+                          text: "Ver tudo",
+                          page: () {
+                            if (widget.tabState == 'expense') {
+                              Navigator.pushNamed(context, '/myexpenses');
+                            } else if (widget.tabState == 'income') {
+                              Navigator.pushNamed(context, '/myincomes');
+                            }
+                          }),
+                    ),
                   ]);
                 }));
           }

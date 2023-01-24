@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'options_tabs.dart';
+import '../options_tabs.dart';
 
 class TabCards extends StatefulWidget {
   final String cardtitle;
@@ -9,7 +9,6 @@ class TabCards extends StatefulWidget {
   final Widget firstTabContent;
   final Widget secondTabContent;
   final double cardHeight;
-  final Function func;
 
   const TabCards({
     Key? key,
@@ -19,7 +18,6 @@ class TabCards extends StatefulWidget {
     required this.firstTabContent,
     required this.secondTabContent,
     required this.cardHeight,
-    required this.func,
   }) : super(key: key);
 
   @override
@@ -45,8 +43,7 @@ class _TabCardsState extends State<TabCards> {
             firstTabContent: widget.firstTabContent,
             secondTabContent: widget.secondTabContent,
             cardHeight: widget.cardHeight,
-            func: widget.func,
-          )
+          ),
         ],
       ),
     );

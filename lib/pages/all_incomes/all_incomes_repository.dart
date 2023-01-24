@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ExpensesCardRepository {
+class AllIncomesRepository {
   final _firebase = FirebaseAuth.instance;
   final _database = FirebaseFirestore.instance;
 
@@ -30,14 +30,10 @@ class ExpensesCardRepository {
           .collection('users')
           .doc(_firebase.currentUser!.uid)
           .collection('expense')
+          .orderBy('date')
           .get();
-      int count = 0;
       for (var element in userData.docs.reversed) {
         expenseList.add(element.data());
-        count++;
-        if (count == 3) {
-          break;
-        }
       }
       return expenseList;
     } catch (e) {

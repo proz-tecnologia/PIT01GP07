@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../design_system/styleapp.dart';
-import 'cards_container_widgets/tab_cards_widgets/expenses_card/expenses_card.dart';
-import 'cards_container_widgets/tab_cards_widgets/tab_cards.dart';
+import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/default_tab.dart';
+import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/tab_cards.dart';
 import 'cards_container_widgets/my_credit_cards/card_credit_cards.dart';
 
 class CardsContainer extends StatefulWidget {
@@ -36,16 +36,17 @@ class _CardsContainerState extends State<CardsContainer> {
           const SizedBox(
             height: 16.0,
           ),
-          TabCards(
+          const TabCards(
             cardtitle: 'Minhas Despesas',
-            firstTabTitle: 'Atrasadas',
-            secondTabTitle: 'Em dia',
-            firstTabContent: const ShowFirstExpenses(),
-            secondTabContent: const ShowFirstExpenses(),
-            cardHeight: 120,
-            func: () {
-              Navigator.pushNamed(context, '/myexpenses');
-            },
+            firstTabTitle: 'Despesas',
+            secondTabTitle: 'Receitas',
+            firstTabContent: DefaultTab(
+              tabState: 'expense',
+            ),
+            secondTabContent: DefaultTab(
+              tabState: 'income',
+            ),
+            cardHeight: 160,
           ),
           const CardCreditCards(),
           const SizedBox(

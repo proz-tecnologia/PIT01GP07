@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/widgets/raisedbutton_see_more.dart';
+
 import '../../../../../../../design_system/styleapp.dart';
 
 class TabView extends StatelessWidget {
@@ -8,7 +8,6 @@ class TabView extends StatelessWidget {
   final Widget firstTabContent;
   final Widget secondTabContent;
   final double cardHeight;
-  final Function func;
 
   const TabView({
     super.key,
@@ -17,7 +16,6 @@ class TabView extends StatelessWidget {
     required this.cardHeight,
     required this.firstTabContent,
     required this.secondTabContent,
-    required this.func,
   });
 
   @override
@@ -74,16 +72,6 @@ class TabView extends StatelessWidget {
               firstTabContent,
               secondTabContent,
             ]),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: const BorderRadius.only(
-                bottomRight: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-              ),
-            ),
-            child: SeeMoreButton(text: "Ver tudo", page: func),
           ),
         ]),
       ),
