@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:teste/pages/all_incomes/all_incomes.dart';
 import 'package:teste/pages/email_confirmation/email_confirmation.dart';
 import 'package:teste/pages/homescreen/homescreen.dart';
 import 'package:teste/pages/login/login.dart';
@@ -12,7 +11,6 @@ import 'package:teste/pages/pix/views/pix_screen.dart';
 import 'package:teste/pages/recover/recover.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 import 'design_system/light_theme.dart';
-import 'pages/all_expenses/all_expenses.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
@@ -41,8 +39,6 @@ class MyApp extends StatelessWidget {
         '/emailconfirmation': (context) => const EmailConfirmation(),
         '/metas': (context) => const MetasScreen(),
         '/addMeta': (context) => const AddMetasScreen(),
-        '/myexpenses': (context) => const MyExpenses(),
-        '/myincomes': (context) => const MyIncomes(),
         '/pix': (context) => const PixScreen(),
         '/addPix': (context) => const AddPixScreen(),
       },

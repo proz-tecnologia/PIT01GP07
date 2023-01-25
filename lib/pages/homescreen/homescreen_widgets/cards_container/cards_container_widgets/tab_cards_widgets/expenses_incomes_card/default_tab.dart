@@ -113,9 +113,17 @@ class _DefaultTabState extends State<DefaultTab> {
                           text: "Ver tudo",
                           page: () {
                             if (widget.tabState == 'expense') {
-                              Navigator.pushNamed(context, '/myexpenses');
+                              Navigator.of(context).pushNamed('/myoperations',
+                                  arguments: {
+                                    'operation': 'expense',
+                                    'tabTitle': 'Despesas'
+                                  });
                             } else if (widget.tabState == 'income') {
-                              Navigator.pushNamed(context, '/myincomes');
+                              Navigator.of(context).pushNamed('/myoperations',
+                                  arguments: {
+                                    'operation': 'income',
+                                    'tabTitle': 'Receitas'
+                                  });
                             }
                           }),
                     ),

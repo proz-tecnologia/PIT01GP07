@@ -1,19 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:teste/pages/all_expenses/expense_item.dart';
 
-import 'all_incomes_controller.dart';
+import 'package:teste/pages/my_operations/operation_item.dart';
 
-class MyIncomes extends StatefulWidget {
-  const MyIncomes({super.key});
+import 'my_operations_controller.dart';
+
+class MyOperations extends StatefulWidget {
+  final String operation;
+  final String tabTitle;
+  const MyOperations({
+    Key? key,
+    required this.operation,
+    required this.tabTitle,
+  }) : super(key: key);
 
   @override
-  State<MyIncomes> createState() => _MyIncomesState();
+  State<MyOperations> createState() => _MyOperationsState();
 }
 
-class _MyIncomesState extends State<MyIncomes> {
-  AllIncomesController controller = AllIncomesController();
+class _MyOperationsState extends State<MyOperations> {
+  MyOperationsController controller = MyOperationsController();
 
   String formatDate(Timestamp timestamp) {
     final date =
@@ -25,13 +32,13 @@ class _MyIncomesState extends State<MyIncomes> {
   @override
   void initState() {
     super.initState();
-    controller.getExpensesList();
+    controller.getOperationsList(widget.operation);
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller.expenses.dispose();
+    controller.operations.dispose();
     controller.state.dispose();
   }
 
@@ -40,15 +47,15 @@ class _MyIncomesState extends State<MyIncomes> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
-        title: const Text('Minhas Receitas'),
+        title: Text(widget.tabTitle),
       ),
       body: ValueListenableBuilder(
-        valueListenable: controller.expenses,
+        valueListenable: controller.operations,
         builder: (context, value, child) {
           return ListView(
             children: [
               for (int i = 0; i < value.length; i++)
-                ExpenseItem(
+                OperationItem(
                     description: value[i]['description'].toString(),
                     date: formatDate(value[i]['date']),
                     cashvalue: value[i]['cashvalue'].toString(),

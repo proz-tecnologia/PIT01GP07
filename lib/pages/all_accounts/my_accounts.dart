@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'account_controller.dart';
+import 'account_states.dart';
 import 'add_new_account.dart';
 
 class MyAccounts extends StatefulWidget {
@@ -9,6 +12,20 @@ class MyAccounts extends StatefulWidget {
 }
 
 class _MyAccountsState extends State<MyAccounts> {
+  AccountController controller = AccountController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getAccounts();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.accounts.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,127 +45,74 @@ class _MyAccountsState extends State<MyAccounts> {
               }),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 16.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(children: [
-                    Text(
-                      'CONTA CORRENTE',
-                      style: Theme.of(context).textTheme.overline,
+      body: ValueListenableBuilder(
+        valueListenable: controller.accounts,
+        builder: (context, value, child) {
+          if (value is AddAccountInitialState) {
+            return Container();
+          } else if (value is AddAccountLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (value is AddAccountErrorState) {
+            return const Center(
+              child: Text('Tivemos um problema'),
+            );
+          } else if (value is AddAccountFirtAccessState) {
+            return const Center(
+              child: Text('Ainda não há contas cadastradas'),
+            );
+          } else {
+            return ListView(
+              children: [
+                for (int i = 0; i < value.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          Text(
+                            value[i]['type'],
+                            style: Theme.of(context).textTheme.overline,
+                          ),
+                          const Spacer(),
+                          Text(
+                            'SALDO ',
+                            style: Theme.of(context).textTheme.overline,
+                          ),
+                          const SizedBox(
+                            width: 16.0,
+                          ),
+                        ]),
+                        const SizedBox(
+                          height: 16.0,
+                        ),
+                        Row(children: [
+                          Text(
+                            value[i]['account'],
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            value[i]['cashvalue'],
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                          ),
+                        ]),
+                        const Divider(
+                          thickness: 2,
+                        ),
+                      ],
                     ),
-                    const Spacer(),
-                    Text(
-                      'SALDO ',
-                      style: Theme.of(context).textTheme.overline,
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                  ]),
-                  const SizedBox(
-                    height: 16.0,
                   ),
-                  Row(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/bank_accounts/bradesco.png',
-                        height: 24,
-                        width: 24,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                    Text(
-                      'Bradesco ',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'R\$ 120,00 ',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                  ]),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  const Divider(
-                    thickness: 2,
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  Row(children: [
-                    Text(
-                      'CONTA POUPANÇA',
-                      style: Theme.of(context).textTheme.overline,
-                    ),
-                    const Spacer(),
-                    Text(
-                      'SALDO ',
-                      style: Theme.of(context).textTheme.overline,
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                  ]),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  Row(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/bank_accounts/caixa.png',
-                        height: 24,
-                        width: 24,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                    Text(
-                      'Caixa Econômica',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'R\$ 120,00 ',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16.0,
-                    ),
-                  ]),
-                ],
-              ),
-            ),
-          ],
-        ),
+              ],
+            );
+          }
+        },
       ),
     );
   }

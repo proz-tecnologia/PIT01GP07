@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'account_info.dart';
-import '../../../../widgets/raisedbutton_see_more.dart';
-import '../../../../design_system/styleapp.dart';
-import 'my_accounts.dart';
+import '../../../../../all_accounts/account_info.dart';
+import '../../../../../../../../widgets/raisedbutton_see_more.dart';
+import '../../../../../../../../design_system/styleapp.dart';
+import '../../../../../all_accounts/my_accounts.dart';
 
 class CardAccountInfo extends StatefulWidget {
   const CardAccountInfo({super.key});

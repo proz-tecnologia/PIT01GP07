@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/pages/homescreen/homescreen_widgets/cards_container/cards_container_widgets/card_accounts/card_account_info.dart';
 import '../../../../design_system/styleapp.dart';
 import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/default_tab.dart';
 import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/tab_cards.dart';
@@ -48,6 +49,7 @@ class _CardsContainerState extends State<CardsContainer> {
             ),
             cardHeight: 160,
           ),
+          const CardAccountInfo(),
           const CardCreditCards(),
           const SizedBox(
             height: 96.0,

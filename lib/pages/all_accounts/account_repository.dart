@@ -12,7 +12,8 @@ class AccountRepository {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
       userData.collection('accounts').doc(accountModel.account).set({
-        'value': accountModel.value,
+        'account': accountModel.account,
+        'cashvalue': accountModel.value,
         'description': accountModel.description,
         'type': accountModel.type
       });
@@ -22,14 +23,21 @@ class AccountRepository {
     }
   }
 
-  Future<List<AccountModel>> getAccounts() async {
-    final userData =
-        _database.collection('users').doc(_firebase.currentUser!.uid);
-    final userAccounts = await userData.collection('metas').get();
-
-    final allData = List<AccountModel>.from(
-        userAccounts.docs.map((doc) => AccountModel.fromMap(doc.data())));
-
-    return allData;
+  Future<List<Map<String, dynamic>>?> accountsList() async {
+    try {
+      List<Map<String, dynamic>> accountsList = [];
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .orderBy('account')
+          .get();
+      for (var element in userData.docs.reversed) {
+        accountsList.add(element.data());
+      }
+      return accountsList;
+    } catch (e) {
+      return null;
+    }
   }
 }
