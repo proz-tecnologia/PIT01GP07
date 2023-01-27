@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:teste/pages/homescreen/homescreen_widgets/cards_container/cards_container_widgets/card_accounts/card_account_info.dart';
+import 'package:teste/pages/homescreen/homescreen_widgets/cards_container/cards_container_widgets/accounts_card/card_account.dart';
 import '../../../../design_system/styleapp.dart';
-import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/default_tab.dart';
-import 'cards_container_widgets/tab_cards_widgets/expenses_incomes_card/tab_cards.dart';
+import 'cards_container_widgets/operations_card/expenses_incomes_card/default_tab.dart';
+import 'cards_container_widgets/operations_card/expenses_incomes_card/expenses_incomes_cards.dart';
 import 'cards_container_widgets/my_credit_cards/card_credit_cards.dart';
 
 class CardsContainer extends StatefulWidget {
@@ -37,7 +37,7 @@ class _CardsContainerState extends State<CardsContainer> {
           const SizedBox(
             height: 16.0,
           ),
-          const TabCards(
+          const ExpensesIncomesCards(
             cardtitle: 'Minhas Despesas',
             firstTabTitle: 'Despesas',
             secondTabTitle: 'Receitas',
@@ -49,7 +49,7 @@ class _CardsContainerState extends State<CardsContainer> {
             ),
             cardHeight: 160,
           ),
-          const CardAccountInfo(),
+          const CardAccount(),
           const CardCreditCards(),
           const SizedBox(
             height: 96.0,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'account_controller.dart';
 import 'account_states.dart';
-import 'add_new_account.dart';
 
 class MyAccounts extends StatefulWidget {
   const MyAccounts({super.key});
@@ -32,16 +31,19 @@ class _MyAccountsState extends State<MyAccounts> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Minhas Contas'),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
         actions: [
           IconButton(
               icon: const Icon(
                 Icons.add,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddAccounts()),
-                );
+                Navigator.pushReplacementNamed(context, '/addaccount');
               }),
         ],
       ),
@@ -72,12 +74,12 @@ class _MyAccountsState extends State<MyAccounts> {
                         Row(children: [
                           Text(
                             value[i]['type'],
-                            style: Theme.of(context).textTheme.overline,
+                            style: Theme.of(context).textTheme.labelSmall,
                           ),
                           const Spacer(),
                           Text(
                             'SALDO ',
-                            style: Theme.of(context).textTheme.overline,
+                            style: Theme.of(context).textTheme.labelSmall,
                           ),
                           const SizedBox(
                             width: 16.0,

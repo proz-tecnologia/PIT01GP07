@@ -19,7 +19,7 @@ class Fab extends StatelessWidget {
           SpeedDialChild(
             child: const Icon(Icons.arrow_upward, color: Colors.green),
             label: 'Receita',
-            labelStyle: Theme.of(context).textTheme.caption,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -36,7 +36,7 @@ class Fab extends StatelessWidget {
           SpeedDialChild(
             child: const Icon(Icons.arrow_downward, color: Colors.red),
             label: 'Despesa',
-            labelStyle: Theme.of(context).textTheme.caption,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -53,7 +53,7 @@ class Fab extends StatelessWidget {
           SpeedDialChild(
             child: const Icon(Icons.compare_arrows, color: Colors.blue),
             label: 'Transferência',
-            labelStyle: Theme.of(context).textTheme.caption,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

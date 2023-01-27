@@ -36,13 +36,13 @@ class _NewPassword extends State<NewPassword> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Nova senha',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
               const SizedBox(height: 32),
               Text(
                 'Sua identidade foi verificada. Digite sua nova senha , por favor.',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 36),
               SizedBox(

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../../../../widgets/raisedbutton_see_more.dart';
-import 'tab_cards_controller.dart';
-import 'tab_cards_states.dart';
+import 'expenses_incomes_controller.dart';
+import 'expenses_incomes_states.dart';
 
 class DefaultTab extends StatefulWidget {
   final String tabState;
@@ -14,7 +14,7 @@ class DefaultTab extends StatefulWidget {
 }
 
 class _DefaultTabState extends State<DefaultTab> {
-  ExpensesCardController controller = ExpensesCardController();
+  ExpensesIncomesCardController controller = ExpensesIncomesCardController();
   late String operation;
 
   String formatDate(Timestamp timestamp) {
@@ -47,15 +47,15 @@ class _DefaultTabState extends State<DefaultTab> {
     return ValueListenableBuilder(
         valueListenable: controller.state,
         builder: ((context, value, child) {
-          if (value is DefaultTabInitialState) {
+          if (value is ExpensesIncomesCardInitialState) {
             return Container();
-          } else if (value is DefaultTabLoadingState) {
+          } else if (value is ExpensesIncomesCardLoadingState) {
             return const Center(child: CircularProgressIndicator());
-          } else if (value is DefaultTabErrorState) {
+          } else if (value is ExpensesIncomesCardErrorState) {
             return const Center(
               child: Text('Tivemos um problema'),
             );
-          } else if (value is DefaultTabFirtAccessState) {
+          } else if (value is ExpensesIncomesCardFirtAccessState) {
             return const Center(
               child: Text('Ainda não há despesas cadastradas'),
             );

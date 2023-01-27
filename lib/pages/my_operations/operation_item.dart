@@ -30,12 +30,12 @@ class _OperationItemState extends State<OperationItem> {
           Row(children: [
             Text(
               widget.description,
-              style: Theme.of(context).textTheme.overline,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             const Spacer(),
             Text(
               widget.date,
-              style: Theme.of(context).textTheme.overline,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
           ]),
           const SizedBox(
@@ -43,14 +43,14 @@ class _OperationItemState extends State<OperationItem> {
           ),
           Text(
             'Conta: ${widget.account}',
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.labelSmall,
           ),
           const SizedBox(
             height: 8.0,
           ),
           Text(
             'Categoria: ${widget.categorie}',
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.labelSmall,
           ),
           const SizedBox(
             height: 8.0,

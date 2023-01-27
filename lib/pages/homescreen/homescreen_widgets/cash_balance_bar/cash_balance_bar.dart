@@ -52,7 +52,7 @@ class _CashBalanceBarState extends State<CashBalanceBar> {
                     builder: (context, value, child) {
                       return Text(
                         'R\$ $value',
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.displaySmall,
                       );
                     }),
               ],

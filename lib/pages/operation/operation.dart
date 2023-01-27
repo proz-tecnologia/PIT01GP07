@@ -86,17 +86,6 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   String? selectedExpense = 'Aluguel / Prestação da casa';
   String? selectedAccount = '';
   String? selectedCategorie = '';
-  Widget title1() {
-    return const Text('Nova Receita');
-  }
-
-  Widget title2() {
-    return const Text('Nova Despesa');
-  }
-
-  Widget title3() {
-    return const Text('Nova Transação');
-  }
 
   bool received = false;
   TextEditingController dateController = TextEditingController();
@@ -108,15 +97,24 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   String selectedOperation = '';
   late DateTime datemodel;
 
+  List<String> contas = [];
+
   @override
   void initState() {
     super.initState();
+    controller.getAccounts();
     dateController.text = "";
     selectedController = TabController(
       initialIndex: widget.tabController,
       length: 3,
       vsync: this,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.accounts.dispose();
   }
 
   @override
@@ -136,10 +134,10 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
             height: 20,
             child: TabBarView(
               controller: selectedController,
-              children: [
-                title1(),
-                title2(),
-                title3(),
+              children: const [
+                Text('Nova Receita'),
+                Text('Nova Despesa'),
+                Text('Nova Transferência')
               ],
             ),
           ),
@@ -157,7 +155,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                   children: [
                     Text(
                       'Valor',
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     TextField(
                       controller: cashValue,
@@ -177,7 +175,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                     ),
                     Text(
                       'Tipo',
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(
                       height: 8.0,
@@ -256,7 +254,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                             ("Nenhuma data selecionada");
                           }
                         },
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -266,8 +264,8 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                         child: TabBarView(
                           controller: selectedController,
                           children: [
-                            addIncome(),
-                            addExpense(),
+                            addoperation(true),
+                            addoperation(false),
                             newTransference(),
                           ],
                         ),
@@ -283,10 +281,10 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                               selectedOperation = 'expense';
                             }
                             OperationModel newoperation = OperationModel(
-                                operationValue: cashValue.text,
+                                operationValue:
+                                    cashValue.text.replaceAll(',', '.'),
                                 operation: selectedOperation,
                                 date: datemodel,
-                                paid: received,
                                 account: selectedAccount!,
                                 categorie: selectedCategorie!,
                                 description: description.text,
@@ -312,27 +310,10 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
     );
   }
 
-  Widget addIncome() {
+  Widget addoperation(bool operation) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          width: 230,
-          child: SwitchListTile(
-            title:
-                Text('Recebido', style: Theme.of(context).textTheme.bodyText1),
-            secondary: Icon(Icons.monetization_on_outlined,
-                color: Theme.of(context).colorScheme.primary),
-            activeColor: Theme.of(context).colorScheme.primary,
-            inactiveThumbColor: Colors.grey,
-            value: received,
-            onChanged: (bool value) {
-              setState(() {
-                received = value;
-              });
-            }, // trailing:,
-          ),
-        ),
         const SizedBox(
           height: 8.0,
         ),
@@ -342,65 +323,31 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
         const SizedBox(
           height: 16.0,
         ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Conta",
-          ),
-          value: selectedAccount = selectedIncome,
-          items: categoriesIncome
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      incomeIcon[
-                          categoriesIncome.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(
-                        e,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                    ],
-                  ),
+        ValueListenableBuilder(
+          valueListenable: controller.accounts,
+          builder: ((context, value, child) {
+            return DropdownButtonFormField(
+                decoration: const InputDecoration(
+                  labelText: "Conta",
                 ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedAccount = selectedIncome = val;
-          },
+                hint: const Text('Escolha a conta'),
+                onChanged: (selected) {
+                  selectedAccount = selected;
+                },
+                items: controller.accounts.value
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList());
+          }),
         ),
         const SizedBox(
           height: 16.0,
         ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Categoria",
-          ),
-          value: selectedCategorie = selectedIncome,
-          items: categoriesIncome
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      incomeIcon[
-                          categoriesIncome.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(e),
-                    ],
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedCategorie = selectedIncome = val;
-          },
-        ),
+        incomeOrExpense(operation),
         const SizedBox(
           height: 16.0,
         ),
@@ -410,7 +357,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
             prefixIcon: Icon(Icons.dehaze),
             labelText: 'Descrição',
           ),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 16.0),
         TextField(
@@ -419,124 +366,69 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
             prefixIcon: Icon(Icons.receipt),
             labelText: 'Comprovante',
           ),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 16.0),
       ],
     );
   }
 
-  Widget addExpense() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 230,
-          child: SwitchListTile(
-            title: Text('Pago', style: Theme.of(context).textTheme.bodyText1),
-            secondary: Icon(Icons.monetization_on_outlined,
-                color: Theme.of(context).colorScheme.primary),
-            activeColor: Theme.of(context).colorScheme.primary,
-            inactiveThumbColor: Colors.grey,
-            value: received,
-            onChanged: (bool value) {
-              setState(() {
-                received = value;
-              });
-            }, // trailing:,
-          ),
+  Widget incomeOrExpense(bool operation) {
+    if (operation) {
+      return DropdownButtonFormField(
+        decoration: const InputDecoration(
+          labelText: "Categoria",
         ),
-        const SizedBox(
-          height: 8.0,
-        ),
-        const Divider(
-          thickness: 2,
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Conta",
-          ),
-          value: selectedAccount = selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(
-                        e,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                    ],
-                  ),
+        value: selectedCategorie = selectedIncome,
+        items: categoriesIncome
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Row(
+                  children: [
+                    incomeIcon[
+                        categoriesIncome.indexWhere((note) => note == e)],
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Text(e),
+                  ],
                 ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedAccount = selectedExpense = val;
-          },
+              ),
+            )
+            .toList(),
+        onChanged: (val) {
+          selectedCategorie = selectedIncome = val;
+        },
+      );
+    } else {
+      return DropdownButtonFormField(
+        decoration: const InputDecoration(
+          labelText: "Categoria",
         ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Categoria",
-          ),
-          value: selectedCategorie = selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(e),
-                    ],
-                  ),
+        value: selectedCategorie = selectedExpense,
+        items: categoriesExpenses
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Row(
+                  children: [
+                    expensesIcon[
+                        categoriesExpenses.indexWhere((note) => note == e)],
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Text(e),
+                  ],
                 ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedCategorie = selectedExpense = val;
-          },
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        TextField(
-          controller: description,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.dehaze),
-            labelText: 'Descrição',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-        TextField(
-          controller: receipt,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.receipt),
-            labelText: 'Comprovante',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-      ],
-    );
+              ),
+            )
+            .toList(),
+        onChanged: (val) {
+          selectedCategorie = selectedExpense = val;
+        },
+      );
+    }
   }
 
   Widget newTransference() {
@@ -627,7 +519,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
             prefixIcon: Icon(Icons.dehaze),
             labelText: 'Descrição',
           ),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 16.0),
         TextField(
@@ -635,7 +527,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
             prefixIcon: Icon(Icons.receipt),
             labelText: 'Comprovante',
           ),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 16.0),
       ],

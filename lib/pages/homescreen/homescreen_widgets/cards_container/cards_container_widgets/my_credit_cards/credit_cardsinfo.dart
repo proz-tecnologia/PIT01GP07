@@ -26,20 +26,20 @@ class CreditCardInfo extends StatelessWidget {
           children: [
             Text(
               "Cartão $nome",
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
               tipo,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 16),
             Text(
               "Limite Disponível",
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
               "R\$ $meuLimite",
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -49,7 +49,7 @@ class CreditCardInfo extends StatelessWidget {
           children: [
             Text(
               "Fatura Aberta",
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
               "R\$ $minhaFatura",

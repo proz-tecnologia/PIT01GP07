@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Digite seu e-mail',
                     suffixIcon: Icon(Icons.email),
                   ),
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
               Padding(
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: icon,
                     ),
                   ),
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
               Padding(
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Recuperar senha?',
-                        style: Theme.of(context).textTheme.overline,
+                        style: Theme.of(context).textTheme.labelSmall,
                       ),
                     )
                   ],

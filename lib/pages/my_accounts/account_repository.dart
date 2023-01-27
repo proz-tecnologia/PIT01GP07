@@ -14,8 +14,8 @@ class AccountRepository {
       userData.collection('accounts').doc(accountModel.account).set({
         'account': accountModel.account,
         'cashvalue': accountModel.value,
-        'description': accountModel.description,
-        'type': accountModel.type
+        'type': accountModel.type,
+        'image': accountModel.image
       });
       return 'success';
     } catch (e) {
@@ -32,12 +32,40 @@ class AccountRepository {
           .collection('accounts')
           .orderBy('account')
           .get();
-      for (var element in userData.docs.reversed) {
+      for (var element in userData.docs) {
         accountsList.add(element.data());
       }
       return accountsList;
     } catch (e) {
       return null;
+    }
+  }
+
+  Future<String> setNewCashIncomesExpenses({
+    required String newCash,
+    required String totalOperations,
+  }) async {
+    try {
+      final userData =
+          _database.collection('users').doc(_firebase.currentUser!.uid);
+      userData.set({'cash': newCash, 'totalIncomes': totalOperations},
+          SetOptions(merge: true));
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  Future<Object?> getUserData() async {
+    try {
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .get();
+
+      return userData.data();
+    } catch (e) {
+      return 'error';
     }
   }
 }

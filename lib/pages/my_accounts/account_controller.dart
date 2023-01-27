@@ -14,7 +14,15 @@ class AccountController {
     addAccountState.value = AddAccountLoadingState();
     String saveAccount =
         await repository.saveAccount(accountModel: accountModel);
-    if (saveAccount == 'success') {
+    final data = await repository.getUserData() as Map;
+    double newCash =
+        double.parse(accountModel.value) + double.parse(data['cash']);
+    double totalOperations =
+        double.parse(accountModel.value) + double.parse(data['totalIncomes']);
+    String saveNewData = await repository.setNewCashIncomesExpenses(
+        newCash: newCash.toString(),
+        totalOperations: totalOperations.toString());
+    if (saveAccount == 'success' || saveNewData == 'success') {
       addAccountState.value = AddAccountSuccessState();
     } else {
       addAccountState.value = AddAccountErrorState();

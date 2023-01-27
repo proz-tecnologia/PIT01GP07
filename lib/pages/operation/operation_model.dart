@@ -4,7 +4,7 @@ class OperationModel {
   String operationValue;
   String operation;
   DateTime date;
-  bool paid;
+
   String account;
   String categorie;
   String description;
@@ -14,7 +14,6 @@ class OperationModel {
     this.operationValue = '',
     this.operation = '',
     required this.date,
-    this.paid = false,
     this.account = '',
     this.categorie = '',
     this.description = '',
@@ -25,7 +24,6 @@ class OperationModel {
     String? operationValue,
     String? operation,
     DateTime? date,
-    bool? paid,
     String? account,
     String? categorie,
     String? description,
@@ -35,7 +33,6 @@ class OperationModel {
       operationValue: operationValue ?? this.operationValue,
       operation: operation ?? this.operation,
       date: date ?? this.date,
-      paid: paid ?? this.paid,
       account: account ?? this.account,
       categorie: categorie ?? this.categorie,
       description: description ?? this.description,
@@ -49,7 +46,7 @@ class OperationModel {
     result.addAll({'operationValue': operationValue});
     result.addAll({'operation': operation});
     result.addAll({'date': date.millisecondsSinceEpoch});
-    result.addAll({'paid': paid});
+
     result.addAll({'account': account});
     result.addAll({'categorie': categorie});
     result.addAll({'description': description});
@@ -63,7 +60,6 @@ class OperationModel {
       operationValue: map['operationValue'] ?? '',
       operation: map['operation'] ?? '',
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-      paid: map['paid'] ?? false,
       account: map['account'] ?? '',
       categorie: map['categorie'] ?? '',
       description: map['description'] ?? '',
@@ -78,7 +74,7 @@ class OperationModel {
 
   @override
   String toString() {
-    return 'OperationModel(operationValue: $operationValue, operation: $operation, date: $date, paid: $paid, account: $account, categorie: $categorie, description: $description, receipt: $receipt)';
+    return 'OperationModel(operationValue: $operationValue, operation: $operation, date: $date, account: $account, categorie: $categorie, description: $description, receipt: $receipt)';
   }
 
   @override
@@ -89,7 +85,6 @@ class OperationModel {
         other.operationValue == operationValue &&
         other.operation == operation &&
         other.date == date &&
-        other.paid == paid &&
         other.account == account &&
         other.categorie == categorie &&
         other.description == description &&
@@ -101,7 +96,6 @@ class OperationModel {
     return operationValue.hashCode ^
         operation.hashCode ^
         date.hashCode ^
-        paid.hashCode ^
         account.hashCode ^
         categorie.hashCode ^
         description.hashCode ^
