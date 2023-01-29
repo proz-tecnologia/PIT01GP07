@@ -28,4 +28,22 @@ class PixRepository {
       return 'error';
     }
   }
+
+  Future<List<Map<String, dynamic>>?> accountsList() async {
+    try {
+      List<Map<String, dynamic>> accountsList = [];
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .orderBy('account')
+          .get();
+      for (var element in userData.docs) {
+        accountsList.add(element.data());
+      }
+      return accountsList;
+    } catch (e) {
+      return null;
+    }
+  }
 }

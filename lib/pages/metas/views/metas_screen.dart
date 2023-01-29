@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../widgets/default_button.dart';
 import '../controllers/metas_controller.dart';
 
 class MetasScreen extends StatefulWidget {
@@ -24,42 +25,50 @@ class _MetasScreenState extends State<MetasScreen> {
   }
 
   _success() {
-    return ListView.builder(
-        itemCount: metasController.metas.length,
-        itemBuilder: (context, index) {
-          var meta = metasController.metas[index];
-          return ListTile(
-            leading: Checkbox(
-              value: meta.realizado,
-              onChanged: (bool? value) {
-                setState(() {
-                  meta.realizado = value!;
-                });
-              },
-            ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Conclusão: ${DateFormat('dd-MM-yyyy').format(meta.conclusao!)}',
-                ),
-                Text(
-                  'Meta: ${meta.titulo!}',
-                ),
-              ],
-            ),
-            subtitle: Text(
-              'Valor: R\$ ${NumberFormat.currency(
-                locale: 'pt_BR',
-                customPattern: '#,### \u00a4',
-                decimalDigits: 2,
-                symbol: '',
-              ).format(
-                double.parse(meta.valor!),
-              )}',
-            ),
-          );
-        });
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .75,
+          child: ListView.builder(
+              itemCount: metasController.metas.length,
+              itemBuilder: (context, index) {
+                var meta = metasController.metas[index];
+                return ListTile(
+                  leading: Checkbox(
+                    value: meta.realizado,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        meta.realizado = value!;
+                      });
+                    },
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Conclusão: ${DateFormat('dd-MM-yyyy').format(meta.conclusao!)}',
+                      ),
+                      Text(
+                        'Meta: ${meta.titulo!}',
+                      ),
+                    ],
+                  ),
+                  subtitle: Text(
+                    'Valor: R\$ ${NumberFormat.currency(
+                      locale: 'pt_BR',
+                      customPattern: '#,### \u00a4',
+                      decimalDigits: 2,
+                      symbol: '',
+                    ).format(
+                      double.parse(meta.valor!),
+                    )}',
+                  ),
+                );
+              }),
+        ),
+        DefaultButton(title: 'Adicionar Nova Meta', func: onPressedAdd)
+      ],
+    );
   }
 
   _error() {
@@ -102,14 +111,6 @@ class _MetasScreenState extends State<MetasScreen> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Metas'),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-            ),
-            onPressed: onPressedAdd,
-          ),
-        ],
       ),
       body: AnimatedBuilder(
         animation: metasController.state,

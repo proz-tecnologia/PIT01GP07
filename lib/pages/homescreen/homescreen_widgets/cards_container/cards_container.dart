@@ -17,44 +17,46 @@ class _CardsContainerState extends State<CardsContainer> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: MediaQuery.of(context).size.height * .64,
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: const BorderRadius.only(
             topLeft: StyleApp.borderRadius,
             topRight: StyleApp.borderRadius,
           )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 4.0),
-          Center(
-            child: Container(
-              color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
-              width: 50,
-              height: 2.3,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 4.0),
+            Center(
+              child: Container(
+                color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+                width: 50,
+                height: 2.3,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 16.0,
-          ),
-          const ExpensesIncomesCards(
-            cardtitle: 'Minhas Despesas',
-            firstTabTitle: 'Despesas',
-            secondTabTitle: 'Receitas',
-            firstTabContent: DefaultTab(
-              tabState: 'expense',
+            const SizedBox(
+              height: 16.0,
             ),
-            secondTabContent: DefaultTab(
-              tabState: 'income',
+            const ExpensesIncomesCards(
+              cardtitle: 'Minhas Despesas',
+              firstTabTitle: 'Despesas',
+              secondTabTitle: 'Receitas',
+              firstTabContent: DefaultTab(
+                tabState: 'expense',
+              ),
+              secondTabContent: DefaultTab(
+                tabState: 'income',
+              ),
+              cardHeight: 160,
             ),
-            cardHeight: 160,
-          ),
-          const CardAccount(),
-          const CardCreditCards(),
-          const SizedBox(
-            height: 96.0,
-          ),
-        ],
+            const CardAccount(),
+            const SizedBox(
+              height: 48.0,
+            ),
+          ],
+        ),
       ),
     );
   }

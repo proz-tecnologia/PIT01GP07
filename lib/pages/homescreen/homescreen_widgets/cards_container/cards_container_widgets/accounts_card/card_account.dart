@@ -66,8 +66,8 @@ class CardAccountState extends State<CardAccount> {
                           child: InkWell(
                         child: const Text(
                             'Clique aqui para cadastrar sua primeira conta!'),
-                        onTap: () => Navigator.pushReplacementNamed(
-                            context, '/myaccounts'),
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/addaccount'),
                       ));
                     } else {
                       return ValueListenableBuilder(

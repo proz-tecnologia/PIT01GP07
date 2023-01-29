@@ -406,7 +406,8 @@ class _AddAccountsState extends State<AddAccounts> {
         title: const Text('Adicionar Conta'),
         leading: InkWell(
           onTap: () {
-            Navigator.pushReplacementNamed(context, '/myaccounts');
+            Navigator.pop(context);
+            //Navigator.pushReplacementNamed(context, '/myaccounts');
           },
           child: const Icon(Icons.arrow_back),
         ),

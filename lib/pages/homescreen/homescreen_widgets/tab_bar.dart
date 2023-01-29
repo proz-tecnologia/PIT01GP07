@@ -15,6 +15,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      height: MediaQuery.of(context).size.height * .1,
       notchMargin: 4,
       shape: const AutomaticNotchedShape(
           RoundedRectangleBorder(
@@ -30,19 +31,21 @@ class _TabBarWidgetState extends State<TabBarWidget> {
       child: Row(
         children: [
           tabItem(
-            icon: const Icon(Icons.home),
+            icon: Icons.home,
             text: 'Início',
             route: '/home',
             active: true,
           ),
+          SizedBox(width: MediaQuery.of(context).size.width * .10),
           tabItem(
-            icon: const Icon(Icons.pix),
+            icon: Icons.pix,
             text: 'Chaves pix',
             route: '/pix',
             active: false,
           ),
+          SizedBox(width: MediaQuery.of(context).size.width * .10),
           tabItem(
-            icon: const Icon(Icons.task_alt_outlined),
+            icon: Icons.task_alt_outlined,
             text: 'Metas',
             route: '/metas',
             active: false,
@@ -54,36 +57,32 @@ class _TabBarWidgetState extends State<TabBarWidget> {
 
   Widget tabItem({
     required String text,
-    required Icon icon,
+    required IconData icon,
     required String route,
     required bool active,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, bottom: 8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          SizedBox(
-            height: 32,
-            child: IconButton(
-              icon: icon,
-              color: active
-                  ? Theme.of(context).colorScheme.tertiary
-                  : Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
-              onPressed: () {
-                Navigator.of(context).pushNamed(route);
-              },
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(route);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, bottom: 8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            SizedBox(
+              height: 32,
+              child: Icon(
+                icon,
+              ),
             ),
-          ),
-          Text(text,
-              style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  color: active
-                      ? Theme.of(context).colorScheme.tertiary
-                      : Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
-                  fontSize: 14)),
-        ],
+            Text(text,
+                style: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14)),
+          ],
+        ),
       ),
     );
   }

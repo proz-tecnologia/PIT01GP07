@@ -14,10 +14,12 @@ class OperationController {
       ValueNotifier(OperationAccountsInitialState());
 
   Future<void> performOperation(
-    OperationModel operation,
-  ) async {
-    String cashString = await repository.addOperation(operation: operation);
-    double modelCash = double.parse(operation.operationValue);
+      {required OperationModel operationModel, String? secondAccount}) async {
+    String cashString = '';
+    if (operationModel.operation != 'transfer') {
+      cashString = await repository.addOperation(operation: operationModel);
+    }
+    double modelCash = double.parse(operationModel.operationValue);
     double cash = 0.0;
     double incomes = 0.0;
     double expenses = 0.0;
@@ -26,7 +28,8 @@ class OperationController {
       cash = double.parse(userData['cash']);
     }
     if (cashString != 'error') {
-      if (operation.operation == 'income') {
+      //Nova receita
+      if (operationModel.operation == 'income') {
         double newCash = cash + modelCash;
         incomes = double.parse(userData!['totalIncomes']) + modelCash;
 
@@ -36,16 +39,18 @@ class OperationController {
           totalOperations: incomes.toString(),
           operation: 'totalIncomes',
         );
-        Map<String, dynamic>? currentCash =
-            await repository.getAccountCashValue(operation.account);
-        if (currentCash != null) {
+        Map<String, dynamic>? accountCurrentCash =
+            await repository.getAccountCashValue(operationModel.account);
+        if (accountCurrentCash != null) {
           double newAccountCash =
-              double.parse(currentCash['cashvalue']) + modelCash;
+              double.parse(accountCurrentCash['cashvalue']) + modelCash;
 
           await repository.setNewAccountCashValue(
-              operation.account, newAccountCash.toString());
+              operationModel.account, newAccountCash.toString());
         }
-      } else if (operation.operation == 'expense') {
+        //Fim da nova receita
+      } else if (operationModel.operation == 'expense') {
+        //Nova Despesa
         double newCash = cash - modelCash;
         expenses = double.parse(userData!['totalExpenses']) + modelCash;
 
@@ -57,14 +62,38 @@ class OperationController {
           operation: 'totalExpenses',
         );
 
-        Map<String, dynamic>? currentCash =
-            await repository.getAccountCashValue(operation.account);
-        if (currentCash != null) {
+        Map<String, dynamic>? accountCurrentCash =
+            await repository.getAccountCashValue(operationModel.account);
+        if (accountCurrentCash != null) {
           double newAccountCash =
-              double.parse(currentCash['cashvalue']) - modelCash;
+              double.parse(accountCurrentCash['cashvalue']) - modelCash;
 
           await repository.setNewAccountCashValue(
-              operation.account, newAccountCash.toString());
+              operationModel.account, newAccountCash.toString());
+        }
+        //Fim da nova despesa
+      } else {
+        //Nova transferência
+        await repository.setNewTransfer(
+            operationModel: operationModel, inAccoount: secondAccount!);
+        Map<String, dynamic>? outCurrentCash =
+            await repository.getAccountCashValue(operationModel.account);
+        if (outCurrentCash != null) {
+          double oldAccountCash =
+              double.parse(outCurrentCash['cashvalue']) - modelCash;
+
+          await repository.setNewAccountCashValue(
+              operationModel.account, oldAccountCash.toString());
+        }
+
+        Map<String, dynamic>? inCurrentCash =
+            await repository.getAccountCashValue(secondAccount);
+        if (inCurrentCash != null) {
+          double newAccountCash =
+              double.parse(inCurrentCash['cashvalue']) + modelCash;
+
+          await repository.setNewAccountCashValue(
+              secondAccount, newAccountCash.toString());
         }
       }
     }
@@ -74,12 +103,8 @@ class OperationController {
     state.value = OperationAccountsLoadingState();
     final accountsList = await repository.accountsList();
     if (accountsList != null) {
-      if (accountsList.isEmpty) {
-        state.value = OperationAccountsFirtAccessState();
-      } else {
-        for (var i = 0; i < accountsList.length; i++) {
-          accounts.value.add(accountsList[i]['account']);
-        }
+      for (var i = 0; i < accountsList.length; i++) {
+        accounts.value.add(accountsList[i]['account']);
         state.value = OperationAccountsSuccessState();
       }
     } else {

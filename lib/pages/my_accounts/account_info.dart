@@ -33,16 +33,15 @@ class AccountInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              nome,
+              tipo,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
-              tipo,
+              nome,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
-        const SizedBox(width: 29),
         const Spacer(),
         Text(
           "R\$ $meuSaldo",

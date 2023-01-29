@@ -4,11 +4,9 @@ class OperationModel {
   String operationValue;
   String operation;
   DateTime date;
-
   String account;
   String categorie;
   String description;
-  String receipt;
 
   OperationModel({
     this.operationValue = '',
@@ -17,7 +15,6 @@ class OperationModel {
     this.account = '',
     this.categorie = '',
     this.description = '',
-    this.receipt = '',
   });
 
   OperationModel copyWith({
@@ -36,7 +33,6 @@ class OperationModel {
       account: account ?? this.account,
       categorie: categorie ?? this.categorie,
       description: description ?? this.description,
-      receipt: receipt ?? this.receipt,
     );
   }
 
@@ -50,7 +46,6 @@ class OperationModel {
     result.addAll({'account': account});
     result.addAll({'categorie': categorie});
     result.addAll({'description': description});
-    result.addAll({'receipt': receipt});
 
     return result;
   }
@@ -63,7 +58,6 @@ class OperationModel {
       account: map['account'] ?? '',
       categorie: map['categorie'] ?? '',
       description: map['description'] ?? '',
-      receipt: map['receipt'] ?? '',
     );
   }
 
@@ -74,7 +68,7 @@ class OperationModel {
 
   @override
   String toString() {
-    return 'OperationModel(operationValue: $operationValue, operation: $operation, date: $date, account: $account, categorie: $categorie, description: $description, receipt: $receipt)';
+    return 'OperationModel(operationValue: $operationValue, operation: $operation, date: $date, account: $account, categorie: $categorie, description: $description,)';
   }
 
   @override
@@ -87,8 +81,7 @@ class OperationModel {
         other.date == date &&
         other.account == account &&
         other.categorie == categorie &&
-        other.description == description &&
-        other.receipt == receipt;
+        other.description == description;
   }
 
   @override
@@ -98,7 +91,6 @@ class OperationModel {
         date.hashCode ^
         account.hashCode ^
         categorie.hashCode ^
-        description.hashCode ^
-        receipt.hashCode;
+        description.hashCode;
   }
 }

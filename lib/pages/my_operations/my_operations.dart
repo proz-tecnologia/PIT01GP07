@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:teste/pages/my_operations/operation_item.dart';
 
 import 'my_operations_controller.dart';
+import 'my_operations_states.dart';
 
 class MyOperations extends StatefulWidget {
   final String operation;
@@ -50,21 +51,35 @@ class _MyOperationsState extends State<MyOperations> {
         title: Text(widget.tabTitle),
       ),
       body: ValueListenableBuilder(
-        valueListenable: controller.operations,
-        builder: (context, value, child) {
-          return ListView(
-            children: [
-              for (int i = 0; i < value.length; i++)
-                OperationItem(
-                    description: value[i]['description'].toString(),
-                    date: formatDate(value[i]['date']),
-                    cashvalue: value[i]['cashvalue'].toString(),
-                    categorie: value[i]['categorie'].toString(),
-                    account: value[i]['account'].toString())
-            ],
-          );
-        },
-      ),
+          valueListenable: controller.state,
+          builder: (context, value, child) {
+            if (value is MyOperationsInitialState) {
+              return Container();
+            } else if (value is MyOperationsLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (value is MyOperationsErrorState) {
+              return const Center(
+                child: Text('Erro no Servidor!'),
+              );
+            } else {
+              return ValueListenableBuilder(
+                valueListenable: controller.operations,
+                builder: (context, value, child) {
+                  return ListView(
+                    children: [
+                      for (int i = 0; i < value.length; i++)
+                        OperationItem(
+                            description: value[i]['description'].toString(),
+                            date: formatDate(value[i]['date']),
+                            cashvalue: value[i]['cashvalue'].toString(),
+                            categorie: value[i]['categorie'].toString(),
+                            account: value[i]['account'].toString())
+                    ],
+                  );
+                },
+              );
+            }
+          }),
     );
   }
 }

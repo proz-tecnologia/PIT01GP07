@@ -16,7 +16,6 @@ class OperationRepository {
         'account': operation.account,
         'categorie': operation.categorie,
         'description': operation.description,
-        'receipt': operation.receipt
       });
       return 'success';
     } catch (e) {
@@ -36,6 +35,26 @@ class OperationRepository {
         'cash': newCash,
         operation: totalOperations,
       }, SetOptions(merge: true));
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  Future<String> setNewTransfer({
+    required OperationModel operationModel,
+    required String inAccoount,
+  }) async {
+    try {
+      final userData =
+          _database.collection('users').doc(_firebase.currentUser!.uid);
+      userData.collection('transfer').doc().set({
+        'date': operationModel.date,
+        'cashvalue': operationModel.operationValue,
+        'outaccount': operationModel.account,
+        'inaccount': inAccoount,
+        'description': operationModel.description,
+      });
       return 'success';
     } catch (e) {
       return 'error';

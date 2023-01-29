@@ -71,7 +71,7 @@ class _DefaultTabState extends State<DefaultTab> {
                         child: Row(children: [
                           const SizedBox(width: 16),
                           Text(
-                            '$operation ${i + 1}',
+                            '${value[i]['description']}',
                             style: const TextStyle(
                               color: Color(0xff2F595B),
                               fontSize: 18,
@@ -98,9 +98,7 @@ class _DefaultTabState extends State<DefaultTab> {
                           ),
                         ]),
                       ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.surface,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/widgets/default_button.dart';
 
 import 'account_controller.dart';
 import 'account_states.dart';
@@ -37,15 +38,6 @@ class _MyAccountsState extends State<MyAccounts> {
           },
           child: const Icon(Icons.arrow_back),
         ),
-        actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.add,
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/addaccount');
-              }),
-        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: controller.accounts,
@@ -63,54 +55,77 @@ class _MyAccountsState extends State<MyAccounts> {
               child: Text('Ainda não há contas cadastradas'),
             );
           } else {
-            return ListView(
+            return Column(
               children: [
-                for (int i = 0; i < value.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          Text(
-                            value[i]['type'],
-                            style: Theme.of(context).textTheme.labelSmall,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .75,
+                  child: ListView(
+                    children: [
+                      for (int i = 0; i < value.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.asset(
+                                    value[i]['image'],
+                                    height: 48,
+                                    width: 48,
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Column(
+                                  children: [
+                                    Text(
+                                      value[i]['type'],
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                    Text(
+                                      value[i]['account'],
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                Text(
+                                  value[i]['cashvalue'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  ),
+                                ),
+                              ]),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Divider(
+                                thickness: 2,
+                              ),
+                            ],
                           ),
-                          const Spacer(),
-                          Text(
-                            'SALDO ',
-                            style: Theme.of(context).textTheme.labelSmall,
-                          ),
-                          const SizedBox(
-                            width: 16.0,
-                          ),
-                        ]),
-                        const SizedBox(
-                          height: 16.0,
                         ),
-                        Row(children: [
-                          Text(
-                            value[i]['account'],
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            value[i]['cashvalue'],
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
-                        ]),
-                        const Divider(
-                          thickness: 2,
-                        ),
-                      ],
-                    ),
+                    ],
                   ),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                DefaultButton(
+                    title: 'Adicionar Conta',
+                    func: () {
+                      Navigator.pushNamed(context, '/addaccount');
+                    })
               ],
             );
           }
