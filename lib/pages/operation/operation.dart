@@ -176,6 +176,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                   if (value == null || value.isEmpty) {
                                     return 'Digite um valor';
                                   }
+                                  return null;
                                 },
                                 controller: cashValue,
                                 decoration: const InputDecoration(
@@ -256,6 +257,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                     if (value == null || value.isEmpty) {
                                       return 'Insira uma data';
                                     }
+                                    return null;
                                   },
                                   controller: dateController,
                                   decoration: const InputDecoration(
@@ -374,6 +376,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                   if (value == null || value.isEmpty) {
                     return 'Selecione uma conta';
                   }
+                  return null;
                 },
                 decoration: const InputDecoration(
                   labelText: "Conta",
@@ -419,6 +422,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           if (value == null || value.isEmpty) {
             return 'Selecione uma categoria';
           }
+          return null;
         },
         decoration: const InputDecoration(
           labelText: "Categoria",
@@ -452,6 +456,7 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           if (value == null || value.isEmpty) {
             return 'Selecione uma categoria';
           }
+          return null;
         },
         decoration: const InputDecoration(
           labelText: "Categoria",

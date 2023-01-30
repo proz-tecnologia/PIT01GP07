@@ -3,7 +3,6 @@ import 'package:teste/pages/pix/pix_model.dart';
 
 import '../pix_repository.dart';
 
-
 class PixController {
   List<PixModel> pix = [];
   final PixRepository _pixRepository;

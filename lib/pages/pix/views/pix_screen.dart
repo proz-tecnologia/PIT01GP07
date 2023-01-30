@@ -37,8 +37,24 @@ class _PixScreenState extends State<PixScreen> {
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Conta: ${pix.account!}',
+                      Row(
+                        children: [
+                          Text(
+                            'Conta: ${pix.account!}',
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(Icons.edit),
+                          ),
+                          const SizedBox(
+                            width: 24.0,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(Icons.delete),
+                          )
+                        ],
                       ),
                     ],
                   ),

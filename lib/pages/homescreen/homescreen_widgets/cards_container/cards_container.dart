@@ -3,7 +3,6 @@ import 'package:teste/pages/homescreen/homescreen_widgets/cards_container/cards_
 import '../../../../design_system/styleapp.dart';
 import 'cards_container_widgets/operations_card/expenses_incomes_card/default_tab.dart';
 import 'cards_container_widgets/operations_card/expenses_incomes_card/expenses_incomes_cards.dart';
-import 'cards_container_widgets/my_credit_cards/card_credit_cards.dart';
 
 class CardsContainer extends StatefulWidget {
   const CardsContainer({super.key});

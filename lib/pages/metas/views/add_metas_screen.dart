@@ -63,6 +63,7 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Selecione uma data';
                       }
+                      return null;
                     },
                     controller: dateInput,
                     decoration: const InputDecoration(
@@ -95,6 +96,7 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Digite um breve título';
                       }
+                      return null;
                     },
                     decoration: const InputDecoration(
                       labelText: 'Título',
@@ -107,6 +109,7 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Digite o valor do seu objetivo';
                       }
+                      return null;
                     },
                     decoration: const InputDecoration(
                       labelText: 'Valor',

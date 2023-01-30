@@ -85,6 +85,7 @@ class _AddPixScreenState extends State<AddPixScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Escolha um tipo de chave';
                               }
+                              return null;
                             },
                             hint: const Text('Tipo'),
                             value: type.isEmpty ? null : '',
@@ -109,6 +110,7 @@ class _AddPixScreenState extends State<AddPixScreen> {
                                     if (value == null || value.isEmpty) {
                                       return 'Escolha uma conta para a chave';
                                     }
+                                    return null;
                                   },
                                   value: account.isEmpty ? null : '',
                                   hint: const Text('Escolha a conta'),
@@ -133,6 +135,7 @@ class _AddPixScreenState extends State<AddPixScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Por favor, digite a chave';
                               }
+                              return null;
                             },
                             decoration: const InputDecoration(
                               labelText: 'Digite a chave pix',

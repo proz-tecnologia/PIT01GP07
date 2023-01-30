@@ -22,7 +22,7 @@ class PixRepository {
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData.collection('pix').doc().set(pix.toJson());
+      userData.collection('pix').doc(pix.code).set(pix.toJson());
       return 'success';
     } catch (e) {
       return 'error';
