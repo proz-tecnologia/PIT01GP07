@@ -105,6 +105,18 @@ class _MyAccountsState extends State<MyAccounts> {
                                         Theme.of(context).colorScheme.tertiary,
                                   ),
                                 ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {},
+                                  child: const Icon(Icons.edit),
+                                ),
+                                const SizedBox(
+                                  width: 24.0,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: const Icon(Icons.delete),
+                                )
                               ]),
                               const SizedBox(
                                 height: 16.0,

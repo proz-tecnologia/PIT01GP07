@@ -42,14 +42,34 @@ class _MetasScreenState extends State<MetasScreen> {
                       });
                     },
                   ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  title: Row(
                     children: [
-                      Text(
-                        'Conclusão: ${DateFormat('dd-MM-yyyy').format(meta.conclusao!)}',
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Conclusão: ${DateFormat('dd-MM-yyyy').format(meta.conclusao!)}',
+                          ),
+                          Text(
+                            'Meta: ${meta.titulo!}',
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Meta: ${meta.titulo!}',
+                      const Spacer(),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(Icons.edit),
+                          ),
+                          const SizedBox(
+                            width: 24.0,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(Icons.delete),
+                          )
+                        ],
                       ),
                     ],
                   ),
