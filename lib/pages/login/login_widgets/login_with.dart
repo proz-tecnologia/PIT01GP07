@@ -18,9 +18,9 @@ class LoginWith extends StatelessWidget {
                 height: 1.5,
                 width: MediaQuery.of(context).size.width * 0.32,
               ),
-                Text(
+              Text(
                 "Ou entrar com",
-                 style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               Container(
                 color: Theme.of(context).colorScheme.primary,
@@ -55,19 +55,19 @@ class LoginWith extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                Text(
+              Text(
                 "Ainda não é cadastrado?",
-                 style: Theme.of(context).textTheme.bodyText1,
-               ),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => const SignUp(),
                   ));
                 },
-                child:  Text(
+                child: Text(
                   " Crie sua conta",
-                  style: Theme.of(context).textTheme.overline,
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
               )
             ],

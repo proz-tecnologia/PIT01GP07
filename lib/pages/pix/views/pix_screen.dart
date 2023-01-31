@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/default_button.dart';
 import '../controllers/pix_controller.dart';
 
 class PixScreen extends StatefulWidget {
@@ -23,26 +24,87 @@ class _PixScreenState extends State<PixScreen> {
   }
 
   _success() {
-    return ListView.builder(
-        itemCount: pixController.pix.length,
-        itemBuilder: (context, index) {
-          var pix = pixController.pix[index];
-          return ListTile(
-            leading: Text(pix.tipo!),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Conta: ${pix.conta!}',
-                ),
-                Text(
-                  'Descrição: ${pix.descricao!}',
-                ),
-              ],
-            ),
-            subtitle: Text(pix.codigo!),
-          );
-        });
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .75,
+          child: ListView.builder(
+              itemCount: pixController.pix.length,
+              itemBuilder: (context, index) {
+                var pix = pixController.pix[index];
+                return ListTile(
+                  leading: Text(pix.type!),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Conta: ${pix.account!}',
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(Icons.edit),
+                          ),
+                          const SizedBox(
+                            width: 24.0,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: const Text(
+                                      'Deseja mesmo excluir esta contar?'),
+                                  actions: [
+                                    OutlinedButton(
+                                        onPressed: () async {
+                                          String delete = await pixController
+                                              .deletePix(pix.code!);
+                                          if (delete == 'Success') {
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.pushReplacementNamed(
+                                                context, '/metas');
+                                          } else {
+                                            // ignore: use_build_context_synchronously
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 0),
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                content: Text(delete),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        child: const Text('Sim')),
+                                    OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Cancelar'))
+                                  ],
+                                ),
+                              );
+                            },
+                            child: const Icon(Icons.delete),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  subtitle: Text('Chave:  ${pix.code!}'),
+                );
+              }),
+        ),
+        DefaultButton(title: 'Adicionar Chave', func: onPressedAdd)
+      ],
+    );
   }
 
   _error() {
@@ -76,7 +138,7 @@ class _PixScreenState extends State<PixScreen> {
   }
 
   void onPressedAdd() {
-    Navigator.of(context).pushNamed('/addPix');
+    Navigator.of(context).pushReplacementNamed('/addPix');
   }
 
   @override
@@ -85,14 +147,12 @@ class _PixScreenState extends State<PixScreen> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Minhas Chaves Pix'),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-            ),
-            onPressed: onPressedAdd,
-          ),
-        ],
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: AnimatedBuilder(
         animation: pixController.state,

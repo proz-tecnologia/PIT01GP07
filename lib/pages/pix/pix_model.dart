@@ -1,32 +1,26 @@
 class PixModel {
-  String? tipo;
-  String? codigo;
-  String? conta;
-  String? descricao;
+  String? type;
+  String? code;
+  String? account;
 
   PixModel({
-    this.tipo,
-    this.codigo,
-    this.conta,
-    this.descricao,
+    this.type,
+    this.code,
+    this.account,
   });
 
   PixModel.fromJson(Map<String, dynamic> json) {
-    tipo = json['tipo'];
-    codigo = json['codigo'];
-    conta = json['conta'];
-    descricao = json['descricao'];
+    type = json['type'];
+    code = json['code'];
+    account = json['account'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['tipo'] = tipo;
-    data['codigo'] = codigo;
-    data['conta'] = conta;
-    data['descricao'] = descricao;
+    data['type'] = type;
+    data['code'] = code;
+    data['account'] = account;
 
     return data;
   }
-
-
 }

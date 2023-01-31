@@ -13,7 +13,7 @@ class Charts extends StatelessWidget {
       width: 300,
       child: SfCircularChart(
           legend: Legend(
-            textStyle: Theme.of(context).textTheme.bodyText1,
+            textStyle: Theme.of(context).textTheme.bodyLarge,
             isVisible: true,
             orientation: LegendItemOrientation.horizontal,
             overflowMode: LegendItemOverflowMode.wrap,

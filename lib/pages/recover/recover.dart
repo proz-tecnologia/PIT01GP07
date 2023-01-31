@@ -36,13 +36,13 @@ class _RecoverScreen extends State<RecoverScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Recuperar senha',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
               const SizedBox(height: 32),
               Text(
                 'Por favor, informe seu email cadastrado para que uma nova senha seja criada.',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 32),
               SizedBox(
@@ -53,7 +53,7 @@ class _RecoverScreen extends State<RecoverScreen> {
                       hintText: 'Digite seu e-mail',
                       suffixIcon: Icon(Icons.email),
                     ),
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     validator: (email) {
                       if (email == null || email.isEmpty) {
                         return 'E-mail obrigatório';

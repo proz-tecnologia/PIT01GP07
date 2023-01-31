@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pages/pix/pix_model.dart';
+import 'package:teste/pages/pix/pix_states.dart';
+import 'package:teste/widgets/default_button.dart';
 
 import '../controllers/add_pix_controller.dart';
 
@@ -12,87 +14,160 @@ class AddPixScreen extends StatefulWidget {
 
 class _AddPixScreenState extends State<AddPixScreen> {
   final addPixController = AddPixController();
-  final tipo = TextEditingController();
-  final codigo = TextEditingController();
-  final conta = TextEditingController();
-  final descricao = TextEditingController();
+  String type = '';
+  final code = TextEditingController();
+  String account = '';
+  final description = TextEditingController();
+  final types = ['CPF', 'Celular', 'E-mail', 'Chave Aleatória'];
+  final _formKey = GlobalKey<FormState>();
 
-  void onPressedSave() {
-    addPixController.createPix(PixModel(
-      tipo: tipo.text,
-      codigo: codigo.text,
-      conta: conta.text,
-      descricao: descricao.text,
-    ));
-    Navigator.of(context).pushNamed('/pix');
+  void onPressedSave() async {
+    if (_formKey.currentState!.validate()) {
+      String add = await addPixController.createPix(PixModel(
+        type: type,
+        code: code.text,
+        account: account,
+      ));
+      if (add == 'Success') {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushNamed('/pix');
+      } else {
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          behavior: SnackBarBehavior.floating,
+          content: Text('Erro no Servidor. Tente novamente!'),
+        ));
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    addPixController.getAccounts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
-      appBar: AppBar(
-        title: const Text('Nova Meta'),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.check,
-            ),
-            onPressed: onPressedSave,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        appBar: AppBar(
+          title: const Text('Nova chave Pix'),
+          leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/pix');
+            },
+            child: const Icon(Icons.arrow_back),
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ListView(
-          children: [
-            const SizedBox(
-              height: 12,
-            ),
-            const Text(
-              'Cadastrar Meta Financeira',
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Tipo',
-                    border: UnderlineInputBorder(),
-                  ),
-                  controller: tipo,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Código',
-                    border: UnderlineInputBorder(),
-                  ),
-                  controller: codigo,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Conta',
-                    border: UnderlineInputBorder(),
-                  ),
-                  controller: conta,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Descrição',
-                    border: UnderlineInputBorder(),
-                  ),
-                  controller: descricao,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-              ],
-            ),
-          ],
         ),
-      ),
-    );
+        body: ValueListenableBuilder(
+          valueListenable: addPixController.state,
+          builder: (context, value, child) {
+            if (value is PixInitialState) {
+              return Container();
+            } else if (value is PixLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (value is PixErrorState) {
+              return const Center(
+                child: Text('Erro no Servidor!'),
+              );
+            } else {
+              return Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ListView(
+                    children: [
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text(
+                        'Cadastrar Chave Pix',
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Column(
+                        children: [
+                          DropdownButtonFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Escolha um tipo de chave';
+                              }
+                              return null;
+                            },
+                            hint: const Text('Tipo'),
+                            value: type.isEmpty ? null : '',
+                            onChanged: ((value) {
+                              type = value!;
+                            }),
+                            items: types
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e),
+                                    ))
+                                .toList(),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          ValueListenableBuilder(
+                            valueListenable: addPixController.accounts,
+                            builder: ((context, value, child) {
+                              return DropdownButtonFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Escolha uma conta para a chave';
+                                    }
+                                    return null;
+                                  },
+                                  value: account.isEmpty ? null : '',
+                                  hint: const Text('Escolha a conta'),
+                                  onChanged: (selected) {
+                                    account = selected!;
+                                  },
+                                  items: addPixController.accounts.value
+                                      .map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e),
+                                        ),
+                                      )
+                                      .toList());
+                            }),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Por favor, digite a chave';
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'Digite a chave pix',
+                              border: UnderlineInputBorder(),
+                            ),
+                            controller: code,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          DefaultButton(
+                            title: 'Salvar',
+                            func: onPressedSave,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
+        ));
   }
 }

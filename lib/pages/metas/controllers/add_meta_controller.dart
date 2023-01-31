@@ -7,11 +7,12 @@ class AddMetaController {
   AddMetaController([MetasRepository? repository])
       : _metasRepository = repository ?? MetasRepository();
 
-  Future<void> createMeta(MetasModel meta) async {
+  Future<String> createMeta(MetasModel meta) async {
     try {
       await _metasRepository.addMeta(meta: meta);
+      return 'Success';
     } catch (e) {
-      rethrow;
+      return 'Error';
     }
   }
 }

@@ -7,17 +7,19 @@ class OperationRepository {
   final _database = FirebaseFirestore.instance;
 
   Future<String> addOperation({required OperationModel operation}) async {
+    String description = 'Sem título';
+    if (operation.description != '') {
+      description = operation.description;
+    }
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
       userData.collection(operation.operation).doc().set({
         'date': operation.date,
         'cashvalue': operation.operationValue,
-        'paid/received': operation.paid,
         'account': operation.account,
         'categorie': operation.categorie,
-        'description': operation.description,
-        'receipt': operation.receipt
+        'description': description,
       });
       return 'success';
     } catch (e) {
@@ -40,6 +42,71 @@ class OperationRepository {
       return 'success';
     } catch (e) {
       return 'error';
+    }
+  }
+
+  Future<String> setNewTransfer({
+    required OperationModel operationModel,
+    required String inAccoount,
+  }) async {
+    try {
+      final userData =
+          _database.collection('users').doc(_firebase.currentUser!.uid);
+      userData.collection('transfer').doc().set({
+        'date': operationModel.date,
+        'cashvalue': operationModel.operationValue,
+        'outaccount': operationModel.account,
+        'inaccount': inAccoount,
+        'description': operationModel.description,
+      });
+      return 'success';
+    } catch (e) {
+      return 'error';
+    }
+  }
+
+  Future<List<Map<String, dynamic>>?> accountsList() async {
+    try {
+      List<Map<String, dynamic>> accountsList = [];
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .get();
+      for (var element in userData.docs) {
+        accountsList.add(element.data());
+      }
+      return accountsList;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> getAccountCashValue(String account) async {
+    try {
+      final cashValue = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .doc(account)
+          .get();
+      return cashValue.data();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String> setNewAccountCashValue(String account, String newCash) async {
+    try {
+      await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .doc(account)
+          .update({'cashvalue': newCash});
+      return 'Success';
+    } catch (e) {
+      return 'Error';
     }
   }
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'options_tabs.dart';
+import '../options_tabs.dart';
 
-class TabCards extends StatefulWidget {
+class ExpensesIncomesCards extends StatefulWidget {
   final String cardtitle;
   final String firstTabTitle;
   final String secondTabTitle;
   final Widget firstTabContent;
   final Widget secondTabContent;
   final double cardHeight;
-  final Function func;
 
-  const TabCards({
+  const ExpensesIncomesCards({
     Key? key,
     required this.cardtitle,
     required this.firstTabTitle,
@@ -19,14 +18,13 @@ class TabCards extends StatefulWidget {
     required this.firstTabContent,
     required this.secondTabContent,
     required this.cardHeight,
-    required this.func,
   }) : super(key: key);
 
   @override
-  State<TabCards> createState() => _TabCardsState();
+  State<ExpensesIncomesCards> createState() => _ExpensesIncomesCardsState();
 }
 
-class _TabCardsState extends State<TabCards> {
+class _ExpensesIncomesCardsState extends State<ExpensesIncomesCards> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +34,7 @@ class _TabCardsState extends State<TabCards> {
         children: [
           Text(
             widget.cardtitle,
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 8),
           TabView(
@@ -45,8 +43,7 @@ class _TabCardsState extends State<TabCards> {
             firstTabContent: widget.firstTabContent,
             secondTabContent: widget.secondTabContent,
             cardHeight: widget.cardHeight,
-            func: widget.func,
-          )
+          ),
         ],
       ),
     );

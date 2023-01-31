@@ -7,3 +7,5 @@ class AddAccountLoadingState implements AddAccountStates {}
 class AddAccountSuccessState implements AddAccountStates {}
 
 class AddAccountErrorState implements AddAccountStates {}
+
+class AddAccountFirtAccessState implements AddAccountStates {}

@@ -30,24 +30,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: Theme.of(context).colorScheme.primary,
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            SizedBox(
-              height: 16.0,
-            ),
-            ProfileBar(),
-            CashBalanceBar(),
-            IncomeExpenseBar(),
-            SizedBox(
-              height: 16.0,
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            CardsContainer(),
-          ],
-        ),
+      body: Column(
+        children: const [
+          SizedBox(
+            height: 16.0,
+          ),
+          ProfileBar(),
+          CashBalanceBar(),
+          IncomeExpenseBar(),
+          SizedBox(
+            height: 16.0,
+          ),
+          CardsContainer(),
+        ],
       ),
       floatingActionButton: const Fab(icon: Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,

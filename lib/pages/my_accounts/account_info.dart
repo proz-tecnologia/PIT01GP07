@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AccountInfo extends StatelessWidget {
   final String nome;
   final String tipo;
-  final double saldo;
+  final String saldo;
   final String assetImage;
 
   const AccountInfo(
@@ -15,7 +15,7 @@ class AccountInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String meuSaldo = saldo.toStringAsFixed(2).replaceAll(".", ",");
+    String meuSaldo = saldo.replaceAll(".", ",");
 
     return Row(
       children: [
@@ -33,20 +33,19 @@ class AccountInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              nome,
-              style: Theme.of(context).textTheme.subtitle2,
+              tipo,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
-              tipo,
-              style: Theme.of(context).textTheme.bodyText1,
+              nome,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
-        const SizedBox(width: 29),
         const Spacer(),
         Text(
           "R\$ $meuSaldo",
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(width: 16),
       ],

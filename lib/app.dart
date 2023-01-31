@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:teste/pages/my_accounts/my_accounts.dart';
 import 'package:teste/pages/email_confirmation/email_confirmation.dart';
 import 'package:teste/pages/homescreen/homescreen.dart';
 import 'package:teste/pages/login/login.dart';
 import 'package:teste/pages/metas/views/add_metas_screen.dart';
 import 'package:teste/pages/metas/views/metas_screen.dart';
+import 'package:teste/pages/my_operations/my_operations.dart';
 import 'package:teste/pages/new_password/new_password.dart';
 import 'package:teste/pages/pix/views/add_pix_screen.dart';
 import 'package:teste/pages/pix/views/pix_screen.dart';
 import 'package:teste/pages/recover/recover.dart';
 import 'package:teste/pages/sign_up/sign_up.dart';
 import 'design_system/light_theme.dart';
-import 'pages/all_expenses/all_expenses.dart';
+import 'pages/my_accounts/add_new_account.dart';
 import 'pages/splashscreen/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
@@ -40,7 +42,13 @@ class MyApp extends StatelessWidget {
         '/emailconfirmation': (context) => const EmailConfirmation(),
         '/metas': (context) => const MetasScreen(),
         '/addMeta': (context) => const AddMetasScreen(),
-        '/myexpenses': (context) => const MyExpenses(),
+        '/addaccount': (context) => const AddAccounts(),
+        '/myaccounts': (context) => const MyAccounts(),
+        '/myoperations': (context) {
+          final args = ModalRoute.of(context)?.settings.arguments as Map;
+          return MyOperations(
+              tabTitle: args['tabTitle'], operation: args['operation']);
+        },
         '/pix': (context) => const PixScreen(),
         '/addPix': (context) => const AddPixScreen(),
       },

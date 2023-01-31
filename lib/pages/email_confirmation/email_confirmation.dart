@@ -23,13 +23,13 @@ class _EmailConfirmation extends State<EmailConfirmation> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'E-mail enviado',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ),
             const SizedBox(height: 32),
             Text(
               'Verifique o link enviado para continuar o processo.',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 36),
             const Expanded(

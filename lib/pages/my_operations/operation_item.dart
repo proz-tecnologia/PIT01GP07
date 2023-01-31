@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ExpenseItem extends StatefulWidget {
+class OperationItem extends StatefulWidget {
   final String description;
   final String date;
   final String cashvalue;
   final String categorie;
   final String account;
 
-  const ExpenseItem(
+  const OperationItem(
       {super.key,
       required this.description,
       required this.date,
@@ -16,10 +16,10 @@ class ExpenseItem extends StatefulWidget {
       required this.account});
 
   @override
-  State<ExpenseItem> createState() => _ExpenseItemState();
+  State<OperationItem> createState() => _OperationItemState();
 }
 
-class _ExpenseItemState extends State<ExpenseItem> {
+class _OperationItemState extends State<OperationItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,12 +30,12 @@ class _ExpenseItemState extends State<ExpenseItem> {
           Row(children: [
             Text(
               widget.description,
-              style: Theme.of(context).textTheme.overline,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             const Spacer(),
             Text(
               widget.date,
-              style: Theme.of(context).textTheme.overline,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
           ]),
           const SizedBox(
@@ -43,14 +43,14 @@ class _ExpenseItemState extends State<ExpenseItem> {
           ),
           Text(
             'Conta: ${widget.account}',
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.labelSmall,
           ),
           const SizedBox(
             height: 8.0,
           ),
           Text(
             'Categoria: ${widget.categorie}',
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.labelSmall,
           ),
           const SizedBox(
             height: 8.0,

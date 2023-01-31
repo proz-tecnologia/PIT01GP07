@@ -17,7 +17,7 @@ class MetasModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['conclusao'] = conclusao;
     data['titulo'] = titulo;
-    data['valor'] = valor;
+    data['valor'] = valor!.replaceAll(',', '.');
     data['realizado'] = realizado;
 
     return data;

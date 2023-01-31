@@ -22,12 +22,12 @@ class _PasswordUpdate extends State<PasswordUpdate> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text('Senha atualizada',
-                  style: Theme.of(context).textTheme.headline1),
+                  style: Theme.of(context).textTheme.displayLarge),
             ),
             const SizedBox(height: 32),
             Text(
               'Sua nova senha foi definida e já pode ser atualizada.',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 36),
             const Expanded(

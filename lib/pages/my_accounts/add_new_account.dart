@@ -396,6 +396,7 @@ class _AddAccountsState extends State<AddAccounts> {
   AccountController controller = AccountController();
   TextEditingController description = TextEditingController();
   TextEditingController cash = TextEditingController();
+  String image = '';
 
   @override
   Widget build(BuildContext context) {
@@ -403,6 +404,13 @@ class _AddAccountsState extends State<AddAccounts> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Adicionar Conta'),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+            //Navigator.pushReplacementNamed(context, '/myaccounts');
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -417,7 +425,7 @@ class _AddAccountsState extends State<AddAccounts> {
                 children: [
                   Text(
                     'Saldo atual da conta',
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   TextField(
                     controller: cash,
@@ -443,6 +451,7 @@ class _AddAccountsState extends State<AddAccounts> {
                     items: bankAccounts.map((Map map) {
                       return DropdownMenuItem<String>(
                         value: map["name"],
+                        onTap: () => image = map['image'],
                         child: Row(
                           children: <Widget>[
                             Image.asset(
@@ -464,17 +473,6 @@ class _AddAccountsState extends State<AddAccounts> {
                     onChanged: (val) {
                       selectedAccount = val;
                     },
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  TextField(
-                    controller: description,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.dehaze),
-                      labelText: 'Descrição',
-                    ),
-                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                   const SizedBox(
                     height: 16.0,
@@ -507,11 +505,11 @@ class _AddAccountsState extends State<AddAccounts> {
                           AccountModel accountModel = AccountModel(
                               value: cash.text,
                               account: selectedAccount!,
-                              description: description.text,
-                              type: selectedAccountType!);
+                              type: selectedAccountType!,
+                              image: image);
                           controller.addAccount(accountModel);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+                          Navigator.pushReplacementNamed(
+                              context, '/myaccounts');
                         }),
                   ),
                   const SizedBox(

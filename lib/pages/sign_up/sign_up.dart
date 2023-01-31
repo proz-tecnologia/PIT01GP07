@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Text(
                         ' Cadastre-se',
-                        style: Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                     ],
                   ),
@@ -114,7 +114,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: 'Nome',
                         suffixIcon: Icon(Icons.account_box),
                       ),
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                   Padding(
@@ -133,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: 'Digite seu e-mail',
                         suffixIcon: Icon(Icons.email),
                       ),
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                   Padding(
@@ -158,7 +158,7 @@ class _SignUpState extends State<SignUp> {
                           icon: icon,
                         ),
                       ),
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                   Padding(
@@ -189,7 +189,7 @@ class _SignUpState extends State<SignUp> {
                           icon: icon2,
                         ),
                       ),
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                   DefaultButton(

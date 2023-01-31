@@ -22,10 +22,43 @@ class PixRepository {
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData.collection('pix').doc().set(pix.toJson());
+      userData.collection('pix').doc(pix.code).set(pix.toJson());
       return 'success';
     } catch (e) {
       return 'error';
+    }
+  }
+
+  Future<List<Map<String, dynamic>>?> accountsList() async {
+    try {
+      List<Map<String, dynamic>> accountsList = [];
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .orderBy('account')
+          .get();
+      for (var element in userData.docs) {
+        accountsList.add(element.data());
+      }
+      return accountsList;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String> deletePix(String code) async {
+    try {
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('pix')
+          .doc(code)
+          .get();
+      await userData.reference.delete();
+      return 'Success';
+    } catch (e) {
+      return 'Error';
     }
   }
 }

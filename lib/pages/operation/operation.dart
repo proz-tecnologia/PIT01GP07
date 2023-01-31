@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:teste/pages/operation/operation_states.dart';
 import '../../widgets/default_button.dart';
 import 'operation_controller.dart';
 import 'operation_model.dart';
@@ -7,7 +8,6 @@ import 'operation_model.dart';
 class Operation extends StatefulWidget {
   final int tabController;
   const Operation({Key? key, required this.tabController}) : super(key: key);
-
   @override
   State<Operation> createState() => _OperationState();
 }
@@ -81,23 +81,12 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
     Icon(Icons.savings, color: Colors.lime[600]),
     const Icon(Icons.account_balance_wallet_outlined, color: Colors.blue),
   ];
-
+  final _formKey = GlobalKey<FormState>();
   String? selectedIncome = 'Salário';
   String? selectedExpense = 'Aluguel / Prestação da casa';
   String? selectedAccount = '';
+  String? secondSelectedAccount = '';
   String? selectedCategorie = '';
-  Widget title1() {
-    return const Text('Nova Receita');
-  }
-
-  Widget title2() {
-    return const Text('Nova Despesa');
-  }
-
-  Widget title3() {
-    return const Text('Nova Transação');
-  }
-
   bool received = false;
   TextEditingController dateController = TextEditingController();
   TextEditingController cashValue = TextEditingController();
@@ -107,10 +96,10 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   late TabController selectedController;
   String selectedOperation = '';
   late DateTime datemodel;
-
   @override
   void initState() {
     super.initState();
+    controller.getAccounts();
     dateController.text = "";
     selectedController = TabController(
       initialIndex: widget.tabController,
@@ -120,423 +109,376 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    controller.accounts.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/home');
-            },
-            child: const Icon(Icons.arrow_back),
-          ),
-          title: SizedBox(
-            height: 20,
-            child: TabBarView(
-              controller: selectedController,
-              children: [
-                title1(),
-                title2(),
-                title3(),
-              ],
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          appBar: AppBar(
+            leading: InkWell(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/home');
+              },
+              child: const Icon(Icons.arrow_back),
+            ),
+            title: SizedBox(
+              height: 20,
+              child: TabBarView(
+                controller: selectedController,
+                children: const [
+                  Text('Nova Receita'),
+                  Text('Nova Despesa'),
+                  Text('Nova Transferência')
+                ],
+              ),
             ),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 16.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Valor',
-                      style: Theme.of(context).textTheme.subtitle2,
-                    ),
-                    TextField(
-                      controller: cashValue,
-                      decoration: const InputDecoration(
-                        prefix: Text('R\$'),
-                        hintText: '0',
-                        border: InputBorder.none,
-                      ),
-                      style: const TextStyle(fontSize: 50),
-                      keyboardType: TextInputType.number,
-                    ),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    Text(
-                      'Tipo',
-                      style: Theme.of(context).textTheme.subtitle2,
-                    ),
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    Column(children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        ),
-                        child: TabBar(
-                          controller: selectedController,
-                          labelStyle: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
+          body: ValueListenableBuilder(
+            valueListenable: controller.state,
+            builder: (context, value, child) {
+              if (value is OperationAccountsInitialState) {
+                return Container();
+              } else if (value is OperationAccountsLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (value is OperationAccountsErrorState) {
+                return const Center(
+                  child: Text('Erro no Servidor!'),
+                );
+              } else {
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Form(
+                        key: _formKey,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16.0, top: 4.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Valor',
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Digite um valor';
+                                  }
+                                  return null;
+                                },
+                                controller: cashValue,
+                                decoration: const InputDecoration(
+                                  prefix: Text('R\$'),
+                                  hintText: '0',
+                                  border: InputBorder.none,
+                                ),
+                                style: const TextStyle(fontSize: 36),
+                                keyboardType: TextInputType.number,
+                              ),
+                              const Divider(
+                                thickness: 2,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Text(
+                                'Tipo',
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Column(children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                  child: TabBar(
+                                    controller: selectedController,
+                                    labelStyle: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    labelColor:
+                                        Theme.of(context).colorScheme.surface,
+                                    unselectedLabelStyle: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    unselectedLabelColor:
+                                        Theme.of(context).colorScheme.surface,
+                                    indicator: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                    tabs: const [
+                                      Tab(
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text("RECEITA"),
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text("DESPESA"),
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text("TRANSFERÊNCIA"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20.0,
+                                ),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Insira uma data';
+                                    }
+                                    return null;
+                                  },
+                                  controller: dateController,
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.calendar_month),
+                                    labelText: 'Data',
+                                  ),
+                                  readOnly: true,
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                      context: (context),
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1970),
+                                      lastDate: DateTime(2100),
+                                    );
+                                    if (pickedDate != null) {
+                                      String formattedDate =
+                                          DateFormat('MMM d, yyyy', 'pt_Br')
+                                              .format(pickedDate);
+                                      setState(() {
+                                        datemodel = pickedDate;
+                                        dateController.text =
+                                            formattedDate.toString();
+                                      });
+                                    } else {
+                                      ("Nenhuma data selecionada");
+                                    }
+                                  },
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                  height: 350,
+                                  child: TabBarView(
+                                    controller: selectedController,
+                                    children: [
+                                      addoperation(true),
+                                      addoperation(false),
+                                      newTransference(),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                              Center(
+                                child: DefaultButton(
+                                    title: 'Salvar',
+                                    func: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        if (widget.tabController == 0) {
+                                          selectedOperation = 'income';
+                                        } else if (widget.tabController == 1) {
+                                          selectedOperation = 'expense';
+                                        } else if (widget.tabController == 2) {
+                                          selectedOperation = 'transfer';
+                                        }
+                                        OperationModel newoperation =
+                                            OperationModel(
+                                          operationValue: cashValue.text
+                                              .replaceAll(',', '.'),
+                                          operation: selectedOperation,
+                                          date: datemodel,
+                                          account: selectedAccount!,
+                                          categorie: selectedCategorie!,
+                                          description: description.text,
+                                        );
+                                        controller.performOperation(
+                                          operationModel: newoperation,
+                                          secondAccount: secondSelectedAccount,
+                                        );
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Operation(
+                                                    tabController:
+                                                        selectedController
+                                                            .index,
+                                                  )),
+                                        );
+                                      }
+                                    }),
+                              ),
+                            ],
                           ),
-                          labelColor: Theme.of(context).colorScheme.surface,
-                          unselectedLabelStyle: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          unselectedLabelColor:
-                              Theme.of(context).colorScheme.surface,
-                          indicator: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10.0)),
-                              color: Theme.of(context).colorScheme.primary),
-                          tabs: const [
-                            Tab(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("RECEITA"),
-                              ),
-                            ),
-                            Tab(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("DESPESA"),
-                              ),
-                            ),
-                            Tab(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("TRANSAÇÃO"),
-                              ),
-                            ),
-                          ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24.0,
-                      ),
-                      TextField(
-                        controller: dateController,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.calendar_month),
-                          labelText: 'Data',
-                        ),
-                        readOnly: true,
-                        onTap: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                            context: (context),
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1970),
-                            lastDate: DateTime(2100),
-                          );
-                          if (pickedDate != null) {
-                            String formattedDate =
-                                DateFormat('MMM d, yyyy', 'pt_Br')
-                                    .format(pickedDate);
-                            setState(() {
-                              datemodel = pickedDate;
-                              dateController.text = formattedDate.toString();
-                            });
-                          } else {
-                            ("Nenhuma data selecionada");
-                          }
-                        },
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                        height: 420,
-                        child: TabBarView(
-                          controller: selectedController,
-                          children: [
-                            addIncome(),
-                            addExpense(),
-                            newTransference(),
-                          ],
-                        ),
-                      ),
-                    ]),
-                    Center(
-                      child: DefaultButton(
-                          title: 'Salvar',
-                          func: () {
-                            if (widget.tabController == 0) {
-                              selectedOperation = 'income';
-                            } else if (widget.tabController == 1) {
-                              selectedOperation = 'expense';
-                            }
-                            OperationModel newoperation = OperationModel(
-                                operationValue: cashValue.text,
-                                operation: selectedOperation,
-                                date: datemodel,
-                                paid: received,
-                                account: selectedAccount!,
-                                categorie: selectedCategorie!,
-                                description: description.text,
-                                receipt: receipt.text);
-                            controller.performOperation(newoperation);
+                    ],
+                  ),
+                );
+              }
+            },
+          )),
+    );
+  }
 
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Operation(
-                                        tabController: selectedController.index,
-                                      )),
-                            );
-                          }),
+  Widget addoperation(bool operation) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 8.0,
+        ),
+        const Divider(
+          thickness: 2,
+        ),
+        const SizedBox(
+          height: 16.0,
+        ),
+        ValueListenableBuilder(
+          valueListenable: controller.accounts,
+          builder: ((context, value, child) {
+            return DropdownButtonFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Selecione uma conta';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Conta",
+                ),
+                hint: const Text('Escolha a conta'),
+                onChanged: (selected) {
+                  selectedAccount = selected;
+                },
+                items: controller.accounts.value
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList());
+          }),
+        ),
+        const SizedBox(
+          height: 16.0,
+        ),
+        incomeOrExpense(operation),
+        const SizedBox(
+          height: 16.0,
+        ),
+        TextField(
+          controller: description,
+          decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.dehaze),
+            labelText: 'Descrição',
+          ),
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        const SizedBox(height: 16.0),
+      ],
+    );
+  }
+
+  Widget incomeOrExpense(bool operation) {
+    if (operation) {
+      return DropdownButtonFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Selecione uma categoria';
+          }
+          return null;
+        },
+        decoration: const InputDecoration(
+          labelText: "Categoria",
+        ),
+        hint: const Text('Escolha uma categoria'),
+        value: selectedCategorie = selectedIncome,
+        items: categoriesIncome
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Row(
+                  children: [
+                    incomeIcon[
+                        categoriesIncome.indexWhere((note) => note == e)],
+                    const SizedBox(
+                      width: 16.0,
                     ),
+                    Text(e),
                   ],
                 ),
               ),
-            ],
-          ),
+            )
+            .toList(),
+        onChanged: (val) {
+          selectedCategorie = selectedIncome = val;
+        },
+      );
+    } else {
+      return DropdownButtonFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Selecione uma categoria';
+          }
+          return null;
+        },
+        decoration: const InputDecoration(
+          labelText: "Categoria",
         ),
-      ),
-    );
-  }
-
-  Widget addIncome() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 230,
-          child: SwitchListTile(
-            title:
-                Text('Recebido', style: Theme.of(context).textTheme.bodyText1),
-            secondary: Icon(Icons.monetization_on_outlined,
-                color: Theme.of(context).colorScheme.primary),
-            activeColor: Theme.of(context).colorScheme.primary,
-            inactiveThumbColor: Colors.grey,
-            value: received,
-            onChanged: (bool value) {
-              setState(() {
-                received = value;
-              });
-            }, // trailing:,
-          ),
-        ),
-        const SizedBox(
-          height: 8.0,
-        ),
-        const Divider(
-          thickness: 2,
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Conta",
-          ),
-          value: selectedAccount = selectedIncome,
-          items: categoriesIncome
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      incomeIcon[
-                          categoriesIncome.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(
-                        e,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                    ],
-                  ),
+        hint: const Text('Escolha uma categoria'),
+        value: selectedCategorie = selectedExpense,
+        items: categoriesExpenses
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Row(
+                  children: [
+                    expensesIcon[
+                        categoriesExpenses.indexWhere((note) => note == e)],
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Text(e),
+                  ],
                 ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedAccount = selectedIncome = val;
-          },
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Categoria",
-          ),
-          value: selectedCategorie = selectedIncome,
-          items: categoriesIncome
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      incomeIcon[
-                          categoriesIncome.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(e),
-                    ],
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedCategorie = selectedIncome = val;
-          },
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        TextField(
-          controller: description,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.dehaze),
-            labelText: 'Descrição',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-        TextField(
-          controller: receipt,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.receipt),
-            labelText: 'Comprovante',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-      ],
-    );
-  }
-
-  Widget addExpense() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 230,
-          child: SwitchListTile(
-            title: Text('Pago', style: Theme.of(context).textTheme.bodyText1),
-            secondary: Icon(Icons.monetization_on_outlined,
-                color: Theme.of(context).colorScheme.primary),
-            activeColor: Theme.of(context).colorScheme.primary,
-            inactiveThumbColor: Colors.grey,
-            value: received,
-            onChanged: (bool value) {
-              setState(() {
-                received = value;
-              });
-            }, // trailing:,
-          ),
-        ),
-        const SizedBox(
-          height: 8.0,
-        ),
-        const Divider(
-          thickness: 2,
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Conta",
-          ),
-          value: selectedAccount = selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(
-                        e,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedAccount = selectedExpense = val;
-          },
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Categoria",
-          ),
-          value: selectedCategorie = selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(e),
-                    ],
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (val) {
-            selectedCategorie = selectedExpense = val;
-          },
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        TextField(
-          controller: description,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.dehaze),
-            labelText: 'Descrição',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-        TextField(
-          controller: receipt,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.receipt),
-            labelText: 'Comprovante',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-      ],
-    );
+              ),
+            )
+            .toList(),
+        onChanged: (val) {
+          selectedCategorie = selectedExpense = val;
+        },
+      );
+    }
   }
 
   Widget newTransference() {
@@ -552,33 +494,26 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
         const SizedBox(
           height: 16.0,
         ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "De Conta",
-          ),
-          value: selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(
-                        e,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                    ],
-                  ),
+        ValueListenableBuilder(
+          valueListenable: controller.accounts,
+          builder: ((context, value, child) {
+            return DropdownButtonFormField(
+                decoration: const InputDecoration(
+                  labelText: "Conta",
                 ),
-              )
-              .toList(),
-          onChanged: (val) {},
+                hint: const Text('Escolha a conta'),
+                onChanged: (selected) {
+                  selectedAccount = selected;
+                },
+                items: controller.accounts.value
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList());
+          }),
         ),
         const SizedBox(
           height: 8.0,
@@ -589,29 +524,26 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
         const SizedBox(
           height: 8.0,
         ),
-        DropdownButtonFormField(
-          decoration: const InputDecoration(
-            labelText: "Para Conta",
-          ),
-          value: selectedExpense,
-          items: categoriesExpenses
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Row(
-                    children: [
-                      expensesIcon[
-                          categoriesExpenses.indexWhere((note) => note == e)],
-                      const SizedBox(
-                        width: 16.0,
-                      ),
-                      Text(e),
-                    ],
-                  ),
+        ValueListenableBuilder(
+          valueListenable: controller.accounts,
+          builder: ((context, value, child) {
+            return DropdownButtonFormField(
+                decoration: const InputDecoration(
+                  labelText: "Para Conta",
                 ),
-              )
-              .toList(),
-          onChanged: (val) {},
+                hint: const Text('Escolha a conta'),
+                onChanged: (selected) {
+                  secondSelectedAccount = selected;
+                },
+                items: controller.accounts.value
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList());
+          }),
         ),
         const SizedBox(
           height: 16.0,
@@ -623,19 +555,12 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
           height: 16.0,
         ),
         TextField(
+          controller: description,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.dehaze),
             labelText: 'Descrição',
           ),
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: 16.0),
-        TextField(
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.receipt),
-            labelText: 'Comprovante',
-          ),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 16.0),
       ],

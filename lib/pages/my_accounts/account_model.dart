@@ -3,26 +3,26 @@ import 'dart:convert';
 class AccountModel {
   String value;
   String account;
-  String description;
   String type;
+  String image;
   AccountModel({
     this.value = '',
     this.account = '',
-    this.description = '',
     this.type = '',
+    this.image = '',
   });
 
   AccountModel copyWith({
     String? value,
     String? account,
-    String? description,
     String? type,
+    String? image,
   }) {
     return AccountModel(
       value: value ?? this.value,
       account: account ?? this.account,
-      description: description ?? this.description,
       type: type ?? this.type,
+      image: image ?? this.image,
     );
   }
 
@@ -31,8 +31,8 @@ class AccountModel {
 
     result.addAll({'value': value});
     result.addAll({'account': account});
-    result.addAll({'description': description});
     result.addAll({'type': type});
+    result.addAll({'image': image});
 
     return result;
   }
@@ -41,8 +41,8 @@ class AccountModel {
     return AccountModel(
       value: map['value'] ?? '',
       account: map['account'] ?? '',
-      description: map['description'] ?? '',
       type: map['type'] ?? '',
+      image: map['image'] ?? '',
     );
   }
 
@@ -53,7 +53,7 @@ class AccountModel {
 
   @override
   String toString() {
-    return 'AccountModel(value: $value, account: $account, description: $description, type: $type)';
+    return 'AccountModel(value: $value, account: $account, type: $type, image: $image)';
   }
 
   @override
@@ -63,15 +63,12 @@ class AccountModel {
     return other is AccountModel &&
         other.value == value &&
         other.account == account &&
-        other.description == description &&
-        other.type == type;
+        other.type == type &&
+        other.image == image;
   }
 
   @override
   int get hashCode {
-    return value.hashCode ^
-        account.hashCode ^
-        description.hashCode ^
-        type.hashCode;
+    return value.hashCode ^ account.hashCode ^ type.hashCode ^ image.hashCode;
   }
 }

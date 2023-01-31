@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AllExpensesRepository {
+class ExpensesIncomesCardRepository {
   final _firebase = FirebaseAuth.instance;
   final _database = FirebaseFirestore.instance;
 
@@ -23,17 +23,21 @@ class AllExpensesRepository {
     }
   }
 
-  Future<List<Map<String, dynamic>>?> firstExpenses() async {
+  Future<List<Map<String, dynamic>>?> firstOperations(String operation) async {
     try {
       List<Map<String, dynamic>> expenseList = [];
       final userData = await _database
           .collection('users')
           .doc(_firebase.currentUser!.uid)
-          .collection('expense')
-          .orderBy('date')
+          .collection(operation)
           .get();
+      int count = 0;
       for (var element in userData.docs.reversed) {
         expenseList.add(element.data());
+        count++;
+        if (count == 3) {
+          break;
+        }
       }
       return expenseList;
     } catch (e) {
