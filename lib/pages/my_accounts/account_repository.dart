@@ -68,4 +68,20 @@ class AccountRepository {
       return 'error';
     }
   }
+
+  Future<String> deleteAccount(String account) async {
+    try {
+      print(account);
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('accounts')
+          .doc(account)
+          .get();
+      await userData.reference.delete();
+      return 'Success';
+    } catch (e) {
+      return 'Error';
+    }
+  }
 }

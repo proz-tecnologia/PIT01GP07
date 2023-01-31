@@ -25,13 +25,23 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
     super.initState();
   }
 
-  void onPressedSave() {
-    addMetaController.createMeta(MetasModel(
+  void onPressedSave() async {
+    String add = await addMetaController.createMeta(MetasModel(
       conclusao: conclusao,
       titulo: titulo.text,
       valor: valor.text,
     ));
-    Navigator.of(context).pushNamed('/metas');
+    if (add == 'Success') {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed('/metas');
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        behavior: SnackBarBehavior.floating,
+        content: Text('Erro no Servidor. Tente novamente!'),
+      ));
+    }
   }
 
   @override
@@ -40,6 +50,12 @@ class _AddMetasScreenState extends State<AddMetasScreen> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Nova Meta'),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/metas');
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Form(
         key: _formKey,

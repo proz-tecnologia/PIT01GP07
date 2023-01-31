@@ -20,6 +20,11 @@ class PixController {
       state.value = PixState.error;
     }
   }
+
+  Future<String> deletePix(String code) async {
+    String deleted = await _pixRepository.deletePix(code);
+    return deleted;
+  }
 }
 
 enum PixState { start, loading, success, error }

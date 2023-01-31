@@ -108,14 +108,65 @@ class _MyAccountsState extends State<MyAccounts> {
                                 const Spacer(),
                                 InkWell(
                                   onTap: () {},
-                                  child: const Icon(Icons.edit),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 24.0,
                                 ),
                                 InkWell(
-                                  onTap: () {},
-                                  child: const Icon(Icons.delete),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) => AlertDialog(
+                                        title: const Text(
+                                            'Deseja mesmo excluir esta contar?'),
+                                        actions: [
+                                          OutlinedButton(
+                                              onPressed: () async {
+                                                String delete = await controller
+                                                    .deleteAccount(
+                                                        value[i]['account']);
+                                                if (delete == 'Success') {
+                                                  // ignore: use_build_context_synchronously
+                                                  Navigator
+                                                      .pushReplacementNamed(
+                                                          context,
+                                                          '/myaccounts');
+                                                } else {
+                                                  // ignore: use_build_context_synchronously
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      margin: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 16,
+                                                          vertical: 0),
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      content: Text(delete),
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                              child: const Text('Sim')),
+                                          OutlinedButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Cancelar'))
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.delete,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  ),
                                 )
                               ]),
                               const SizedBox(

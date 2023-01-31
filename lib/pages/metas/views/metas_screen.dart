@@ -66,7 +66,47 @@ class _MetasScreenState extends State<MetasScreen> {
                             width: 24.0,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: const Text(
+                                      'Deseja mesmo excluir esta contar?'),
+                                  actions: [
+                                    OutlinedButton(
+                                        onPressed: () async {
+                                          String delete = await metasController
+                                              .deleteMeta(meta.titulo!);
+                                          if (delete == 'Success') {
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.pushReplacementNamed(
+                                                context, '/metas');
+                                          } else {
+                                            // ignore: use_build_context_synchronously
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 0),
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                content: Text(delete),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        child: const Text('Sim')),
+                                    OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Cancelar'))
+                                  ],
+                                ),
+                              );
+                            },
                             child: const Icon(Icons.delete),
                           )
                         ],
@@ -122,7 +162,7 @@ class _MetasScreenState extends State<MetasScreen> {
   }
 
   void onPressedAdd() {
-    Navigator.of(context).pushNamed('/addMeta');
+    Navigator.of(context).pushReplacementNamed('/addMeta');
   }
 
   @override
@@ -131,6 +171,12 @@ class _MetasScreenState extends State<MetasScreen> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text('Metas'),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+          child: const Icon(Icons.arrow_back),
+        ),
       ),
       body: AnimatedBuilder(
         animation: metasController.state,

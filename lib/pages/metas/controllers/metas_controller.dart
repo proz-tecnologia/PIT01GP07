@@ -20,6 +20,11 @@ class MetasController {
       state.value = MetasState.error;
     }
   }
+
+  Future<String> deleteMeta(String titulo) async {
+    String deleted = await _metasRepository.deleteMeta(titulo);
+    return deleted;
+  }
 }
 
 enum MetasState { start, loading, success, error }

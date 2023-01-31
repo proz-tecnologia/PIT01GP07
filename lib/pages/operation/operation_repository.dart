@@ -7,6 +7,10 @@ class OperationRepository {
   final _database = FirebaseFirestore.instance;
 
   Future<String> addOperation({required OperationModel operation}) async {
+    String description = 'Sem título';
+    if (operation.description != '') {
+      description = operation.description;
+    }
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
@@ -15,7 +19,7 @@ class OperationRepository {
         'cashvalue': operation.operationValue,
         'account': operation.account,
         'categorie': operation.categorie,
-        'description': operation.description,
+        'description': description,
       });
       return 'success';
     } catch (e) {

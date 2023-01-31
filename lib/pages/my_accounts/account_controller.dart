@@ -43,4 +43,9 @@ class AccountController {
       addAccountState.value = AddAccountErrorState();
     }
   }
+
+  Future<String> deleteAccount(String account) async {
+    String deleted = await repository.deleteAccount(account);
+    return deleted;
+  }
 }

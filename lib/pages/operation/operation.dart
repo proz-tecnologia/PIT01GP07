@@ -8,7 +8,6 @@ import 'operation_model.dart';
 class Operation extends StatefulWidget {
   final int tabController;
   const Operation({Key? key, required this.tabController}) : super(key: key);
-
   @override
   State<Operation> createState() => _OperationState();
 }
@@ -82,15 +81,12 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
     Icon(Icons.savings, color: Colors.lime[600]),
     const Icon(Icons.account_balance_wallet_outlined, color: Colors.blue),
   ];
-
   final _formKey = GlobalKey<FormState>();
-
-  String? selectedIncome = '';
-  String? selectedExpense = '';
+  String? selectedIncome = 'Salário';
+  String? selectedExpense = 'Aluguel / Prestação da casa';
   String? selectedAccount = '';
   String? secondSelectedAccount = '';
   String? selectedCategorie = '';
-
   bool received = false;
   TextEditingController dateController = TextEditingController();
   TextEditingController cashValue = TextEditingController();
@@ -100,7 +96,6 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
   late TabController selectedController;
   String selectedOperation = '';
   late DateTime datemodel;
-
   @override
   void initState() {
     super.initState();
@@ -329,7 +324,6 @@ class _OperationState extends State<Operation> with TickerProviderStateMixin {
                                           operationModel: newoperation,
                                           secondAccount: secondSelectedAccount,
                                         );
-
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

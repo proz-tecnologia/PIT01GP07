@@ -21,14 +21,24 @@ class _AddPixScreenState extends State<AddPixScreen> {
   final types = ['CPF', 'Celular', 'E-mail', 'Chave Aleatória'];
   final _formKey = GlobalKey<FormState>();
 
-  void onPressedSave() {
+  void onPressedSave() async {
     if (_formKey.currentState!.validate()) {
-      addPixController.createPix(PixModel(
+      String add = await addPixController.createPix(PixModel(
         type: type,
         code: code.text,
         account: account,
       ));
-      Navigator.of(context).pushNamed('/pix');
+      if (add == 'Success') {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushNamed('/pix');
+      } else {
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          behavior: SnackBarBehavior.floating,
+          content: Text('Erro no Servidor. Tente novamente!'),
+        ));
+      }
     }
   }
 

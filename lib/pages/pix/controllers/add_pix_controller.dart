@@ -14,11 +14,12 @@ class AddPixController {
   AddPixController([PixRepository? repository])
       : _pixRepository = repository ?? PixRepository();
 
-  Future<void> createPix(PixModel pix) async {
+  Future<String> createPix(PixModel pix) async {
     try {
       await _pixRepository.addPix(pix: pix);
+      return 'Success';
     } catch (e) {
-      rethrow;
+      return 'Error';
     }
   }
 

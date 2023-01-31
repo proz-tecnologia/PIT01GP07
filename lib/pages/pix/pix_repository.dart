@@ -46,4 +46,19 @@ class PixRepository {
       return null;
     }
   }
+
+  Future<String> deletePix(String code) async {
+    try {
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('pix')
+          .doc(code)
+          .get();
+      await userData.reference.delete();
+      return 'Success';
+    } catch (e) {
+      return 'Error';
+    }
+  }
 }

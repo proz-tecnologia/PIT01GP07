@@ -22,10 +22,25 @@ class MetasRepository {
     try {
       final userData =
           _database.collection('users').doc(_firebase.currentUser!.uid);
-      userData.collection('metas').doc().set(meta.toJson());
+      userData.collection('metas').doc(meta.titulo).set(meta.toJson());
       return 'success';
     } catch (e) {
       return 'error';
+    }
+  }
+
+  Future<String> deleteMeta(String titutlo) async {
+    try {
+      final userData = await _database
+          .collection('users')
+          .doc(_firebase.currentUser!.uid)
+          .collection('metas')
+          .doc(titutlo)
+          .get();
+      await userData.reference.delete();
+      return 'Success';
+    } catch (e) {
+      return 'Error';
     }
   }
 }

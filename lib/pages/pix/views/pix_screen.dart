@@ -51,7 +51,47 @@ class _PixScreenState extends State<PixScreen> {
                             width: 24.0,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: const Text(
+                                      'Deseja mesmo excluir esta contar?'),
+                                  actions: [
+                                    OutlinedButton(
+                                        onPressed: () async {
+                                          String delete = await pixController
+                                              .deletePix(pix.code!);
+                                          if (delete == 'Success') {
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.pushReplacementNamed(
+                                                context, '/metas');
+                                          } else {
+                                            // ignore: use_build_context_synchronously
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 0),
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                content: Text(delete),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        child: const Text('Sim')),
+                                    OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Cancelar'))
+                                  ],
+                                ),
+                              );
+                            },
                             child: const Icon(Icons.delete),
                           )
                         ],
